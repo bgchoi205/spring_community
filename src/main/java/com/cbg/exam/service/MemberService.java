@@ -18,20 +18,11 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public Long save(Member member){
-        memberRepository.findByName(member.getName())
-                .ifPresent(m -> {throw new IllegalStateException("이미 존재하는 회원입니다.");
-                });
-
-        return memberRepository.save(member).getId();
-
+    public void save(Member member){
+        memberRepository.save(member);
     }
 
-    public Optional<Member> findById(Long id){
-        return memberRepository.findById(id);
-    }
-
-    public List<Member> findAll(){
+    public List findAll() {
         return memberRepository.findAll();
     }
 }
