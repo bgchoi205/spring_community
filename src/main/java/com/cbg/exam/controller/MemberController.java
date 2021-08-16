@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -26,19 +27,31 @@ public class MemberController {
         return "/members/join";
     }
 
+
     @PostMapping("/members/join")
-    public String memberDoJoin(@RequestParam("name") String name){
-        Member member =  new Member();
-        member.setName(name);
+    public String memberDoJoin(
+            @RequestParam("loginId") String loginId,
+            @RequestParam("loginPw") String loginPw,
+            @RequestParam("name") String name,
+            @RequestParam("nickname") String nickname,
+            @RequestParam("email") String email
+    ){
+        Member member =  Member.builder()
+                .loginId(loginId)
+                .loginPw(loginPw)
+                .name(name)
+                .nickname(nickname)
+                .email(email)
+                .build();
 
         memberService.save(member);
         return "redirect:/";
     }
 
-    @GetMapping("/members")
-    public String memberList(Model model){
-        List members = memberService.findAll();
-        model.addAttribute("members", members);
-        return "/members/memberList";
-    }
+//    @GetMapping("/members")
+//    public String memberList(Model model){
+//        List members = memberService.findAll();
+//        model.addAttribute("members", members);
+//        return "/members/memberList";
+//    }
 }

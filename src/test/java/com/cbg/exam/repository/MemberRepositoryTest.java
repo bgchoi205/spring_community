@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @SpringBootTest
@@ -16,41 +17,17 @@ public class MemberRepositoryTest {
 
     @Test
     public void saveMember(){
-        Member member1  = new Member();
-        member1.setName("spring1");
-        memberRepository.save(member1);
-
-        Member member2  = new Member();
-        member2.setName("spring2");
-        memberRepository.save(member2);
-    }
-
-    @Test
-    public void findMemberById(){
-        Long id = 2L;
-
-        Optional<Member> findedMember = memberRepository.findById(id);
-
-        if(findedMember.isPresent()){
-            Member member = findedMember.get();
-            System.out.println(member);
-        }
-    }
-
-    @Test
-    public void updateMember(){
-        Member member = Member.builder()
-                .id(3L)
-                .name("Hello")
+        Member member =  Member.builder()
+                .loginId("user1")
+                .loginPw("user1")
+                .name("홍길동")
+                .nickname("honghong")
+                .email("mail@gmail.com")
                 .build();
+
         memberRepository.save(member);
     }
 
-    @Test
-    public void deleteMember(){
-        Long id = 4L;
 
-        memberRepository.deleteById(id);
-    }
 
 }

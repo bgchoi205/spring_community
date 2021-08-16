@@ -5,6 +5,7 @@ import com.cbg.exam.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,11 +19,12 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
+    @Transactional
     public void save(Member member){
         memberRepository.save(member);
     }
 
-    public List findAll() {
-        return memberRepository.findAll();
-    }
+//    public List findAll() {
+//        return memberRepository.findAll();
+//    }
 }
