@@ -15,9 +15,20 @@ public class MemberRepository{
     @PersistenceContext
     private EntityManager em;
 
-
+    @Transactional
     public void save(Member member){
         em.persist(member);
+    }
+
+    @Transactional
+    public Member findById(int id){
+        return em.find(Member.class, id);
+    }
+
+    @Transactional
+    public List findAll(){
+        return em.createQuery("SELECT m FROM Member m")
+                .getResultList();
     }
 }
 

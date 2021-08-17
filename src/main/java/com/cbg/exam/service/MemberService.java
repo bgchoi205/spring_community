@@ -19,9 +19,17 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    @Transactional
+
     public void save(Member member){
         memberRepository.save(member);
+    }
+
+    public Member findById(int id){
+        return memberRepository.findById(id);
+    }
+
+    public List findAll() {
+        return memberRepository.findAll();
     }
 
 //    public List findAll() {
