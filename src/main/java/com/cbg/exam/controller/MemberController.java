@@ -22,13 +22,13 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @GetMapping("/members/join")
+    @GetMapping("/member/join")
     public String memberJoin(){
-        return "/members/join";
+        return "/member/join";
     }
 
 
-    @PostMapping("/members/join")
+    @PostMapping("/member/join")
     public String memberDoJoin(
             @RequestParam("loginId") String loginId,
             @RequestParam("loginPw") String loginPw,
@@ -48,11 +48,11 @@ public class MemberController {
         return "redirect:/";
     }
 
-    @GetMapping("/members/memberList")
+    @GetMapping("/member/list")
     public String memberList(Model model){
         List members = memberService.findAll();
         model.addAttribute("members", members);
-        return "/members/memberList";
+        return "/member/list";
     }
 
 //    @GetMapping("/members")
