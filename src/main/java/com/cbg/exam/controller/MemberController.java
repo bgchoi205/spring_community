@@ -22,6 +22,23 @@ public class MemberController {
         this.memberService = memberService;
     }
 
+    @GetMapping("/member/login")
+    public String memberLogin(){
+        return "/member/login";
+    }
+
+
+    @PostMapping("/member/login")
+    public String memberDoLogin(
+            @RequestParam("loginId") String loginId,
+            @RequestParam("loginPw") String loginPw
+    ){
+
+
+
+        return "redirect:/";
+    }
+
     @GetMapping("/member/join")
     public String memberJoin(){
         return "/member/join";
