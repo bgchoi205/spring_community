@@ -4,6 +4,7 @@ import com.cbg.exam.domain.Article;
 import com.cbg.exam.domain.Member;
 import com.cbg.exam.service.ArticleService;
 import com.cbg.exam.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,14 +17,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class ArticleController {
 
     private final ArticleService articleService;
-
-    @Autowired
-    public ArticleController(ArticleService articleService) {
-        this.articleService = articleService;
-    }
 
     @GetMapping("/article/write")
     public String articleWrite(){
@@ -37,16 +34,20 @@ public class ArticleController {
             @RequestParam("body") String body
     ){
 
-        String dateTimeStr = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        // 확인용 출력
+        System.out.println("입력제목 : " + title);
+        System.out.println("입력내용 : " + body);
 
         Article article =  Article.builder()
                 .memberId(1L)
                 .boardId(1L)
-                .regDate(dateTimeStr)
-                .updateDate(dateTimeStr)
                 .title(title)
                 .body(body)
                 .build();
+
+        System.out.println("게시물제목 : " + article.getTitle());
+        System.out.println("게시물내용 : " + article.getBody());
+
 
         articleService.save(article);
         return "redirect:/";

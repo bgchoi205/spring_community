@@ -7,8 +7,4 @@ import java.util.*;
 
 //@Repository
 //public class MemoryMemberRepository{
-//
-//    public void save(){
-//
-//    }
 //}

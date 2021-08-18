@@ -1,6 +1,7 @@
 package com.cbg.exam.repository;
 
 import com.cbg.exam.domain.Member;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,22 +11,29 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
+@RequiredArgsConstructor
 public class MemberRepository{
 
-    @PersistenceContext
-    private EntityManager em;
+    private final EntityManager em;
 
-    @Transactional
-    public void save(Member member){
+    public Long save(Member member){
         em.persist(member);
+        return member.getId();
     }
 
-    @Transactional
+    public Long delete(Member member){
+        em.remove(member);
+        return member.getId();
+    }
+
+    public Long modify(Member member){
+        return save(member);
+    }
+
     public Member findById(int id){
         return em.find(Member.class, id);
     }
 
-    @Transactional
     public List findAll(){
         return em.createQuery("SELECT m FROM Member m")
                 .getResultList();
