@@ -2,6 +2,7 @@ package com.cbg.exam.controller;
 
 import com.cbg.exam.domain.Member;
 import com.cbg.exam.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,16 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
+@RequiredArgsConstructor
 public class MemberController {
 
     private final MemberService memberService;
-
-    @Autowired
-    public MemberController(MemberService memberService) {
-        this.memberService = memberService;
-    }
 
     @GetMapping("/member/login")
     public String memberLogin(){
@@ -33,8 +31,16 @@ public class MemberController {
             @RequestParam("loginId") String loginId,
             @RequestParam("loginPw") String loginPw
     ){
+        Optional<Member> member = memberService.findMemberByLoginId(loginId);
 
+        System.out.println("입력 아이디 : " + loginId);
+        System.out.println("입력 비밀번호 : " + loginPw);
 
+        System.out.println(member.get().getLoginId());
+        System.out.println(member.get().getLoginPw());
+        System.out.println(member.get().getName());
+        System.out.println(member.get().getNickname());
+        System.out.println(member.get().getEmail());
 
         return "redirect:/";
     }

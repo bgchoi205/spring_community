@@ -42,4 +42,8 @@ public class MemberService {
         return memberRepository.findAll();
     }
 
+    @Transactional
+    public Optional<Member> findMemberByLoginId(String loginId) {
+        return memberRepository.findMemberByLoginId(loginId);
+    }
 }
