@@ -38,6 +38,8 @@ public class ArticleController {
         System.out.println("입력제목 : " + title);
         System.out.println("입력내용 : " + body);
 
+        String dateTimeStr = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
         Article article =  Article.builder()
                 .memberId(1L)
                 .boardId(1L)
@@ -48,8 +50,10 @@ public class ArticleController {
         System.out.println("게시물제목 : " + article.getTitle());
         System.out.println("게시물내용 : " + article.getBody());
 
+        Long newArticleId = articleService.save(article);
 
-        articleService.save(article);
+        System.out.println("새로 등록된 게시물 번호 : " + newArticleId);
+
         return "redirect:/";
     }
 

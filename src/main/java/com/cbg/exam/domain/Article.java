@@ -10,6 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name="article")
@@ -34,8 +35,19 @@ public class Article extends BaseTime {
     @Column(name="body", nullable = false)
     private String body;
 
+//    @Column(name="reg_date", nullable = false)
+//    @NonNull
+//    private LocalDateTime regDate;
+//
+//    @Column(name="update_date", nullable = false)
+//    @NonNull
+//    private LocalDateTime updateDate;
+
+
+
     @Builder
     public Article(Long memberId, Long boardId, String title, String body){
+
         this.memberId = memberId;
         this.boardId = boardId;
         this.title = title;

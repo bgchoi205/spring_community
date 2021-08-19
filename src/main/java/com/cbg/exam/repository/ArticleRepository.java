@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ArticleRepository {
 
-    private EntityManager em;
+    private final EntityManager em;
 
     public Long save(Article article){
         em.persist(article);
