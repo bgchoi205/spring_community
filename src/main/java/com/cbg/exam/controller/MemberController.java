@@ -1,6 +1,8 @@
 package com.cbg.exam.controller;
 
+import com.cbg.exam.domain.Article;
 import com.cbg.exam.domain.Member;
+import com.cbg.exam.service.ArticleService;
 import com.cbg.exam.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import java.util.Optional;
 public class MemberController {
 
     private final MemberService memberService;
+    private final ArticleService articleService;
 
     @GetMapping("/member/login")
     public String memberLogin(){
@@ -35,12 +38,6 @@ public class MemberController {
 
         System.out.println("입력 아이디 : " + loginId);
         System.out.println("입력 비밀번호 : " + loginPw);
-
-        System.out.println(member.get().getLoginId());
-        System.out.println(member.get().getLoginPw());
-        System.out.println(member.get().getName());
-        System.out.println(member.get().getNickname());
-        System.out.println(member.get().getEmail());
 
         return "redirect:/";
     }
@@ -76,6 +73,37 @@ public class MemberController {
         List members = memberService.findAll();
         model.addAttribute("members", members);
         return "/member/list";
+    }
+
+    @GetMapping("/member/mypage")
+    public String memberMypage(Model model){
+        Member member = memberService.findById(1L);
+        model.addAttribute("member", member);
+        return "/member/mypage";
+    }
+
+    @GetMapping("/member/maketest")
+    public String makeTest(){
+        Member member =  Member.builder()
+                .loginId("aa")
+                .loginPw("aa")
+                .name("aa")
+                .nickname("aa")
+                .email("aa@gmail.com")
+                .build();
+        memberService.save(member);
+
+        for(int i = 1; i <= 10; i++){
+            Article article =  Article.builder()
+                    .memberId(1L)
+                    .boardId(1L)
+                    .title("제목 : " + i)
+                    .body("내용 : " + i)
+                    .build();
+            articleService.save(article);
+        }
+
+        return "redirect:/";
     }
 
 //    @GetMapping("/members")

@@ -30,7 +30,7 @@ public class MemberRepository{
         return save(member);
     }
 
-    public Member findById(int id){
+    public Member findById(Long id){
         return em.find(Member.class, id);
     }
 

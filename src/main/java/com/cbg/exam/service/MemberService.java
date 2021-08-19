@@ -33,7 +33,7 @@ public class MemberService {
     }
 
     @Transactional
-    public Member findById(int id){
+    public Member findById(Long id){
         return memberRepository.findById(id);
     }
 
