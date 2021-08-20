@@ -44,6 +44,10 @@ public class MemberService {
 
     @Transactional
     public Optional<Member> findMemberByLoginId(String loginId) {
-        return memberRepository.findMemberByLoginId(loginId);
+        Optional<Member> findMember = memberRepository.findMemberByLoginId(loginId);
+
+        findMember.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원-findByLoginId"));
+
+        return findMember;
     }
 }
