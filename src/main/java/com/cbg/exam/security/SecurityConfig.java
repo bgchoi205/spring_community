@@ -25,7 +25,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginProcessingUrl("/doLogin")  // 로그인 처리 URL 설정
                 .usernameParameter("loginId")  // from에서 보내는 loginId를 받을 파라미터 key값
                 .passwordParameter("loginPw")  // loginPw를 받을 파라미터 key값, 둘다 input의 name과 일치하도록.
-                .successHandler(new MyLoginSuccessHandler());
+                .successHandler(new MyLoginSuccessHandler())
+                .and()
+                .logout()  // 로그아웃 관련 설정 진행을 돕는 LogoutConfigurer<> 클래스를 반환.
+                    .logoutUrl("/doLogout")  // logout 처리URL
+                    .logoutSuccessUrl("/member/login");  // 로그아웃 후 이동할 페이지
 
 
     }
