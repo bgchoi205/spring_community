@@ -28,3 +28,4 @@ logging:
 
 handlebars:
   suffix: .html
+  expose-session-attribute: true
