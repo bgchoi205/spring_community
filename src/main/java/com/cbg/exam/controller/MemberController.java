@@ -28,18 +28,18 @@ public class MemberController {
     }
 
 
-    @PostMapping("/member/login")
-    public String memberDoLogin(
-            @RequestParam("loginId") String loginId,
-            @RequestParam("loginPw") String loginPw
-    ){
-        Optional<Member> member = memberService.findMemberByLoginId(loginId);
-
-        System.out.println("입력 아이디 : " + loginId);
-        System.out.println("입력 비밀번호 : " + loginPw);
-
-        return "redirect:/";
-    }
+//    @PostMapping("/member/login")
+//    public String memberDoLogin(
+//            @RequestParam("loginId") String loginId,
+//            @RequestParam("loginPw") String loginPw
+//    ){
+//        Optional<Member> member = memberService.findMemberByLoginId(loginId);
+//
+//        System.out.println("입력 아이디 : " + loginId);
+//        System.out.println("입력 비밀번호 : " + loginPw);
+//
+//        return "redirect:/";
+//    }
 
     @GetMapping("/member/join")
     public String memberJoin(){

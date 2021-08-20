@@ -18,9 +18,12 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'mysql:mysql-connector-java'
     implementation 'org.junit.jupiter:junit-jupiter:5.7.0'
+	implementation 'org.springframework.boot:spring-boot-starter-security' // security 사용
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5' // thymeleaf에서 Spring Security 통합모듈 사용을 위해
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	compileOnly 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test' // security-test 일단 추가
 }
 
 test {
