@@ -2,10 +2,12 @@ package com.cbg.exam.controller;
 
 import com.cbg.exam.domain.Article;
 import com.cbg.exam.domain.Member;
+import com.cbg.exam.security.SecurityConfig;
 import com.cbg.exam.service.ArticleService;
 import com.cbg.exam.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +24,17 @@ public class MemberController {
 
     private final MemberService memberService;
 
+    private final SecurityConfig securityConfig;  // 비밀번호 암호화를 위해 생성자주입 추가
+
     @GetMapping("/member/login")
     public String memberLogin(){
         return "/member/login";
     }
+
+//    @GetMapping("/member/logout")
+//    public String memberLogout(){
+//        return "/member/logout";
+//    }
 
 
 //    @PostMapping("/member/login")
@@ -55,15 +64,9 @@ public class MemberController {
             @RequestParam("nickname") String nickname,
             @RequestParam("email") String email
     ){
-        Member member =  Member.builder()
-                .loginId(loginId)
-                .loginPw(loginPw)
-                .name(name)
-                .nickname(nickname)
-                .email(email)
-                .build();
 
-        memberService.save(member);
+
+        memberService.save(loginId, loginPw, name, nickname, email);
         return "redirect:/";
     }
 

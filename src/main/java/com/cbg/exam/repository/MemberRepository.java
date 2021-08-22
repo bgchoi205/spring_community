@@ -5,8 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.*;
-import javax.transaction.Transactional;
+import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +38,7 @@ public class MemberRepository{
                 .getResultList();
     }
 
-    public Optional<Member> findMemberByLoginId(String loginId) {
+    public Optional<Member> findByLoginId(String loginId) {
 
         System.out.println("리포지터리에 들어간 아이디 : " + loginId);
 
@@ -53,6 +52,18 @@ public class MemberRepository{
     }
 }
 
+//@Repository
 //public interface MemberRepository extends JpaRepository<Member, Long> {
 //
+//    Long save(Member member);
+//
+//    void delete(Member member);
+//
+//    static Long modify(Member member){
+//        return member.getId();
+//    }
+//
+//    Optional<Member> findById(Long id);
+//
+//    Optional<Member> findByLoginId(String loginId);
 //}
