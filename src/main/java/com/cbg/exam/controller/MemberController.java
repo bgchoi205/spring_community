@@ -7,6 +7,9 @@ import com.cbg.exam.service.ArticleService;
 import com.cbg.exam.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,31 +27,10 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    private final SecurityConfig securityConfig;  // 비밀번호 암호화를 위해 생성자주입 추가
-
     @GetMapping("/member/login")
     public String memberLogin(){
         return "/member/login";
     }
-
-//    @GetMapping("/member/logout")
-//    public String memberLogout(){
-//        return "/member/logout";
-//    }
-
-
-//    @PostMapping("/member/login")
-//    public String memberDoLogin(
-//            @RequestParam("loginId") String loginId,
-//            @RequestParam("loginPw") String loginPw
-//    ){
-//        Optional<Member> member = memberService.findMemberByLoginId(loginId);
-//
-//        System.out.println("입력 아이디 : " + loginId);
-//        System.out.println("입력 비밀번호 : " + loginPw);
-//
-//        return "redirect:/";
-//    }
 
     @GetMapping("/member/join")
     public String memberJoin(){
@@ -64,9 +46,17 @@ public class MemberController {
             @RequestParam("nickname") String nickname,
             @RequestParam("email") String email
     ){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+        Member member =  Member.builder()
+                .loginId(loginId)
+                .loginPw(passwordEncoder.encode(loginPw))  // 가입시 비밀번호 암호화
+                .name(name)
+                .nickname(nickname)
+                .email(email)
+                .build();
 
-        memberService.save(loginId, loginPw, name, nickname, email);
+        memberService.save(member);
         return "redirect:/";
     }
 
@@ -78,18 +68,9 @@ public class MemberController {
     }
 
     @GetMapping("/member/mypage")
-    public String memberMypage(Model model){
-        Member member = memberService.findById(1L);
-        model.addAttribute("member", member);
+    public String memberMypage(){
+
         return "/member/mypage";
     }
 
-
-
-//    @GetMapping("/members")
-//    public String memberList(Model model){
-//        List members = memberService.findAll();
-//        model.addAttribute("members", members);
-//        return "/members/memberList";
-//    }
 }

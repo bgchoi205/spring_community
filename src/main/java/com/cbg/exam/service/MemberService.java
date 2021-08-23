@@ -26,16 +26,8 @@ public class MemberService implements UserDetailsService {
 
 
     @Transactional
-    public Long save(String loginId, String loginPw, String name, String nickname, String email){
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    public Long save(Member member){
 
-        Member member =  Member.builder()
-                .loginId(loginId)
-                .loginPw(passwordEncoder.encode(loginPw))  // 가입시 비밀번호 암호화
-                .name(name)
-                .nickname(nickname)
-                .email(email)
-                .build();
         return memberRepository.save(member);
     }
 

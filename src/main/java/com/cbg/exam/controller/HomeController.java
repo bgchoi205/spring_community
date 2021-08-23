@@ -7,6 +7,7 @@ import com.cbg.exam.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -39,8 +40,17 @@ public class HomeController {
 
     @GetMapping("/home/maketest")
     public String makeTest(){
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        memberService.save("aa","aa", "aa", "aa", "aa@gmail.com");
+        Member member =  Member.builder()
+                .loginId("aa")
+                .loginPw(passwordEncoder.encode("aa"))  // 가입시 비밀번호 암호화
+                .name("aa")
+                .nickname("aa")
+                .email("aa@gmail.com")
+                .build();
+
+        memberService.save(member);
 
         for(int i = 1; i <= 10; i++){
             Article article =  Article.builder()

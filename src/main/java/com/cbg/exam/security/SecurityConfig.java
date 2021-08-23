@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity
-                //.csrf().disable()  // csrf 토큰검사 비활성화
+//                .csrf().disable()  // csrf 토큰검사 비활성화
                 .authorizeRequests()
                     .antMatchers("/admin/**").hasRole("ADMIN")
                     .antMatchers("/member/mypage").hasRole("MEMBER")
@@ -44,11 +44,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .usernameParameter("loginId")  // from에서 보내는 loginId를 받을 파라미터 key값
                     .passwordParameter("loginPw")  // loginPw를 받을 파라미터 key값, 둘다 input의 name과 일치하도록.
                     .defaultSuccessUrl("/")
-                //.successHandler(new MyLoginSuccessHandler())
                 .and() //로그아웃 설정 시작
                     .logout()  // 로그아웃 관련 설정 진행을 돕는 LogoutConfigurer<> 클래스를 반환.
                     .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout")) // 로그아웃 주소 지정(따로 getMapping 할 필요는 없다)
-//                    .logoutUrl("/logout")  // logout 처리URL
                     .logoutSuccessUrl("/member/login") // 로그아웃 성공 후 이동페이지
                     .invalidateHttpSession(true); // 로그아웃 시 인증정보 지우기, 세션 무효화
 
