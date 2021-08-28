@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,14 +63,26 @@ public class MemberController {
 
     @GetMapping("/member/list")
     public String memberList(Model model){
-        List members = memberService.findAll();
-        model.addAttribute("members", members);
+//        List members = memberService.findAll();
+//        model.addAttribute("members", members);
+
+        List<String> lists = new ArrayList<>();
+
+        lists.add("<h1 class='test'>1번</h1>");
+        lists.add("<h1 class='test'>2번</h1>");
+        lists.add("<h1 class='test'>3번</h1>");
+        lists.add("<h1 id='test'>4번</h1>");
+        model.addAttribute("lists", lists);
+
+
         return "/member/list";
     }
 
     @GetMapping("/member/mypage")
-    public String memberMypage(){
+    public String memberMypage( Model model){
 
+        String hi = "<h1>hihi</h1>";
+        model.addAttribute("hi", hi);
         return "/member/mypage";
     }
 
