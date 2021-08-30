@@ -40,8 +40,6 @@ public class MemberRepository{
 
     public Optional<Member> findByLoginId(String loginId) {
 
-        System.out.println("리포지터리에 들어간 아이디 : " + loginId);
-
         Optional<Member> findMember = em.createQuery("SELECT m FROM Member m WHERE m.loginId = :loginId", Member.class)
                 .setParameter("loginId", loginId)
                 .setMaxResults(1)

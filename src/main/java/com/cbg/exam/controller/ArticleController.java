@@ -22,13 +22,13 @@ public class ArticleController {
 
     private final ArticleService articleService;
 
-    @GetMapping("/article/write")
+    @GetMapping("/usr/article/write")
     public String articleWrite(){
-        return "/article/write";
+        return "/usr/article/write";
     }
 
 
-    @PostMapping("/article/write")
+    @PostMapping("/usr/article/write")
     public String articleDoWrite(
             @RequestParam("title") String title,
             @RequestParam("body") String body
@@ -55,11 +55,11 @@ public class ArticleController {
         return "redirect:/";
     }
 
-    @GetMapping("/article/list")
+    @GetMapping("/usr/article/list")
     public String memberList(Model model){
         List articles = articleService.findAll();
         model.addAttribute("articles", articles);
-        return "/article/list";
+        return "/usr/article/list";
     }
 
 }

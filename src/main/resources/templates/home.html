@@ -34,25 +34,25 @@
                         <span>기록창고</span>
                     </li>
                     <li class="px-2" sec:authorize="isAnonymous()">
-                        <a href="/member/login">
+                        <a href="/usr/member/login">
                             <span><i class="fas fa-sign-in-alt"></i></span>
                             <span>로그인</span>
                         </a>
                     </li>
                     <li class="px-2" sec:authorize="isAnonymous()">
-                        <a href="/member/join">
+                        <a href="/usr/member/join">
                             <span><i class="fas fa-user-plus"></i></span>
                             <span>회원가입</span>
                         </a>
                     </li>
                     <li class="px-2" sec:authorize="isAuthenticated()">
-                        <a href="/member/mypage">
+                        <a href="/usr/member/mypage">
                             <span><i class="fas fa-user"></i></span>
                             <span sec:authentication="principal.username"></span>
                         </a>
                     </li>
                     <li class="px-2" sec:authorize="isAuthenticated()">
-                        <a href="/member/logout">
+                        <a href="/usr/member/logout">
                             <span><i class="fas fa-sign-out-alt"></i></span>
                             <span>로그아웃</span>
                         </a>
@@ -70,16 +70,16 @@
             <hr>
             <p class="text-lg font-bold underline my-2">회원</p>
             <p>
-                <a href="/member/login">로그인</a>
+                <a href="/usr/member/login">로그인</a>
             </p>
-            <p><a href="/member/logout">로그아웃</a></p>
-            <p><a href="/member/join">회원가입</a></p>
-            <p><a href="/member/list">회원목록</a></p>
-            <p><a href="/member/mypage">마이페이지</a></p>
+            <p><a href="/usr/member/logout">로그아웃</a></p>
+            <p><a href="/usr/member/join">회원가입</a></p>
+            <p><a href="/usr/member/list">회원목록</a></p>
+            <p><a href="/usr/member/mypage">마이페이지</a></p>
             <hr>
             <p class="text-lg font-bold underline my-2">게시글</p>
             <p>
-                <a href="/article/write">글쓰기</a>
+                <a href="/usr/article/write">글쓰기</a>
             </p>
         </div>
     </div>

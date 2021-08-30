@@ -28,18 +28,18 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping("/member/login")
+    @GetMapping("/usr/member/login")
     public String memberLogin(){
-        return "/member/login";
+        return "/usr/member/login";
     }
 
-    @GetMapping("/member/join")
+    @GetMapping("/usr/member/join")
     public String memberJoin(){
-        return "/member/join";
+        return "/usr/member/join";
     }
 
 
-    @PostMapping("/member/join")
+    @PostMapping("/usr/member/join")
     public String memberDoJoin(
             @RequestParam("loginId") String loginId,
             @RequestParam("loginPw") String loginPw,
@@ -61,7 +61,7 @@ public class MemberController {
         return "redirect:/";
     }
 
-    @GetMapping("/member/list")
+    @GetMapping("/usr/member/list")
     public String memberList(Model model){
 //        List members = memberService.findAll();
 //        model.addAttribute("members", members);
@@ -75,15 +75,15 @@ public class MemberController {
         model.addAttribute("lists", lists);
 
 
-        return "/member/list";
+        return "/usr/member/list";
     }
 
-    @GetMapping("/member/mypage")
+    @GetMapping("/usr/member/mypage")
     public String memberMypage( Model model){
 
         String hi = "<h1>hihi</h1>";
         model.addAttribute("hi", hi);
-        return "/member/mypage";
+        return "/usr/member/mypage";
     }
 
 }
