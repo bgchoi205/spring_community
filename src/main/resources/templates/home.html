@@ -3,32 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title>home</title>
+
+    <!-- 테일윈드 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.8/tailwind.min.css">
+
+    <!-- 데이지UI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/daisyui/1.14.0/full.css">
+
+    <!-- 폰트어썸 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- 제이쿼리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- 반응형 메타태그 -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body>
-    <div class="container">
-        <div>
-            <h1>HOME</h1>
-            <hr>
+    <header class="top-bar h-14 bg-gray-800 text-white">
+        <div class="container mx-auto h-full flex items-center">
+            <a href="#" class="font-bold">
+                <span><i class="fas fa-laptop-code"></i></span>
+                <span>내 기억은 쓰레기다</span>
+            </a>
+            <span class="flex-grow"></span>
+            <nav class="menu-wrap">
+                <ul class="flex">
+                    <li class="px-2">
+                        <span><i class="fas fa-book-open"></i></span>
+                        <span>기록창고</span>
+                    </li>
+                    <li class="px-2" sec:authorize="isAnonymous()">
+                        <a href="/member/login">
+                            <span><i class="fas fa-sign-in-alt"></i></span>
+                            <span>로그인</span>
+                        </a>
+                    </li>
+                    <li class="px-2" sec:authorize="isAnonymous()">
+                        <a href="/member/join">
+                            <span><i class="fas fa-user-plus"></i></span>
+                            <span>회원가입</span>
+                        </a>
+                    </li>
+                    <li class="px-2" sec:authorize="isAuthenticated()">
+                        <a href="/member/mypage">
+                            <span><i class="fas fa-user"></i></span>
+                            <span sec:authentication="principal.username"></span>
+                        </a>
+                    </li>
+                    <li class="px-2" sec:authorize="isAuthenticated()">
+                        <a href="/member/logout">
+                            <span><i class="fas fa-sign-out-alt"></i></span>
+                            <span>로그아웃</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container mx-auto">
+        <div class="mt-4 px-4">
+            <p class="text-lg font-bold underline my-2">테스트</p>
             <p>
                 <a href="/home/maketest">테스트데이터 생성</a>
             </p>
             <hr>
-            <h4>현재 로그인 회원</h4>
-            <!-- isAnonymous()는 로그인 하지 않은 일반 사용자를 뜻함, 로그인 하지 않았을때만 나옴 -->
-            <p sec:authorize="isAnonymous()">로그인 필요</p>
-
-            <!-- isAuthenticated()는 로그인 하고 인증을 획득한 사용자, 로그인 했을때 나옴 -->
-            <p sec:authorize="isAuthenticated()">로그인 완</p>
-            <hr>
-            <p>회원기능</p>
+            <p class="text-lg font-bold underline my-2">회원</p>
             <p>
                 <a href="/member/login">로그인</a>
-                <a href="/member/logout">로그아웃</a>
-                <a href="/member/join">회원가입</a>
-                <a href="/member/list">회원목록</a>
-                <a href="/member/mypage">마이페이지</a>
             </p>
-                <hr>
+            <p><a href="/member/logout">로그아웃</a></p>
+            <p><a href="/member/join">회원가입</a></p>
+            <p><a href="/member/list">회원목록</a></p>
+            <p><a href="/member/mypage">마이페이지</a></p>
+            <hr>
+            <p class="text-lg font-bold underline my-2">게시글</p>
             <p>
                 <a href="/article/write">글쓰기</a>
             </p>
