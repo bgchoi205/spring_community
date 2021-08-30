@@ -38,8 +38,6 @@ public class ArticleController {
         System.out.println("입력제목 : " + title);
         System.out.println("입력내용 : " + body);
 
-        String dateTimeStr = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-
         Article article =  Article.builder()
                 .memberId(1L)
                 .boardId(1L)
@@ -64,10 +62,4 @@ public class ArticleController {
         return "/article/list";
     }
 
-//    @GetMapping("/members")
-//    public String memberList(Model model){
-//        List members = memberService.findAll();
-//        model.addAttribute("members", members);
-//        return "/members/memberList";
-//    }
 }

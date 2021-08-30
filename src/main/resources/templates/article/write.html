@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>게시물 작성</title>
@@ -7,6 +7,10 @@
 <body>
   <div class="container">
       <form action="/article/write" method="post">
+
+          <!-- csrf토큰 생성 후 input으로 전송 -->
+          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
           <div class="form-group">
               <label for="title">제목</label>
               <input type="text" id="title" name="title" placeholder="제목을

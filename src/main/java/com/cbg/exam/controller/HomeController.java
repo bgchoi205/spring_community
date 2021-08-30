@@ -33,8 +33,6 @@ public class HomeController {
             logonMemberName = logonMember.toString();
         }
 
-        System.out.println("로그인한 회원 : " + logonMemberName);
-
         return "home";
     }
 
