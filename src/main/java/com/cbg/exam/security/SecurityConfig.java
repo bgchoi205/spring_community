@@ -31,11 +31,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
 //                .csrf().disable()  // csrf 토큰검사 비활성화
                 .authorizeRequests()
-                    .mvcMatchers("/admin/**").hasRole("ADMIN")
-                    .mvcMatchers("/member/mypage").hasRole("MEMBER")
-                    .mvcMatchers("/**")
-                    .permitAll()  // antMatchers로 지정한 페이지에는 모든 사용자가 접근 가능.
-//                    .anyRequest()  //  antMatchers로 지정한 페이지 이외의 다른모든 페이지(antMatchers로 지정하고 permitAll로 접근 허용을 지정 한 뒤에 써주기)
+                    .mvcMatchers(
+                            "/**").permitAll()  // 누구나 접근 가능
+                    .mvcMatchers(
+                            "/admin/**").hasRole("ADMIN")  // ADMIN 권한을 가진 계정만 접근 가능
+                    .mvcMatchers(
+                            "/member/mypage").hasRole("MEMBER")  // MEMBER 권한을 가진 계정만 접근 가능
+//                    .anyRequest()  //  antMatchers로 지정한 페이지 이외의 다른모든 페이지
 //                    .authenticated() // 인증이 된 사용자만 접근할 수 있도록 제한
                 .and()// 로그인 설정 시작
                     .formLogin()  // form을 통해 로그인 활성
@@ -47,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and() //로그아웃 설정 시작
                     .logout()  // 로그아웃 관련 설정 진행을 돕는 LogoutConfigurer<> 클래스를 반환.
                     .logoutRequestMatcher(new AntPathRequestMatcher("/usr/member/logout")) // 로그아웃 주소 지정(따로 getMapping 할 필요는 없다)
-                    .logoutSuccessUrl("/usr/member/login") // 로그아웃 성공 후 이동페이지
+                    .logoutSuccessUrl("/") // 로그아웃 성공 후 이동페이지
                     .invalidateHttpSession(true); // 로그아웃 시 인증정보 지우기, 세션 무효화
 
 
