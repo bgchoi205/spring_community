@@ -13,8 +13,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @SpringBootTest
 class ArticleDateTest {
 
-    @Autowired
-    public TestArticleRepository testArticleRepository;
+
 
 //    @Test
 //   public void localDateTest(){

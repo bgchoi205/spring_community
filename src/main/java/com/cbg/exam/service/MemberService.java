@@ -24,27 +24,20 @@ public class MemberService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
 
-
     @Transactional
-    public Long save(Member member){
-
-        return memberRepository.save(member);
+    public void save(Member member){
+        memberRepository.save(member);
     }
 
     @Transactional
-    public Long delete(Member member){
-        return memberRepository.delete(member);
+    public void delete(Member member){
+        memberRepository.delete(member);
     }
 
-    @Transactional
-    public Long modify(Member member){
-        return memberRepository.modify(member);
-    }
-
-    @Transactional
-    public Member findById(Long id){
-        return memberRepository.findById(id);
-    }
+//    @Transactional
+//    public void modify(Member member){
+//        memberRepository.modify(member);
+//    }
 
     @Transactional
     public List findAll() {
@@ -52,10 +45,8 @@ public class MemberService implements UserDetailsService {
     }
 
     @Transactional
-    public Optional<Member> findMemberByLoginId(String loginId) {
-        Optional<Member> findMember = memberRepository.findByLoginId(loginId);
-
-        findMember.orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원-findByLoginId"));
+    public Member findByLoginId(String loginId) {
+        Member findMember = memberRepository.findByLoginId(loginId).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원-findByLoginId"));
 
         return findMember;
     }
