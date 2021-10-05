@@ -1,19 +1,14 @@
 package com.cbg.exam.controller;
 
-import com.cbg.exam.domain.Article;
-import com.cbg.exam.domain.Member;
+import com.cbg.exam.domain.entity.Article;
 import com.cbg.exam.service.ArticleService;
-import com.cbg.exam.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -48,9 +43,9 @@ public class ArticleController {
         System.out.println("게시물제목 : " + article.getTitle());
         System.out.println("게시물내용 : " + article.getBody());
 
-        Long newArticleId = articleService.save(article);
+         articleService.save(article);
 
-        System.out.println("새로 등록된 게시물 번호 : " + newArticleId);
+        System.out.println("새로 등록된 게시물 번호 : " + article.getId());
 
         return "redirect:/";
     }

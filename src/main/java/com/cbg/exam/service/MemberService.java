@@ -1,6 +1,6 @@
 package com.cbg.exam.service;
 
-import com.cbg.exam.domain.Member;
+import com.cbg.exam.domain.entity.Member;
 import com.cbg.exam.domain.Role;
 import com.cbg.exam.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

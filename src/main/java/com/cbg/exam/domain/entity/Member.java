@@ -1,4 +1,4 @@
-package com.cbg.exam.domain;
+package com.cbg.exam.domain.entity;
 
 import lombok.*;
 

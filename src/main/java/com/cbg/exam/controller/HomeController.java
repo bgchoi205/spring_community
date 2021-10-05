@@ -1,7 +1,7 @@
 package com.cbg.exam.controller;
 
-import com.cbg.exam.domain.Article;
-import com.cbg.exam.domain.Member;
+import com.cbg.exam.domain.entity.Article;
+import com.cbg.exam.domain.entity.Member;
 import com.cbg.exam.service.ArticleService;
 import com.cbg.exam.service.MemberService;
 import lombok.RequiredArgsConstructor;

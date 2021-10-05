@@ -1,11 +1,8 @@
 package com.cbg.exam.service;
 
-import com.cbg.exam.domain.Article;
-import com.cbg.exam.domain.Member;
+import com.cbg.exam.domain.entity.Article;
 import com.cbg.exam.repository.ArticleRepository;
-import com.cbg.exam.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,23 +15,25 @@ public class ArticleService {
     private final ArticleRepository articleRepository;
 
     @Transactional
-    public Long save(Article article){
-        return articleRepository.save(article);
+    public void save(Article article){
+        articleRepository.save(article);
     }
 
     @Transactional
-    public Long delete(Article article){
-        return articleRepository.delete(article);
+    public void delete(Article article){
+        articleRepository.delete(article);
     }
 
-    @Transactional
-    public Long modify(Article article){
-        return articleRepository.modify(article);
-    }
+//    @Transactional
+//    public Long modify(Article article){
+//        return articleRepository.modify(article);
+//    }
 
     @Transactional
-    public Article findById(int id){
-        return articleRepository.findById(id);
+    public Article findById(Long id){
+        Article findByIdArticle = articleRepository.findById(id).orElseThrow();
+
+        return findByIdArticle;
     }
 
     @Transactional
@@ -42,7 +41,4 @@ public class ArticleService {
         return articleRepository.findAll();
     }
 
-//    public List findAll() {
-//        return memberRepository.findAll();
-//    }
 }

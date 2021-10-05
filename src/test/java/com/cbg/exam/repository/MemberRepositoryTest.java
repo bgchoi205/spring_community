@@ -1,13 +1,6 @@
 package com.cbg.exam.repository;
 
-import com.cbg.exam.domain.Member;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import javax.transaction.Transactional;
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 @SpringBootTest
 public class MemberRepositoryTest {

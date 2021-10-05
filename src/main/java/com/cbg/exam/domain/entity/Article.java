@@ -1,5 +1,6 @@
-package com.cbg.exam.domain;
+package com.cbg.exam.domain.entity;
 
+import com.cbg.exam.domain.BaseTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
