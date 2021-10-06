@@ -1,5 +1,6 @@
 package com.cbg.exam.controller;
 
+import com.cbg.exam.domain.dto.memberDto.MemberJoinDto;
 import com.cbg.exam.domain.entity.Member;
 import com.cbg.exam.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -31,24 +32,9 @@ public class MemberController {
 
 
     @PostMapping("/usr/member/join")
-    public String memberDoJoin(
-            @RequestParam("loginId") String loginId,
-            @RequestParam("loginPw") String loginPw,
-            @RequestParam("name") String name,
-            @RequestParam("nickname") String nickname,
-            @RequestParam("email") String email
-    ){
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    public String memberDoJoin(MemberJoinDto memberJoinDto){
 
-        Member member =  Member.builder()
-                .loginId(loginId)
-                .loginPw(passwordEncoder.encode(loginPw))  // 가입시 비밀번호 암호화
-                .name(name)
-                .nickname(nickname)
-                .email(email)
-                .build();
-
-        memberService.save(member);
+        memberService.save(memberJoinDto.toEntity());
         return "redirect:/";
     }
 
