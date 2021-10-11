@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+  <header th:fragment="headerFragment" class="top-bar h-14 text-gray-600">
+    <div class="container mx-auto h-full flex items-center">
+      <a href="#" class="font-bold">
+        <span><i class="fas fa-laptop-code"></i></span>
+        <span>내 기억력은 쓰레기다</span>
+      </a>
+      <span class="flex-grow"></span>
+      <nav class="menu-wrap">
+        <ul class="flex">
+          <li class="px-2">
+            <span><i class="fas fa-book-open"></i></span>
+            <span>기록창고</span>
+          </li>
+          <li class="px-2" sec:authorize="isAnonymous()">
+            <a href="/usr/member/login">
+              <span><i class="fas fa-sign-in-alt"></i></span>
+              <span>로그인</span>
+            </a>
+          </li>
+          <li class="px-2" sec:authorize="isAnonymous()">
+            <a href="/usr/member/join">
+              <span><i class="fas fa-user-plus"></i></span>
+              <span>회원가입</span>
+            </a>
+          </li>
+          <li class="px-2" sec:authorize="isAuthenticated()">
+            <a href="/usr/member/mypage">
+              <span><i class="fas fa-user"></i></span>
+              <span sec:authentication="principal.username"></span>
+            </a>
+          </li>
+          <li class="px-2" sec:authorize="isAuthenticated()">
+            <a href="/usr/member/logout">
+              <span><i class="fas fa-sign-out-alt"></i></span>
+              <span>로그아웃</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+</html>

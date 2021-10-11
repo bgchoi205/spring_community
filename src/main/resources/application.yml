@@ -20,6 +20,14 @@ spring:
       format_sql: true
       ddl-auto: create
 
+thymeleaf:
+  prefix: classpath:templates/
+  suffix: .html
+  check-template-location: true
+  cache: false
+  mvc:
+    static-path-pattern: "/static/**"
+
 logging:
   level:
     org:

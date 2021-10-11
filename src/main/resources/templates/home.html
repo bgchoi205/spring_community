@@ -1,113 +1,63 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
 <head>
     <meta charset="UTF-8">
     <title>home</title>
-
-    <!-- 테일윈드 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.8/tailwind.min.css">
-
-    <!-- 데이지UI -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/daisyui/1.14.0/full.css">
-
-    <!-- 폰트어썸 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-    <!-- 제이쿼리 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <!-- 반응형 메타태그 -->
-    <meta name="viewport" content="width=device-width,initial-scale=1">
 </head>
 <body>
-    <header class="top-bar h-14 bg-gray-600 text-white">
-        <div class="container mx-auto h-full flex items-center">
-            <a href="#" class="font-bold">
-                <span><i class="fas fa-laptop-code"></i></span>
-                <span>내 기억력은 쓰레기다</span>
-            </a>
-            <span class="flex-grow"></span>
-            <nav class="menu-wrap">
-                <ul class="flex">
-                    <li class="px-2">
-                        <span><i class="fas fa-book-open"></i></span>
-                        <span>기록창고</span>
-                    </li>
-                    <li class="px-2" sec:authorize="isAnonymous()">
-                        <a href="/usr/member/login">
-                            <span><i class="fas fa-sign-in-alt"></i></span>
-                            <span>로그인</span>
-                        </a>
-                    </li>
-                    <li class="px-2" sec:authorize="isAnonymous()">
-                        <a href="/usr/member/join">
-                            <span><i class="fas fa-user-plus"></i></span>
-                            <span>회원가입</span>
-                        </a>
-                    </li>
-                    <li class="px-2" sec:authorize="isAuthenticated()">
-                        <a href="/usr/member/mypage">
-                            <span><i class="fas fa-user"></i></span>
-                            <span sec:authentication="principal.username"></span>
-                        </a>
-                    </li>
-                    <li class="px-2" sec:authorize="isAuthenticated()">
-                        <a href="/usr/member/logout">
-                            <span><i class="fas fa-sign-out-alt"></i></span>
-                            <span>로그아웃</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <header class="w-full">
-        <div class="main-header-img w-full">
-            <img src="/img/MAD-Code-Home-002.png" alt="" style="min-width: 100%; height: auto;">
-        </div>
-    </header>
-    <div class="flex">
-        <aside class="bg-gray-300 w-52 text-gray-700">
-            <nav class="side-menu-wrap p-2 flex justify-center">
-                <ul>
-                    <li class="p-2">
-                        <a href="#">전체</a>
-                    </li>
-                    <li class="p-2">
-                        <a href="#">Spring</a>
-                    </li>
-                    <li class="p-2">
-                        <a href="#">Java</a>
-                    </li>
-                    <li class="p-2">
-                        <a href="#">HTML</a>
-                    </li>
-                    <li class="p-2">
-                        <a href="#">SQL</a>
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-        <div class="container mx-auto">
-            <div class="mt-4 px-4">
-                <p class="text-lg font-bold underline my-2">테스트</p>
-                <p>
-                    <a href="/home/maketest">테스트데이터 생성</a>
-                </p>
-                <hr>
-                <p class="text-lg font-bold underline my-2">회원</p>
-                <p>
-                    <a href="/usr/member/login">로그인</a>
-                </p>
-                <p><a href="/usr/member/logout">로그아웃</a></p>
-                <p><a href="/usr/member/join">회원가입</a></p>
-                <p><a href="/usr/member/list">회원목록</a></p>
-                <p><a href="/usr/member/mypage">마이페이지</a></p>
-                <hr>
-                <p class="text-lg font-bold underline my-2">게시글</p>
-                <p>
-                    <a href="/usr/article/write">글쓰기</a>
-                </p>
+    <div layout:fragment="content">
+        <header class="w-full">
+            <div class="main-header-img w-full">
+                <img src="/img/MAD-Code-Home-002.png" alt="" style="min-width: 100%; height: auto;">
+            </div>
+        </header>
+        <div class="flex">
+            <aside class="bg-gray-300 w-52 text-gray-700">
+                <nav class="side-menu-wrap p-2 flex justify-center">
+                    <ul>
+                        <li class="p-2">
+                            <a href="#">전체</a>
+                        </li>
+                        <li class="p-2">
+                            <a href="#">Spring</a>
+                        </li>
+                        <li class="p-2">
+                            <a href="#">Java</a>
+                        </li>
+                        <li class="p-2">
+                            <a href="#">HTML</a>
+                        </li>
+                        <li class="p-2">
+                            <a href="#">SQL</a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+            <div class="container mx-auto">
+                <div class="mt-4 px-4">
+                    <p class="text-lg font-bold underline my-2">테스트</p>
+                    <p>
+                        <a href="/home/maketest">테스트데이터 생성</a>
+                    </p>
+                    <hr>
+                    <p class="text-lg font-bold underline my-2">회원</p>
+                    <p>
+                        <a href="/usr/member/login">로그인</a>
+                    </p>
+                    <p><a href="/usr/member/logout">로그아웃</a></p>
+                    <p><a href="/usr/member/join">회원가입</a></p>
+                    <p><a href="/usr/member/list">회원목록</a></p>
+                    <p><a href="/usr/member/mypage">마이페이지</a></p>
+                    <hr>
+                    <p class="text-lg font-bold underline my-2">게시글</p>
+                    <p>
+                        <a href="/usr/article/write">글쓰기</a>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

@@ -26,6 +26,7 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test' // security-test 일단 추가
 	annotationProcessor('org.projectlombok:lombok')
 	testAnnotationProcessor('org.projectlombok:lombok')
+	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect:3.0.0'
 }
 
 test {
