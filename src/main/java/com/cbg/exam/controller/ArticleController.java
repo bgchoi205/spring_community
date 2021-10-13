@@ -49,7 +49,7 @@ public class ArticleController {
         return "redirect:/";
     }
 
-    @GetMapping("/list")
+    @GetMapping("")
     public String memberList(Model model){
         List articles = articleService.findAll();
         model.addAttribute("articles", articles);
