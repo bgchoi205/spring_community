@@ -9,36 +9,38 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping("/members")
 @RequiredArgsConstructor
 public class MemberController {
 
     private final MemberService memberService;
 
-    @GetMapping("/usr/member/login")
+    @GetMapping("/login")
     public String memberLogin(){
         return "/usr/member/login";
     }
 
-    @GetMapping("/usr/member/join")
+    @GetMapping("/join")
     public String memberJoin(){
         return "/usr/member/join";
     }
 
 
-    @PostMapping("/usr/member/join")
+    @PostMapping("/join")
     public String memberDoJoin(MemberJoinDto memberJoinDto){
 
         memberService.save(memberJoinDto.toEntity());
         return "redirect:/";
     }
 
-    @GetMapping("/usr/member/list")
+    @GetMapping("/list")
     public String memberList(Model model){
 //        List members = memberService.findAll();
 //        model.addAttribute("members", members);
@@ -55,7 +57,7 @@ public class MemberController {
         return "/usr/member/list";
     }
 
-    @GetMapping("/usr/member/mypage")
+    @GetMapping("/mypage")
     public String memberMypage( Model model){
 
         String hi = "<h1>hihi</h1>";

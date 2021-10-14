@@ -20,25 +20,25 @@
             <span>기록창고</span>
           </li>
           <li class="px-2" sec:authorize="isAnonymous()">
-            <a href="/usr/member/login">
+            <a href="/members/login">
               <span><i class="fas fa-sign-in-alt"></i></span>
               <span>로그인</span>
             </a>
           </li>
           <li class="px-2" sec:authorize="isAnonymous()">
-            <a href="/usr/member/join">
+            <a href="/members/join">
               <span><i class="fas fa-user-plus"></i></span>
               <span>회원가입</span>
             </a>
           </li>
           <li class="px-2" sec:authorize="isAuthenticated()">
-            <a href="/usr/member/mypage">
+            <a href="/members/mypage">
               <span><i class="fas fa-user"></i></span>
               <span sec:authentication="principal.username"></span>
             </a>
           </li>
           <li class="px-2" sec:authorize="isAuthenticated()">
-            <a href="/usr/member/logout">
+            <a href="/members/logout">
               <span><i class="fas fa-sign-out-alt"></i></span>
               <span>로그아웃</span>
             </a>
