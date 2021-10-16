@@ -62,4 +62,9 @@ public class HomeController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/test/toastUiTest")
+    public String showToastUi(){
+        return "test/toastUiTest";
+    }
 }
