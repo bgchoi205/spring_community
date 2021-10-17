@@ -2,13 +2,6 @@
     color:red;
 }
 
-/*.test{
-    color:blue;
-}*/
-
-/*
-.main-header-img > img{
-  width:100%;
-  background-size:cover;
+.article-list-table > tbody > tr:nth-child(2n){
+  background-color:ghostwhite;
 }
-*/
