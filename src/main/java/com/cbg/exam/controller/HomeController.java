@@ -54,8 +54,8 @@ public class HomeController {
             Article article =  Article.builder()
                     .memberId(1L)
                     .boardId(1L)
-                    .title("제목 : " + i)
-                    .body("내용 : " + i)
+                    .articleHtml("<h1>hi" + i + "</h1>")
+                    .articleMD("# hi" + i)
                     .build();
             articleService.save(article);
         }

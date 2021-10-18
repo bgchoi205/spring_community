@@ -30,11 +30,11 @@ public class Article extends BaseTime {
     @Column(name="board_id", nullable = false)
     private Long boardId;
 
-    @Column(name="title", nullable = false)
-    private String title;
+    @Column(name="article_html", nullable = false)
+    private String articleHtml;
 
-    @Column(name="body", nullable = false)
-    private String body;
+    @Column(name="article_md", nullable = false)
+    private String articleMD;
 
 //    @Column(name="reg_date", nullable = false)
 //    @NonNull
@@ -47,11 +47,11 @@ public class Article extends BaseTime {
 
 
     @Builder
-    public Article(Long memberId, Long boardId, String title, String body){
+    public Article(Long memberId, Long boardId, String articleHtml, String articleMD){
 
         this.memberId = memberId;
         this.boardId = boardId;
-        this.title = title;
-        this.body = body;
+        this.articleHtml = articleHtml;
+        this.articleMD = articleMD;
     }
 }

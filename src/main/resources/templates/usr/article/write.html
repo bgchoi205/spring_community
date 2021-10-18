@@ -1,35 +1,79 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/articleWriteLayout}">
+      layout:decorate="~{layouts/layout}">
 <head>
+
+    <!-- Toast UI Editor -->
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+    <!-- Toast UI code-syntax -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css"/>
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.css"/>
 
     <meta charset="UTF-8">
     <title>게시물 작성</title>
 </head>
 <body>
+
+<header th:replace="fragments/header::headerFragment"></header>
+
 <div layout:fragment="content">
 
+    <form action="/articles/write" method="post" onsubmit="write_submit(this)">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <input type="hidden" id="articleHtml" name="articleHtml">
+        <input type="hidden" id="articleMD" name="articleMD">
+        <div id="editor" class="editor"></div>
+        <button type="submit" value="저장"
+                class="p-2 font-bold text-gray-600 bg-gray-300 hover:bg-black hover:text-white">저장</button>
+    </form>
+    <button class="h-8 w-8" onclick="seeHtml()">html보기</button>
+
+    <!-- toast ui 편집기 CDN URL -->
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+    <!-- Editor's Plugin code-syntax -->
+    <script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight-all.min.js"></script>
+
+    <script>
+    <!--    const Editor = toastui.Editor;-->
+        const { Editor } = toastui;
+        const { codeSyntaxHighlight } = Editor.plugin;
+
+        const editor = new Editor({
+              el: document.querySelector('#editor'),
+              height: '600px',
+              initialEditType: 'markdown',
+              previewStyle: 'vertical',
+              plugins: [codeSyntaxHighlight]
+        });
+
+<!--        const bodyHtml = editor.getHTML();-->
+<!--        const bodyMD = editor.getMarkdown();-->
+
+<!--        $('input[name=articleHtml]').attr('value', editor.getHTML());-->
+<!--        document.getElementById("articleHtml").value = editor.getHTML();-->
+<!--        $('#articleHtml').val(editor.getHTML());-->
+<!--        document.getElementById("articleMD").value = "testtest";-->
+
+        function write_submit(form){
+            const articleHtml = editor.getHTML();
+            const articleMD = editor.getMarkdown();
+
+            if(articleHtml.trim().length == 0){
+                alert("내용을 입력해주세요.");
+                form.editor.focus();
+                return false;
+            }
+
+            form.articleHtml.value = articleHtml;
+            form.articleMD.value = articleMD;
+        }
+
+        function seeHtml(){
+            alert(typeof(editor.getHTML()));
+        }
+    </script>
 </div>
-<!--<div>-->
-<!--    <div class="container mx-auto bg-gray-100 p-2">-->
-<!--        <form action="/articles/write" method="post">-->
-<!--            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
-<!--            <div>-->
-<!--                <p>제목</p>-->
-<!--                <input type="text" name="title" placeholder="제목 입력" class="border p-2">-->
-<!--            </div>-->
-<!--            <div>-->
-<!--                <p>내용</p>-->
-<!--                <textarea name="body" placeholder="내용 입력" class="border w-full" rows="10"></textarea>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--                <button type="submit" class="bg-blue-900 text-white px-2 py-1">-->
-<!--                    <span>작성</span>-->
-<!--                </button>-->
-<!--            </div>-->
-<!--        </form>-->
-<!--    </div>-->
-<!--</div>-->
 </body>
 </html>

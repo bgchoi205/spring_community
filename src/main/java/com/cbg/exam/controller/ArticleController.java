@@ -1,5 +1,6 @@
 package com.cbg.exam.controller;
 
+import com.cbg.exam.domain.dto.articleDto.ArticleWriteDto;
 import com.cbg.exam.domain.entity.Article;
 import com.cbg.exam.service.ArticleService;
 import lombok.RequiredArgsConstructor;
@@ -23,28 +24,13 @@ public class ArticleController {
 
 
     @PostMapping("/write")
-    public String articleDoWrite(
-            @RequestParam("title") String title,
-            @RequestParam("body") String body
-    ){
+    public String articleDoWrite(ArticleWriteDto articleWriteDto){
 
         // 확인용 출력
-        System.out.println("입력제목 : " + title);
-        System.out.println("입력내용 : " + body);
+        System.out.println("입력html : " + articleWriteDto.getArticleHtml());
+        System.out.println("입력MD : " + articleWriteDto.getArticleMD());
 
-        Article article =  Article.builder()
-                .memberId(1L)
-                .boardId(1L)
-                .title(title)
-                .body(body)
-                .build();
-
-        System.out.println("게시물제목 : " + article.getTitle());
-        System.out.println("게시물내용 : " + article.getBody());
-
-         articleService.save(article);
-
-        System.out.println("새로 등록된 게시물 번호 : " + article.getId());
+         articleService.save(articleWriteDto.toEntity(1L, 1L));
 
         return "redirect:/";
     }

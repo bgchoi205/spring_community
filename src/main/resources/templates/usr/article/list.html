@@ -8,7 +8,7 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <div class="container mx-auto">
+    <div class="container mx-auto mt-4">
         <table class="article-list-table w-full text-gray-600 text-center">
             <thead class="p-4 border-t-2 border-b-2 h-10">
             <tr>
@@ -18,26 +18,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td><a href="#" class="hover:underline">test</a></td>
-                <td>2021-10-17</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td><a href="#" class="hover:underline">test2</a></td>
-                <td>2021-10-17</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td><a href="#" class="hover:underline">test3</a></td>
-                <td>2021-10-17</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td><a href="#" class="hover:underline">test4</a></td>
-                <td>2021-10-17</td>
-            </tr>
+            <th:block th:each="article : ${articles}">
+                <tr>
+                    <td th:text="${article.id}">1</td>
+                    <td><a th:text="${article.title}" href="#" class="hover:underline">test</a></td>
+                    <td th:text="${article.modifiedDate}">2021-10-17</td>
+                </tr>
+            </th:block>
             </tbody>
         </table>
     </div>
