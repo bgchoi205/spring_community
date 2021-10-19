@@ -20,9 +20,9 @@
             <tbody>
             <th:block th:each="article : ${articles}">
                 <tr>
-                    <td th:text="${article.id}">1</td>
-                    <td><a th:text="${article.title}" href="#" class="hover:underline">test</a></td>
-                    <td th:text="${article.modifiedDate}">2021-10-17</td>
+                    <td th:text="${article.id}"></td>
+                    <td><a th:text="${article.title}" th:href="@{articles/{id}(id=${article.id})}" class="hover:underline"></a></td>
+                    <td th:text="${article.modifiedDate}"></td>
                 </tr>
             </th:block>
             </tbody>

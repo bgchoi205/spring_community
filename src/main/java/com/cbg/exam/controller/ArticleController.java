@@ -42,4 +42,13 @@ public class ArticleController {
         return "/usr/article/list";
     }
 
+    @GetMapping("/{id}")
+    public String showView(@PathVariable("id") Long articleId, Model model){
+
+        Article article = articleService.findById(articleId);
+        model.addAttribute("article", article);
+
+        return "usr/article/view";
+    }
+
 }

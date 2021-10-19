@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>View</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div>
+        <p th:text="${article.id}"></p>
+        <p th:text="${article.title}"></p>
+        <p th:text="${article.modifiedDate}"></p>
+    </div>
+</div>
+</body>
+</html>
