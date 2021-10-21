@@ -30,7 +30,7 @@ public class ArticleController {
         System.out.println("입력html : " + articleWriteDto.getArticleHtml());
         System.out.println("입력MD : " + articleWriteDto.getArticleMD());
 
-         articleService.save(articleWriteDto.toEntity(1L, 1L));
+        articleService.save(articleWriteDto.toEntity(null, null));
 
         return "redirect:/";
     }

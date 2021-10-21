@@ -1,8 +1,10 @@
 package com.cbg.exam.controller;
 
 import com.cbg.exam.domain.entity.Article;
+import com.cbg.exam.domain.entity.Board;
 import com.cbg.exam.domain.entity.Member;
 import com.cbg.exam.service.ArticleService;
+import com.cbg.exam.service.BoardService;
 import com.cbg.exam.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +19,7 @@ public class HomeController {
 
     private final MemberService memberService;
     private final ArticleService articleService;
+    private final BoardService boardService;
 
     @GetMapping("/")
     public String home(){
@@ -40,7 +43,7 @@ public class HomeController {
     public String makeTest(){
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        Member member =  Member.builder()
+        Member testMember =  Member.builder()
                 .loginId("aa")
                 .loginPw(passwordEncoder.encode("aa"))  // 가입시 비밀번호 암호화
                 .name("aa")
@@ -48,12 +51,17 @@ public class HomeController {
                 .email("aa@gmail.com")
                 .build();
 
-        memberService.save(member);
+        memberService.save(testMember);
+
+        Board testBoard = Board.builder()
+                .name("admin")
+                .build();
+        boardService.save(testBoard);
 
         for(int i = 1; i <= 10; i++){
             Article article =  Article.builder()
-                    .memberId(1L)
-                    .boardId(1L)
+                    .member(testMember)
+                    .board(testBoard)
                     .articleHtml("<h1>hi" + i + "</h1>")
                     .articleMD("# hi" + i)
                     .build();

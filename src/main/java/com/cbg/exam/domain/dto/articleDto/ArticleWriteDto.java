@@ -1,6 +1,8 @@
 package com.cbg.exam.domain.dto.articleDto;
 
 import com.cbg.exam.domain.entity.Article;
+import com.cbg.exam.domain.entity.Board;
+import com.cbg.exam.domain.entity.Member;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -17,10 +19,10 @@ public class ArticleWriteDto {
         this.articleMD = articleMD;
     }
 
-    public Article toEntity(Long memberId, Long boardId){
+    public Article toEntity(Member member, Board board){
         return Article.builder()
-                .memberId(memberId)
-                .boardId(boardId)
+                .member(member)
+                .board(board)
                 .title(title)
                 .articleHtml(articleHtml)
                 .articleMD(articleMD)

@@ -16,19 +16,19 @@ public class Member {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="login_id", nullable = false)
+    @Column(name="login_id")
     private String loginId;
 
-    @Column(name="login_pw", nullable = false)
+    @Column(name="login_pw")
     private String loginPw;
 
-    @Column(name="name", nullable = false)
+    @Column(name="name")
     private String name;
 
-    @Column(name="nickname", nullable = false)
+    @Column(name="nickname")
     private String nickname;
 
-    @Column(name="email", nullable = false)
+    @Column(name="email")
     private String email;
 
 

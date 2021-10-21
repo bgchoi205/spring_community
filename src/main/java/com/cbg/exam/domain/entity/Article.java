@@ -24,19 +24,21 @@ public class Article extends BaseTime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="member_id", nullable = false)
-    private Long memberId;
+    @ManyToOne
+    @JoinColumn(name="member_id", nullable = false)
+    private Member member;
 
-    @Column(name="board_id", nullable = false)
-    private Long boardId;
+    @ManyToOne
+    @JoinColumn(name="board_id")
+    private Board board;
 
-    @Column(name="title", nullable = false)
+    @Column(name="title")
     private String title;
 
-    @Column(name="article_html", columnDefinition = "LONGTEXT", nullable = false)
+    @Column(name="article_html", columnDefinition = "LONGTEXT")
     private String articleHtml;
 
-    @Column(name="article_md", columnDefinition = "LONGTEXT", nullable = false)
+    @Column(name="article_md", columnDefinition = "LONGTEXT")
     private String articleMD;
 
 //    @Column(name="reg_date", nullable = false)
@@ -50,10 +52,10 @@ public class Article extends BaseTime {
 
 
     @Builder
-    public Article(Long memberId, Long boardId, String title, String articleHtml, String articleMD){
+    public Article(Member member, Board board, String title, String articleHtml, String articleMD){
 
-        this.memberId = memberId;
-        this.boardId = boardId;
+        this.member = member;
+        this.board = board;
         this.title = title;
         this.articleHtml = articleHtml;
         this.articleMD = articleMD;
