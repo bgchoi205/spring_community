@@ -5,14 +5,38 @@
 <head>
     <meta charset="UTF-8">
     <title>View</title>
+
+    <!-- Toast UI Editor -->
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+
+    <!-- Toast UI code-syntax -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css"/>
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight.min.css"/>
+
 </head>
 <body>
 <div layout:fragment="content">
-    <div>
-        <p th:text="${article.id}"></p>
-        <p th:text="${article.title}"></p>
-        <p th:text="${article.modifiedDate}"></p>
-    </div>
+
+
+    <div id="viewer"></div>
+
+    <!-- toast ui 편집기 CDN URL -->
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+    <!-- Editor's Plugin code-syntax -->
+    <script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight-all.min.js"></script>
+
+    <script>
+        const { Editor } = toastui;
+        const { codeSyntaxHighlight } = Editor.plugin;
+
+        const viewer = Editor.factory({
+          el: document.querySelector('#viewer'),
+          viewer: true,
+          height: '500px',
+          initialValue: '# hello \n> world',
+          plugins: [codeSyntaxHighlight]
+        });
+    </script>
 </div>
 </body>
 </html>

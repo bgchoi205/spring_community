@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="member")
+@Table(name="board")
 @ToString
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

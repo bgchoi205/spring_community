@@ -62,6 +62,7 @@ public class HomeController {
             Article article =  Article.builder()
                     .member(testMember)
                     .board(testBoard)
+                    .title("제목" + i)
                     .articleHtml("<h1>hi" + i + "</h1>")
                     .articleMD("# hi" + i)
                     .build();
