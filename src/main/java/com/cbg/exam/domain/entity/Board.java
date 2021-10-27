@@ -3,6 +3,7 @@ package com.cbg.exam.domain.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="member")
@@ -16,6 +17,9 @@ public class Board {
 
     @Column
     private String name;
+
+    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+    List<Article> articles;
 
     @Builder
     public Board(String name){
