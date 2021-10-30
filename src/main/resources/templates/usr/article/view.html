@@ -17,8 +17,19 @@
 <body>
 <div layout:fragment="content">
 
+    <script>
+        /*<![CDATA[*/
+            const title = /*[[ ${article.title} ]]*/;
+            const articleMD = /*[[ ${article.articleMD} ]]*/;
+        /*]]*/
+    </script>
 
-    <div id="viewer"></div>
+    <div id="viewer">
+
+    </div>
+    <div>
+        <button class="mdCheck h-8 border">마크다운확인</button>
+    </div>
 
     <!-- toast ui 편집기 CDN URL -->
     <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
@@ -33,9 +44,17 @@
           el: document.querySelector('#viewer'),
           viewer: true,
           height: '500px',
-          initialValue: '# hello \n> world',
+          initialValue: 'articleMD',
           plugins: [codeSyntaxHighlight]
         });
+
+        function checkMd(){
+            $('.mdCheck').click(function(){
+                alert('hihi');
+            });
+        }
+
+        checkMd();
     </script>
 </div>
 </body>
