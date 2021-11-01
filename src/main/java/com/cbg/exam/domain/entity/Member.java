@@ -32,6 +32,9 @@ public class Member {
     @Column(name="email")
     private String email;
 
+    @Column(name="auth_level")
+    private int authLevel;
+
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     List<Article> articles;
 
@@ -42,6 +45,11 @@ public class Member {
         this.name = name;
         this.nickname = nickname;
         this.email = email;
+        this.authLevel = 3;
+    }
+
+    public void changeAuth(int authLevel){
+        this.authLevel = authLevel;
     }
 
 }

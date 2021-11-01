@@ -2,8 +2,10 @@ package com.cbg.exam.controller;
 
 import com.cbg.exam.domain.dto.articleDto.ArticleWriteDto;
 import com.cbg.exam.domain.entity.Article;
+import com.cbg.exam.security.CustomUserDetails;
 import com.cbg.exam.service.ArticleService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,13 +26,12 @@ public class ArticleController {
 
 
     @PostMapping("/write")
-    public String articleDoWrite(ArticleWriteDto articleWriteDto){
+    public String articleDoWrite(ArticleWriteDto articleWriteDto, @AuthenticationPrincipal CustomUserDetails user,
+                                 @PathVariable("boardId") Long boardId){
 
-        // 확인용 출력
-        System.out.println("입력html : " + articleWriteDto.getArticleHtml());
-        System.out.println("입력MD : " + articleWriteDto.getArticleMD());
 
-        articleService.save(articleWriteDto.toEntity(null, null));
+
+        articleService.save(articleWriteDto, user, boardId);
 
         return "redirect:/";
     }

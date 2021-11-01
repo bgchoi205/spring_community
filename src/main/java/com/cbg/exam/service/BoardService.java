@@ -21,6 +21,10 @@ public class BoardService {
         return boardRepository.findAll();
     }
 
+    public Board findById(Long boardId){
+        return boardRepository.findById(boardId).orElseThrow();
+    }
+
     public Board findByName(String name){
         return boardRepository.findByName(name).orElseThrow();
     }

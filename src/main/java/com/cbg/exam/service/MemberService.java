@@ -3,6 +3,7 @@ package com.cbg.exam.service;
 import com.cbg.exam.domain.entity.Member;
 import com.cbg.exam.domain.Role;
 import com.cbg.exam.repository.MemberRepository;
+import com.cbg.exam.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -54,22 +55,24 @@ public class MemberService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String loginId) throws UsernameNotFoundException {
         Optional<Member> memberEntityWrapper = memberRepository.findByLoginId(loginId);
-        Member memberEntity = memberEntityWrapper.get();
+        Member logonMember = memberEntityWrapper.get();
 
         List<GrantedAuthority> authorities = new ArrayList<>();
 
-        if (("aa").equals(loginId)) {  // 로그인 시 권한설정, domain패키지에 Role enum 생성함.
+        if (logonMember.getAuthLevel() == 7) {  // 로그인 시 권한설정, domain패키지에 Role enum 생성함.
 
-            // 로그인 아이디가 aa일 때 관리자 권한을 부여.
+            // authLevel이 7일 때 관리자 권한을 부여.
             authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
+            authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
         } else {
 
-            // 로그인 아이디가 aa 이외일때 일반 회원으로 권한 부여
+            // authLevel이 7 이외일때 일반 회원으로 권한 부여
             authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
         }
 
         // spring security에서 제공하는 UserDetails를 구현한 User를 반환(org.springframework.security.core.userdetails.User )
         // 반환하는 정보는 로그인아이디, 로그인비밀번호, 권한리스트이다.
-        return new User(memberEntity.getLoginId(), memberEntity.getLoginPw(), authorities);
+        return new CustomUserDetails(logonMember.getId(), logonMember.getLoginId(), logonMember.getLoginPw(), logonMember.getName(), logonMember.getNickname()
+        , logonMember.getEmail(), authorities);
     }
 }

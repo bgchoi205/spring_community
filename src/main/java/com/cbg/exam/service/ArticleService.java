@@ -1,7 +1,12 @@
 package com.cbg.exam.service;
 
+import com.cbg.exam.domain.dto.articleDto.ArticleWriteDto;
 import com.cbg.exam.domain.entity.Article;
+import com.cbg.exam.domain.entity.Board;
+import com.cbg.exam.domain.entity.Member;
 import com.cbg.exam.repository.ArticleRepository;
+import com.cbg.exam.repository.MemberRepository;
+import com.cbg.exam.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +18,17 @@ import java.util.List;
 public class ArticleService {
 
     private final ArticleRepository articleRepository;
+    private final MemberService memberService;
+    private final BoardService boardService;
 
     @Transactional
-    public void save(Article article){
-        articleRepository.save(article);
+    public void save(ArticleWriteDto articleWriteDto, CustomUserDetails user, Long boardId){
+
+        Member member = memberService.findByLoginId(user.getUsername());
+
+        Board board = boardService.findById(boardId);
+
+        articleRepository.save(articleWriteDto.toEntity(member, board));
     }
 
     @Transactional

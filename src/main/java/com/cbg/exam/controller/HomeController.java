@@ -51,10 +51,12 @@ public class HomeController {
                 .email("aa@gmail.com")
                 .build();
 
+        testMember.changeAuth(7);
+
         memberService.save(testMember);
 
         Board testBoard = Board.builder()
-                .name("admin")
+                .name("Free")
                 .build();
         boardService.save(testBoard);
 
