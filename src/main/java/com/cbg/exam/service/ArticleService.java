@@ -22,11 +22,11 @@ public class ArticleService {
     private final BoardService boardService;
 
     @Transactional
-    public void save(ArticleWriteDto articleWriteDto, CustomUserDetails user, Long boardId){
+    public void save(ArticleWriteDto articleWriteDto, CustomUserDetails user){
 
         Member member = memberService.findByLoginId(user.getUsername());
 
-        Board board = boardService.findById(boardId);
+        Board board = boardService.findByName(articleWriteDto.getBoardName());
 
         articleRepository.save(articleWriteDto.toEntity(member, board));
     }

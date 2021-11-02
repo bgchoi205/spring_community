@@ -3,6 +3,7 @@ package com.cbg.exam.controller;
 import com.cbg.exam.domain.entity.Article;
 import com.cbg.exam.domain.entity.Board;
 import com.cbg.exam.domain.entity.Member;
+import com.cbg.exam.repository.ArticleRepository;
 import com.cbg.exam.service.ArticleService;
 import com.cbg.exam.service.BoardService;
 import com.cbg.exam.service.MemberService;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     private final MemberService memberService;
-    private final ArticleService articleService;
+    private final ArticleRepository articleRepository;
     private final BoardService boardService;
 
     @GetMapping("/")
@@ -68,7 +69,7 @@ public class HomeController {
                     .articleHtml("<h1>hi" + i + "</h1>")
                     .articleMD("# hi" + i)
                     .build();
-            articleService.save(article);
+            articleRepository.save(article);
         }
 
         return "redirect:/";

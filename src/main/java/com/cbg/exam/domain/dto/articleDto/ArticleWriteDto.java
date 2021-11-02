@@ -11,12 +11,14 @@ public class ArticleWriteDto {
     private String title;
     private String articleHtml;
     private String articleMD;
+    private String boardName;
 
     @Builder
-    public ArticleWriteDto(String title, String articleHtml, String articleMD){
+    public ArticleWriteDto(String title, String articleHtml, String articleMD, String boardName){
         this.title = title;
         this.articleHtml = articleHtml;
         this.articleMD = articleMD;
+        this.boardName = boardName;
     }
 
     public Article toEntity(Member member, Board board){
