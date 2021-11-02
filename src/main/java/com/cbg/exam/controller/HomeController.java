@@ -56,15 +56,23 @@ public class HomeController {
 
         memberService.save(testMember);
 
-        Board testBoard = Board.builder()
-                .name("Free")
+        Board testBoard1 = Board.builder()
+                .name("Notice")
                 .build();
-        boardService.save(testBoard);
+        Board testBoard2 = Board.builder()
+                .name("Java")
+                .build();
+        Board testBoard3 = Board.builder()
+                .name("Spring")
+                .build();
+        boardService.save(testBoard1);
+        boardService.save(testBoard2);
+        boardService.save(testBoard3);
 
         for(int i = 1; i <= 10; i++){
             Article article =  Article.builder()
                     .member(testMember)
-                    .board(testBoard)
+                    .board(testBoard1)
                     .title("제목" + i)
                     .articleHtml("<h1>hi" + i + "</h1>")
                     .articleMD("# hi" + i)
