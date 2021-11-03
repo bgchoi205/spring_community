@@ -32,9 +32,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .csrf().disable()  // csrf 토큰검사 비활성화
                 .authorizeRequests()
                     .mvcMatchers(
-                            "/**").permitAll()  // 누구나 접근 가능
+                            "/"
+                            ,"/home/maketest"
+                            ,"/test/toastUiTest"
+                            ,"/articles").permitAll()  // 누구나 접근 가능
                     .mvcMatchers(
-                            "/admin/**").hasRole("ADMIN")  // ADMIN 권한을 가진 계정만 접근 가능
+                            "/members/login"
+                            ,"/members/join").anonymous() // 인증하기 전에만 접근 가능
+                    .mvcMatchers(
+                            "/admin/**"
+                            ,"/articles/write").hasRole("ADMIN")  // ADMIN 권한을 가진 계정만 접근 가능
                     .mvcMatchers(
                             "/members/mypage").hasRole("MEMBER")  // MEMBER 권한을 가진 계정만 접근 가능
 //                    .anyRequest()  //  antMatchers로 지정한 페이지 이외의 다른모든 페이지

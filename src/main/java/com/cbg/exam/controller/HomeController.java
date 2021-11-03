@@ -24,19 +24,6 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(){
-
-        String logonMemberName = "";
-
-
-        // 로그인한 회원 정보 가져오기(아이디)
-        Object logonMember = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(logonMember instanceof UserDetails){
-            logonMemberName = ((UserDetails) logonMember).getUsername();
-
-        }else{
-            logonMemberName = logonMember.toString();
-        }
-
         return "home";
     }
 
