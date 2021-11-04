@@ -5,3 +5,29 @@
 .article-list-table > tbody > tr:nth-child(2n){
   background-color:ghostwhite;
 }
+
+/* 사이드바 */
+.side-menu-btn{
+  border-radius:50%;
+  transition:0.3s;
+}
+
+.side-menu-btn.active{
+  transform:rotate(45deg);
+}
+
+.side-menu-wrap{
+  background-color:rgba(0,0,0,0.7);
+  border-radius:30px;
+  overflow:hidden;
+  visibility:hidden;
+  opacity:0;
+  transform:translateY(-100%);
+  transition:0.3s;
+}
+
+.side-menu-wrap.active{
+  visibility:visible;
+  opacity:1;
+  transform:translateY(0);
+}
