@@ -12,7 +12,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -23,7 +26,9 @@ public class HomeController {
     private final BoardService boardService;
 
     @GetMapping("/")
-    public String home(){
+    public String home(Model model){
+        List<Board> boardList = boardService.findAll();
+        model.addAttribute("boardList", boardList);
         return "home";
     }
 
@@ -32,10 +37,10 @@ public class HomeController {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         Member testMember =  Member.builder()
-                .loginId("aa")
-                .loginPw(passwordEncoder.encode("aa"))  // 가입시 비밀번호 암호화
-                .name("aa")
-                .nickname("aa")
+                .loginId("admin")
+                .loginPw(passwordEncoder.encode("1"))  // 가입시 비밀번호 암호화
+                .name("관리자")
+                .nickname("관리자")
                 .email("aa@gmail.com")
                 .build();
 
