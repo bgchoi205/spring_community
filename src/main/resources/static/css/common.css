@@ -31,3 +31,11 @@
   opacity:1;
   transform:translateY(0);
 }
+
+/* 로그인 */
+.grid-input{
+  display:grid;
+  grid-template-columns:20% 20% 40% 20%;
+  padding:10px;
+  font-size:1.2rem;
+}
