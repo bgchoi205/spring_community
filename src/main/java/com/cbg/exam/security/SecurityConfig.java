@@ -40,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             "/members/login"
                             ,"/members/join").anonymous() // 인증하기 전에만 접근 가능
                     .mvcMatchers(
-                            "/admin/**"
+                            "/adm/**"
                             ,"/articles/write").hasRole("ADMIN")  // ADMIN 권한을 가진 계정만 접근 가능
                     .mvcMatchers(
                             "/members/mypage").hasRole("MEMBER")  // MEMBER 권한을 가진 계정만 접근 가능
