@@ -6,7 +6,7 @@
   background-color:ghostwhite;
 }
 
-/* 사이드바 */
+/* 사이드바 시작 */
 .side-menu-btn{
   border-radius:50%;
   transition:0.3s;
@@ -31,11 +31,56 @@
   opacity:1;
   transform:translateY(0);
 }
+/* 사이드바 끝 */
 
-/* 로그인 */
+/* 로그인, 회원가입 시작 */
+/* 입력칸 css */
 .grid-input{
   display:grid;
   grid-template-columns:20% 20% 40% 20%;
   padding:10px;
   font-size:1.2rem;
 }
+
+/* title css */
+.title-wrap-pattern{
+  display:flex;
+  color:white;
+  font-size:20px;
+  top:0;
+  left:5%;
+  transform:translateY(-50%);
+}
+
+.title-wrap-pattern > .triangle-left{
+  width:0;
+  height:0;
+  border-top:24px solid transparent;
+  border-bottom:24px solid transparent;
+  border-right:24px solid #4b5563;
+}
+
+.title-wrap-pattern > .triangle-right{
+  width:0;
+  height:0;
+  border-top:24px solid transparent;
+  border-bottom:24px solid transparent;
+  border-left:24px solid #4b5563;
+}
+
+.title-wrap-pattern > .title-center{
+  width:100px;
+  background-color:#4b5563;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.title-wrap-pattern > .title-right{
+  width:0;
+  height:0;
+  border-bottom:48px solid white;
+  border-left:24px solid #4b5563;
+}
+
+/* 로그인, 회원가입 끝 */

@@ -9,9 +9,14 @@
 <body>
 <div layout:fragment="content">
   <div class="container mx-auto">
-      <div class="max-w-3xl mx-auto shadow-lg mt-20 rounded-lg overflow-hidden box-border">
-          <div class="w-full flex bg-gray-600 text-xl text-white p-2">
-              <span class="w-full text-center">로그인</span>
+      <div class="max-w-3xl mx-auto shadow-lg mt-20 rounded-lg box-border border-t border-gray-100 relative">
+          <div class="title-wrap-pattern absolute">
+              <div class="triangle-left"></div>
+              <div class="title-center">
+                  <span>로그인</span>
+              </div>
+              <div class="title-right"></div>
+              <div class="triangle-right"></div>
           </div>
           <form action="/doLogin" method="post" class="px-4 py-10">
               <!-- csrf 토큰 값을 hidden으로 넘겨주기-->
