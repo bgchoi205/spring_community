@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <!-- 테일윈드 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.8/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
 
     <!-- 데이지UI -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/daisyui/1.14.0/full.css">
@@ -24,12 +24,15 @@
     <script src="/js/common.js" defer="defer"></script>
 </head>
 <body>
-
+<div class="flex flex-col min-h-screen">
     <!-- header -->
     <header th:replace="fragments/header::headerFragment"></header>
 
     <!-- content(해당페이지의 내용) -->
-    <div layout:fragment="content"></div>
+    <div layout:fragment="content" class="flex-grow"></div>
 
+    <!-- footer -->
+    <footer th:replace="fragments/footer::footerFragment"></footer>
+</div>
 </body>
 </html>
