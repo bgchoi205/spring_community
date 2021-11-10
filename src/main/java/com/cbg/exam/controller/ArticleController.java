@@ -40,7 +40,7 @@ public class ArticleController {
     }
 
     @GetMapping("")
-    public String memberList(Model model){
+    public String showArticleList(Model model){
         List articles = articleService.findAll();
         model.addAttribute("articles", articles);
         return "/usr/article/list";
@@ -48,9 +48,11 @@ public class ArticleController {
 
     @GetMapping("/{id}")
     public String showView(@PathVariable("id") Long articleId, Model model){
-
         Article article = articleService.findById(articleId);
+        List<Board> boardList = boardService.findAll();
+
         model.addAttribute("article", article);
+        model.addAttribute("boardList", boardList);
 
         return "usr/article/view";
     }

@@ -16,32 +16,55 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <script type="text/javascript" th:inline="javascript">
-        /*<![CDATA[*/
-            const articleMD = /*[[ ${article.articleMD} ]]*/;
-        /*]]*/
-    </script>
-    <div th:text="${article.title}" class="text-3xl font-bold px-2 py-1"></div>
-    <hr>
-    <div id="viewer" class="p-2"></div>
+    <div class="flex">
+        <div class="side-bar w-40 p-2 flex flex-col items-center">
+            <div class="side-menu-btn my-4 mx-2 w-12 h-12 bg-gray-600 flex flex-col items-center justify-center cursor-pointer">
+                      <span class="plus-icon text-4xl text-white flex flex-col justify-center items-center">
+                        <i class="fas fa-plus"></i>
+                      </span>
+            </div>
+            <aside class="side-menu-wrap w-full">
+                <nav class="p-2 flex justify-center w-full text-white font-bold">
+                    <ul class="grid grid-cols-1 gap-2">
+                        <li>
+                            <a href="#">전체</a>
+                        </li>
+                        <li th:each="board : ${boardList}">
+                            <a href="#" th:text="${board.name}"></a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+        </div>
+        <div class="container mx-auto pr-4">
+            <script type="text/javascript" th:inline="javascript">
+                /*<![CDATA[*/
+                    const articleMD = /*[[ ${article.articleMD} ]]*/;
+                /*]]*/
+            </script>
+            <div th:text="${article.title}" class="text-3xl font-bold px-2 py-1"></div>
+            <hr>
+            <div id="viewer" class="p-2"></div>
 
-    <!-- toast ui 편집기 CDN URL -->
-    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-    <!-- Editor's Plugin code-syntax -->
-    <script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight-all.min.js"></script>
+            <!-- toast ui 편집기 CDN URL -->
+            <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+            <!-- Editor's Plugin code-syntax -->
+            <script src="https://uicdn.toast.com/editor-plugin-code-syntax-highlight/latest/toastui-editor-plugin-code-syntax-highlight-all.min.js"></script>
 
-    <script>
-        const { Editor } = toastui;
-        const { codeSyntaxHighlight } = Editor.plugin;
+            <script>
+                const { Editor } = toastui;
+                const { codeSyntaxHighlight } = Editor.plugin;
 
-        const viewer = Editor.factory({
-          el: document.querySelector('#viewer'),
-          viewer: true,
-          height: '500px',
-          initialValue: articleMD,
-          plugins: [codeSyntaxHighlight]
-        });
-    </script>
+                const viewer = Editor.factory({
+                  el: document.querySelector('#viewer'),
+                  viewer: true,
+                  height: '500px',
+                  initialValue: articleMD,
+                  plugins: [codeSyntaxHighlight]
+                });
+            </script>
+        </div>
+    </div>
 </div>
 </body>
 </html>
