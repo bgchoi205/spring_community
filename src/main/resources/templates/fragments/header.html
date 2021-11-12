@@ -15,6 +15,12 @@
       <span class="flex-grow"></span>
       <nav class="menu-wrap">
         <ul class="flex">
+          <li class="px-2" sec:authorize="hasRole('ROLE_ADMIN')">
+            <a href="/adm">
+              <span><i class="fas fa-user-cog"></i></span>
+              <span>관리자</span>
+            </a>
+          </li>
           <li class="px-2">
             <span><i class="fas fa-book-open"></i></span>
             <span>기록창고</span>
