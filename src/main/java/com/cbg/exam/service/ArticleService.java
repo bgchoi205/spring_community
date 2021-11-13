@@ -53,4 +53,9 @@ public class ArticleService {
         return articleRepository.findAll();
     }
 
+    @Transactional
+    public Long count(){
+        return articleRepository.count();
+    }
+
 }
