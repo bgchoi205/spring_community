@@ -26,4 +26,10 @@ public class AdmController {
         return "/adm/home";
     }
 
+    @GetMapping("/articles")
+    public String showAdmArticles(){
+
+        return "/adm/articleManage";
+    }
+
 }
