@@ -1,61 +1,60 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layouts/layout}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/layout}">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>home</title>
 </head>
 <body>
-    <div layout:fragment="content">
-        <div class="flex">
-            <div class="side-bar w-40 p-2 flex flex-col items-center">
-                <div class="side-menu-btn my-4 mx-2 w-12 h-12 bg-gray-600 flex flex-col items-center justify-center cursor-pointer">
+<div layout:fragment="content">
+    <div class="flex">
+        <div class="side-bar w-40 p-2 flex flex-col items-center">
+            <div class="side-menu-btn my-4 mx-2 w-12 h-12 bg-gray-600 flex flex-col items-center justify-center cursor-pointer">
                   <span class="plus-icon text-4xl text-white flex flex-col justify-center items-center">
                     <i class="fas fa-plus"></i>
                   </span>
-                </div>
-                <aside class="side-menu-wrap w-full">
-                    <nav class="p-2 flex justify-center w-full text-white font-bold">
-                        <ul class="grid grid-cols-1 gap-2">
-                            <li>
-                                <a href="#">전체</a>
-                            </li>
-                            <li th:each="board : ${boardList}">
-                                <a href="#" th:text="${board.name}"></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </aside>
             </div>
+            <aside class="side-menu-wrap w-full">
+                <nav class="p-2 flex justify-center w-full text-white font-bold">
+                    <ul class="grid grid-cols-1 gap-2">
+                        <li>
+                            <a href="#">전체</a>
+                        </li>
+                        <li th:each="board : ${boardList}">
+                            <a href="#" th:text="${board.name}"></a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+        </div>
 
-            <div class="container mx-auto">
-                <div class="mt-4 px-4">
-                    <p class="text-lg font-bold underline my-2">테스트</p>
-                    <p>
-                        <a href="/home/maketest">테스트데이터 생성</a>
-                    </p>
-                    <p>
-                        <a href="/test/toastUiTest">ToastUi Test</a>
-                    </p>
-                    <hr>
-                    <p class="text-lg font-bold underline my-2">회원</p>
-                    <p>
-                        <a href="/members/login">로그인</a>
-                    </p>
-                    <p><a href="/members/logout">로그아웃</a></p>
-                    <p><a href="/members/join">회원가입</a></p>
-                    <p><a href="/members/list">회원목록</a></p>
-                    <p><a href="/members/mypage">마이페이지</a></p>
-                    <hr>
-                    <p class="text-lg font-bold underline my-2">게시글</p>
-                    <p><a href="/articles/write">글쓰기</a></p>
-                    <p><a href="/articles">리스트</a></p>
-                </div>
+        <div class="container mx-auto">
+            <div class="mt-4 px-4">
+                <p class="text-lg font-bold underline my-2">테스트</p>
+                <p>
+                    <a href="/home/maketest">테스트데이터 생성</a>
+                </p>
+                <p>
+                    <a href="/test/toastUiTest">ToastUi Test</a>
+                </p>
+                <hr>
+                <p class="text-lg font-bold underline my-2">회원</p>
+                <p>
+                    <a href="/members/login">로그인</a>
+                </p>
+                <p><a href="/members/logout">로그아웃</a></p>
+                <p><a href="/members/join">회원가입</a></p>
+                <p><a href="/members/list">회원목록</a></p>
+                <p><a href="/members/mypage">마이페이지</a></p>
+                <hr>
+                <p class="text-lg font-bold underline my-2">게시글</p>
+                <p><a href="/articles/write">글쓰기</a></p>
+                <p><a href="/articles">리스트</a></p>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>

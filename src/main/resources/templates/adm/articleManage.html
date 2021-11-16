@@ -7,10 +7,65 @@
 <head>
     <meta charset="UTF-8">
     <title>articleManage</title>
+
+    <link rel="stylesheet" href="/css/articleManage.css">
 </head>
 <body>
 <div layout:fragment="content">
-    hihi
+    <table class="admArticleList w-11/12 mx-auto mt-4">
+        <thead>
+        <tr class="bg-gray-600 text-white grid-adm-articles text-center font-bold py-2 px-1">
+            <td>
+                <input type="checkbox">
+            </td>
+            <td>번호</td>
+            <td>제목</td>
+            <td>분류</td>
+            <td>날짜</td>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody class="shadow">
+        <tr class="grid-adm-articles py-2 px-1 text-center">
+            <td>
+                <input type="checkbox">
+            </td>
+            <td>1</td>
+            <td>
+                <a href="#" class="hover:underline">spring security</a>
+            </td>
+            <td>spring</td>
+            <td>2021-11-15 18:08:22</td>
+            <td>
+                <a href="#">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="#">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+        <tr class="grid-adm-articles py-2 px-1 text-center">
+            <td>
+                <input type="checkbox">
+            </td>
+            <td>1</td>
+            <td>
+                <a href="#" class="hover:underline">spring security</a>
+            </td>
+            <td>spring</td>
+            <td>2021-11-15 18:08:22</td>
+            <td>
+                <a href="#">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="#">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>
