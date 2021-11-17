@@ -26,44 +26,28 @@
         </tr>
         </thead>
         <tbody class="shadow">
-        <tr class="grid-adm-articles py-2 px-1 text-center">
-            <td>
-                <input type="checkbox">
-            </td>
-            <td>1</td>
-            <td>
-                <a href="#" class="hover:underline">spring security</a>
-            </td>
-            <td>spring</td>
-            <td>2021-11-15 18:08:22</td>
-            <td>
-                <a href="#">
-                    <i class="fas fa-edit"></i>
-                </a>
-                <a href="#">
-                    <i class="fas fa-trash-alt"></i>
-                </a>
-            </td>
-        </tr>
-        <tr class="grid-adm-articles py-2 px-1 text-center">
-            <td>
-                <input type="checkbox">
-            </td>
-            <td>1</td>
-            <td>
-                <a href="#" class="hover:underline">spring security</a>
-            </td>
-            <td>spring</td>
-            <td>2021-11-15 18:08:22</td>
-            <td>
-                <a href="#">
-                    <i class="fas fa-edit"></i>
-                </a>
-                <a href="#">
-                    <i class="fas fa-trash-alt"></i>
-                </a>
-            </td>
-        </tr>
+            <tr th:each="article : ${articleList}" class="grid-adm-articles py-2 px-1 text-center">
+                <td>
+                    <input type="checkbox">
+                </td>
+                <td th:text="${article.id}"></td>
+                <td>
+                    <a th:text="${article.title}" href="#" class="hover:underline"></a>
+                </td>
+                <td th:with="board = ${article.board}">
+                    <span th:text="${board.name}"></span>
+                </td>
+
+                <td th:text="${article.modifiedDate}"></td>
+                <td>
+                    <a href="#">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

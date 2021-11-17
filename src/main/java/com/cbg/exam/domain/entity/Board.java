@@ -18,7 +18,7 @@ public class Board {
     @Column
     private String name;
 
-    @OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
     List<Article> articles;
 
     @Builder
