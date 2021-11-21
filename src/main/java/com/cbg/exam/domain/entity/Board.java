@@ -19,7 +19,7 @@ public class Board {
     private String name;
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
-    List<Article> articles;
+    private List<Article> articles;
 
     @Builder
     public Board(String name){

@@ -26,7 +26,7 @@ public class AdmController {
         model.addAttribute("articleCounts", articleCounts);
         model.addAttribute("boardCounts", boardCounts);
 
-        return "/adm/home";
+        return "adm/home";
     }
 
     @GetMapping("/articles")
@@ -35,7 +35,7 @@ public class AdmController {
 
         model.addAttribute("articleList", articleList);
 
-        return "/adm/articleManage";
+        return "adm/articleManage";
     }
 
 }

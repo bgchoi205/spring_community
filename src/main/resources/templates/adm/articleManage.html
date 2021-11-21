@@ -34,8 +34,10 @@
                 <td>
                     <a th:text="${article.title}" href="#" class="hover:underline"></a>
                 </td>
-                <td th:with="board = ${article.board}">
-                    <span th:text="${board.name}"></span>
+                <td >
+                    <th:block th:with="board = ${article.board}">
+                        <span th:text="${board.name}"></span>
+                    </th:block>
                 </td>
 
                 <td th:text="${article.modifiedDate}"></td>

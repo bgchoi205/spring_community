@@ -49,8 +49,8 @@ public class ArticleService {
     }
 
     @Transactional
-    public List findAll() {
-        return articleRepository.findAll();
+    public List<Article> findAll() {
+        return articleRepository.findAllJoinFetch();
     }
 
     @Transactional
