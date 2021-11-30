@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @Transactional
@@ -17,12 +19,15 @@ class ArticleBoardTest {
     @Autowired
     private ArticleService articleService;
 
+    @Transactional
     @Test
-   public void articleBoardTest(){
+    public void articleBoardTest(){
 
-        Article article = articleService.findById(1L);
+        List<Article> articles = articleService.findAll();
 
-        assertThat()
+        String boardName = articles.get(0).getBoard().getName();
 
-   }
+        assertThat(boardName).isEqualTo("Notice");
+
+    }
 }

@@ -9,11 +9,12 @@ import com.cbg.exam.repository.MemberRepository;
 import com.cbg.exam.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class ArticleService {
 
@@ -48,9 +49,12 @@ public class ArticleService {
         return findByIdArticle;
     }
 
-    @Transactional
-    public List<Article> findAll() {
-        return articleRepository.findAllJoinFetch();
+//    public List<Article> findAll() {
+//        return articleRepository.findAllJoinFetch();
+//    }
+
+    public List<Article> findAll(){
+        return articleRepository.findAll();
     }
 
     @Transactional

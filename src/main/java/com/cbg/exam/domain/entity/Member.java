@@ -1,10 +1,7 @@
 package com.cbg.exam.domain.entity;
 
 import lombok.*;
-
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -35,8 +32,8 @@ public class Member {
     @Column(name="auth_level")
     private int authLevel;
 
-    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-    List<Article> articles;
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Article> articles;
 
     @Builder
     public Member(String loginId, String loginPw, String name, String nickname, String email){

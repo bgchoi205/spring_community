@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     @Query("select a from Article a join fetch a.board")
