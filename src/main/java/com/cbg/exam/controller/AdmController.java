@@ -33,6 +33,8 @@ public class AdmController {
     public String showAdmArticles(Model model){
         List<Article> articleList = articleService.findAll();
 
+
+
         model.addAttribute("articleList", articleList);
 
         return "adm/articleManage";

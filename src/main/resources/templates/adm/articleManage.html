@@ -8,50 +8,63 @@
     <meta charset="UTF-8">
     <title>articleManage</title>
 
+    <!-- 게시물 관리 css -->
     <link rel="stylesheet" href="/css/articleManage.css">
 </head>
 <body>
 <div layout:fragment="content">
-    <table class="admArticleList w-11/12 mx-auto mt-4">
-        <thead>
-        <tr class="bg-gray-600 text-white grid-adm-articles text-center font-bold py-2 px-1">
-            <td>
-                <input type="checkbox">
-            </td>
-            <td>번호</td>
-            <td>제목</td>
-            <td>분류</td>
-            <td>날짜</td>
-            <td></td>
-        </tr>
-        </thead>
-        <tbody class="shadow">
-            <tr th:each="article : ${articleList}" class="grid-adm-articles py-2 px-1 text-center">
+    <div class="container mx-auto w-11/12">
+        <div class="searchForm flex justify-end">
+            <form action="#">
+                <select name="searchType" class="border-2 rounded py-1 px-2">
+                    <option value="all">전체</option>
+                    <option value="boardName">Notice</option>
+                </select>
+                <input type="text" name="searchKey" class="border-2 rounded py-1 px-2">
+                <button type="submit" class="bg-gray-500 hover:bg-black text-white font-bold py-1 px-2 rounded">검색</button>
+            </form>
+        </div>
+        <table class="admArticleList mt-4 w-full">
+            <thead>
+            <tr class="bg-gray-600 text-white grid-adm-articles text-center font-bold py-2 px-1">
                 <td>
                     <input type="checkbox">
                 </td>
-                <td th:text="${article.id}"></td>
-                <td>
-                    <a th:text="${article.title}" href="#" class="hover:underline"></a>
-                </td>
-                <td >
-                    <th:block th:with="board = ${article.board}">
-                        <span th:text="${board.name}"></span>
-                    </th:block>
-                </td>
-
-                <td th:text="${article.modifiedDate}"></td>
-                <td>
-                    <a href="#">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <a href="#">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
-                </td>
+                <td>번호</td>
+                <td>제목</td>
+                <td>분류</td>
+                <td>날짜</td>
+                <td></td>
             </tr>
-        </tbody>
-    </table>
+            </thead>
+            <tbody class="shadow">
+                <tr th:each="article : ${articleList}" class="grid-adm-articles py-2 px-1 text-center">
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td th:text="${article.id}"></td>
+                    <td>
+                        <a th:text="${article.title}" href="#" class="hover:underline"></a>
+                    </td>
+                    <td >
+                        <th:block th:with="board = ${article.board}">
+                            <span th:text="${board.name}"></span>
+                        </th:block>
+                    </td>
+
+                    <td th:text="${article.modifiedDate}"></td>
+                    <td>
+                        <a href="#">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="#">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>
