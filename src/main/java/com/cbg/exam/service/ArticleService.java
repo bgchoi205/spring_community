@@ -8,6 +8,8 @@ import com.cbg.exam.repository.ArticleRepository;
 import com.cbg.exam.repository.MemberRepository;
 import com.cbg.exam.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -62,4 +64,7 @@ public class ArticleService {
         return articleRepository.count();
     }
 
+    public Page<Article> getArticlePage(Pageable pageable) {
+        return articleRepository.findAll(pageable);
+    }
 }

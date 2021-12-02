@@ -1,9 +1,14 @@
 package com.cbg.exam.controller;
 
 import com.cbg.exam.domain.entity.Article;
+import com.cbg.exam.domain.entity.Board;
 import com.cbg.exam.service.ArticleService;
 import com.cbg.exam.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,11 +35,13 @@ public class AdmController {
     }
 
     @GetMapping("/articles")
-    public String showAdmArticles(Model model){
-        List<Article> articleList = articleService.findAll();
+    public String showAdmArticles(Model model,
+                                  @PageableDefault(size = 8, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
 
+        List<Board> boardList = boardService.findAll();
+        Page<Article> articleList = articleService.getArticlePage(pageable);
 
-
+        model.addAttribute("boardList", boardList);
         model.addAttribute("articleList", articleList);
 
         return "adm/articleManage";
