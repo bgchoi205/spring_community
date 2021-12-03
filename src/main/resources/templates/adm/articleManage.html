@@ -21,17 +21,24 @@
                 </div>
                 <ul class="bg-gray-600 text-white font-bold w-full px-4">
                     <li th:each="board : ${boardList}" class="p-2">
-                        <a th:href="@{adm/articles?board={boardName}(boardName=${board.name})}" th:text="${board.name}"></a>
+                        <a th:href="@{/adm/articles?boardName={boardName}(boardName=${board.name})}" th:text="${board.name}"></a>
                     </li>
                 </ul>
             </div>
             <div class="flex-grow"></div>
             <div class="searchForm">
-                <form action="#">
-                    <select name="searchType" class="shadow-md rounded py-1 px-2">
+                <form action="/adm/articles">
+                    <select name="boardName" class="shadow-md rounded py-1 px-2">
+                        <option value="">전체</option>
+                        <th:block th:each="board : ${boardList}">
+                            <option th:value="${board.name}" th:selected="${board.name.equals(articleSearchDto.boardName)}"
+                                    th:text="${board.name}"></option>
+                        </th:block>
+                    </select>
+                    <select name="searchType" th:value="${articleSearchDto.searchType}" class="shadow-md rounded py-1 px-2">
                         <option value="title">제목</option>
                     </select>
-                    <input type="text" name="searchKey" class="shadow-md rounded py-1 px-2">
+                    <input type="text" name="searchKey" th:value="${articleSearchDto.searchKey}" class="shadow-md rounded py-1 px-2">
                     <button type="submit" class="bg-gray-500 hover:bg-black text-white font-bold py-1 px-2 rounded">검색</button>
                 </form>
             </div>

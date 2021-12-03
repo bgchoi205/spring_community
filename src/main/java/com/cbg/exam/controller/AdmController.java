@@ -1,5 +1,6 @@
 package com.cbg.exam.controller;
 
+import com.cbg.exam.domain.dto.admDto.ArticleSearchDto;
 import com.cbg.exam.domain.entity.Article;
 import com.cbg.exam.domain.entity.Board;
 import com.cbg.exam.service.ArticleService;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -35,14 +37,19 @@ public class AdmController {
     }
 
     @GetMapping("/articles")
-    public String showAdmArticles(Model model,
+    public String showAdmArticles(Model model, ArticleSearchDto articleSearchDto,
                                   @PageableDefault(size = 8, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
 
         List<Board> boardList = boardService.findAll();
         Page<Article> articleList = articleService.getArticlePage(pageable);
 
+        System.out.println("게시판 : " + articleSearchDto.getBoardName());
+        System.out.println("검색타입 : " + articleSearchDto.getSearchType());
+        System.out.println("검색어 : " + articleSearchDto.getSearchKey());
+
         model.addAttribute("boardList", boardList);
         model.addAttribute("articleList", articleList);
+        model.addAttribute("articleSearchDto", articleSearchDto);
 
         return "adm/articleManage";
     }
