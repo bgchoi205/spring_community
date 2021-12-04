@@ -41,11 +41,9 @@ public class AdmController {
                                   @PageableDefault(size = 8, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
 
         List<Board> boardList = boardService.findAll();
-        Page<Article> articleList = articleService.getArticlePage(pageable);
+//        Page<Article> articleList = articleService.getArticlePage(pageable);
 
-        System.out.println("게시판 : " + articleSearchDto.getBoardName());
-        System.out.println("검색타입 : " + articleSearchDto.getSearchType());
-        System.out.println("검색어 : " + articleSearchDto.getSearchKey());
+        Page<Article> articleList = articleService.getArticlePage(articleSearchDto, pageable);
 
         model.addAttribute("boardList", boardList);
         model.addAttribute("articleList", articleList);

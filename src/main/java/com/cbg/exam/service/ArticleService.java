@@ -1,5 +1,6 @@
 package com.cbg.exam.service;
 
+import com.cbg.exam.domain.dto.admDto.ArticleSearchDto;
 import com.cbg.exam.domain.dto.articleDto.ArticleWriteDto;
 import com.cbg.exam.domain.entity.Article;
 import com.cbg.exam.domain.entity.Board;
@@ -64,7 +65,26 @@ public class ArticleService {
         return articleRepository.count();
     }
 
-    public Page<Article> getArticlePage(Pageable pageable) {
+    public Page<Article> getArticlePage(ArticleSearchDto articleSearchDto, Pageable pageable) {
+
+        if( articleSearchDto.getBoardName().isBlank() && articleSearchDto.getSearchKey().isBlank() ){
+            return articleRepository.findAll(pageable);
+        }
+
+        if( !articleSearchDto.getBoardName().isBlank() && !articleSearchDto.getSearchKey().isBlank() ){
+            Board board = boardService.findByName(articleSearchDto.getBoardName());
+            return articleRepository.findByBoardAndTitleContaining(board, articleSearchDto.getSearchKey(), pageable);
+        }
+
+        if( !articleSearchDto.getBoardName().isBlank() && articleSearchDto.getSearchKey().isBlank() ){
+            Board board = boardService.findByName(articleSearchDto.getBoardName());
+            return articleRepository.findByBoard(board, pageable);
+        }
+
+        if ( articleSearchDto.getBoardName().isBlank() && !articleSearchDto.getSearchKey().isBlank() ) {
+            return articleRepository.findByTitleContaining(articleSearchDto.getSearchKey(), pageable);
+        }
+
         return articleRepository.findAll(pageable);
     }
 }
