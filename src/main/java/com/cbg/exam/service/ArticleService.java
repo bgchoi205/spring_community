@@ -25,6 +25,7 @@ public class ArticleService {
     private final MemberService memberService;
     private final BoardService boardService;
 
+    // 게시물 저장
     @Transactional
     public void save(ArticleWriteDto articleWriteDto, CustomUserDetails user){
 
@@ -35,6 +36,7 @@ public class ArticleService {
         articleRepository.save(articleWriteDto.toEntity(member, board));
     }
 
+    // 게시물 삭제
     @Transactional
     public void delete(Article article){
         articleRepository.delete(article);
@@ -45,6 +47,7 @@ public class ArticleService {
 //        return articleRepository.modify(article);
 //    }
 
+    // 게시물 id로 찾기
     @Transactional
     public Article findById(Long id){
         Article findByIdArticle = articleRepository.findById(id).orElseThrow();
@@ -56,35 +59,35 @@ public class ArticleService {
 //        return articleRepository.findAllJoinFetch();
 //    }
 
+    // 전체 게시물 List로 불러오기
     public List<Article> findAll(){
         return articleRepository.findAll();
     }
 
+    //총 게시물 수
     @Transactional
     public Long count(){
         return articleRepository.count();
     }
 
+    // 게시물 관리 페이징, 검색
     public Page<Article> getArticlePage(ArticleSearchDto articleSearchDto, Pageable pageable) {
 
-        if( articleSearchDto.getBoardName().isBlank() && articleSearchDto.getSearchKey().isBlank() ){
-            return articleRepository.findAll(pageable);
+        if( articleSearchDto.getBoardName().isBlank() ){
+            if( articleSearchDto.getSearchKey().isBlank() ){
+                return articleRepository.findAll(pageable);
+            }else{
+                return articleRepository.findByTitleContaining(articleSearchDto.getSearchKey(), pageable);
+            }
+        }else{
+            if( articleSearchDto.getSearchKey().isBlank() ){
+                Board board = boardService.findByName(articleSearchDto.getBoardName());
+                return articleRepository.findByBoard(board, pageable);
+            }else{
+                Board board = boardService.findByName(articleSearchDto.getBoardName());
+                return articleRepository.findByBoardAndTitleContaining(board, articleSearchDto.getSearchKey(), pageable);
+            }
         }
 
-        if( !articleSearchDto.getBoardName().isBlank() && !articleSearchDto.getSearchKey().isBlank() ){
-            Board board = boardService.findByName(articleSearchDto.getBoardName());
-            return articleRepository.findByBoardAndTitleContaining(board, articleSearchDto.getSearchKey(), pageable);
-        }
-
-        if( !articleSearchDto.getBoardName().isBlank() && articleSearchDto.getSearchKey().isBlank() ){
-            Board board = boardService.findByName(articleSearchDto.getBoardName());
-            return articleRepository.findByBoard(board, pageable);
-        }
-
-        if ( articleSearchDto.getBoardName().isBlank() && !articleSearchDto.getSearchKey().isBlank() ) {
-            return articleRepository.findByTitleContaining(articleSearchDto.getSearchKey(), pageable);
-        }
-
-        return articleRepository.findAll(pageable);
     }
 }
