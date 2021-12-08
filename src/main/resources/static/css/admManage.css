@@ -1,3 +1,4 @@
+/* 게시물 관리 페이지 시작 */
 /* 관리자페이지 게시물리스트 tr grid 분할 */
 .grid-adm-articles{
   display:grid;
@@ -45,3 +46,23 @@
 .select-board-wrap:hover > ul > li:first-child{
   border-top:2px solid white;
 }
+
+/* 게시물 관리 페이지 끝 */
+
+
+/* 게시판 관리페이지 시작 */
+.grid-adm-boards{
+  display:grid;
+  grid-template-columns:15% 50% 35%;
+}
+
+.admBoardList > tbody > tr{
+  border-top:1px solid #ddd;
+  box-sizing:border-box;
+}
+
+.admBoardList > tbody > tr:first-child{
+  border-top:0px;
+}
+
+/* 게시판 관리페이지 끝 */

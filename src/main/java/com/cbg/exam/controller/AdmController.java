@@ -55,4 +55,14 @@ public class AdmController {
         return "adm/articleManage";
     }
 
+    @GetMapping("/boards")
+    public String showAmdBoards(Model model){
+
+        List<Board> boardList = boardService.findAll();
+
+        model.addAttribute("boardList", boardList);
+
+        return "adm/boardManage";
+    }
+
 }
