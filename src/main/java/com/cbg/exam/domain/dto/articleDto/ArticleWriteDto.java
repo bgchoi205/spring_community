@@ -9,14 +9,12 @@ import lombok.Getter;
 @Getter
 public class ArticleWriteDto {
     private String title;
-    private String articleHtml;
     private String articleMD;
     private String boardName;
 
     @Builder
-    public ArticleWriteDto(String title, String articleHtml, String articleMD, String boardName){
+    public ArticleWriteDto(String title, String articleMD, String boardName){
         this.title = title;
-        this.articleHtml = articleHtml;
         this.articleMD = articleMD;
         this.boardName = boardName;
     }
@@ -26,7 +24,6 @@ public class ArticleWriteDto {
                 .member(member)
                 .board(board)
                 .title(title)
-                .articleHtml(articleHtml)
                 .articleMD(articleMD)
                 .build();
     }

@@ -83,11 +83,6 @@
                 </tr>
             </tbody>
         </table>
-        <script th:inline="javascript">
-            /*<![CDATA[*/
-            let currentPage = /*[[${currentPage}]]*/;
-            /*]]>*/
-        </script>
         <div th:with="totalPage = ${articleList.totalPages == 0} ? 1 : ${articleList.totalPages}" class="flex justify-center p-2">
             <span th:each="i : ${#numbers.sequence(1, totalPage)}">
                 <a th:href="@{/adm/articles(page=${i})}" th:attr="class=${currentPage==i} ? 'underline p-1' : 'p-1'"

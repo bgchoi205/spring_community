@@ -62,11 +62,10 @@ public class HomeController {
         boardService.save(testBoard3);
 
         for(int i = 1; i <= 10; i++){
-            Article article =  Article.builder()
+            Article article = Article.builder()
                     .member(testMember)
                     .board(testBoard1)
                     .title("제목" + i)
-                    .articleHtml("<h1>hi" + i + "</h1>")
                     .articleMD("# hi" + i)
                     .build();
             articleRepository.save(article);
