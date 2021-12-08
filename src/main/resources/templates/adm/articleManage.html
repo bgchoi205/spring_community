@@ -63,7 +63,7 @@
                     </td>
                     <td th:text="${article.id}"></td>
                     <td>
-                        <a th:text="${article.title}" href="#" class="hover:underline"></a>
+                        <a th:text="${article.title}" th:href="@{/articles/{id}(id=${article.id})}" class="hover:underline"></a>
                     </td>
                     <td >
                         <th:block th:with="board = ${article.board}">
@@ -83,18 +83,23 @@
                 </tr>
             </tbody>
         </table>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            let currentPage = /*[[${currentPage}]]*/;
+            /*]]>*/
+        </script>
         <div th:with="totalPage = ${articleList.totalPages == 0} ? 1 : ${articleList.totalPages}" class="flex justify-center p-2">
             <span th:each="i : ${#numbers.sequence(1, totalPage)}">
-                <a th:href="@{/adm/articles(page=${i})}" class="p-1"
+                <a th:href="@{/adm/articles(page=${i})}" th:attr="class=${currentPage==i} ? 'underline p-1' : 'p-1'"
                    th:if="${ #strings.isEmpty(articleSearchDto.boardName) && #strings.isEmpty(articleSearchDto.searchKey)}" th:text="${i}"></a>
 
-                <a th:href="@{/adm/articles(boardName=${articleSearchDto.boardName}, page=${i})}" class="p-1"
+                <a th:href="@{/adm/articles(boardName=${articleSearchDto.boardName}, page=${i})}" th:attr="class=${currentPage==i} ? 'underline p-1' : 'p-1'"
                    th:if="${not #strings.isEmpty(articleSearchDto.boardName) && #strings.isEmpty(articleSearchDto.searchKey)}"  th:text="${i}"></a>
 
-                <a th:href="@{/adm/articles(searchType=${articleSearchDto.searchType}, searchKey=${articleSearchDto.searchKey}, page=${i})}" class="p-1"
+                <a th:href="@{/adm/articles(searchType=${articleSearchDto.searchType}, searchKey=${articleSearchDto.searchKey}, page=${i})}" th:attr="class=${currentPage==i} ? 'underline p-1' : 'p-1'"
                    th:if="${ #strings.isEmpty(articleSearchDto.boardName) && not #strings.isEmpty(articleSearchDto.searchKey)}"  th:text="${i}"></a>
 
-                <a th:href="@{/adm/articles(boardName=${articleSearchDto.boardName}, searchType=${articleSearchDto.searchType},searchKey=${articleSearchDto.searchKey}, page=${i})}" class="p-1"
+                <a th:href="@{/adm/articles(boardName=${articleSearchDto.boardName}, searchType=${articleSearchDto.searchType},searchKey=${articleSearchDto.searchKey}, page=${i})}" th:attr="class=${currentPage==i} ? 'underline p-1' : 'p-1'"
                    th:if="${ not #strings.isEmpty(articleSearchDto.boardName) && not #strings.isEmpty(articleSearchDto.searchKey)}"  th:text="${i}"></a>
 <!--                <a th:href="@{/adm/articles(page=${i}, |${not #strings.isEmpty(articleSearchDto.boardName)}?|'boardName='articleSearchDto.boardName| : ''|)}" th:text="${i}"></a>-->
             </span>
