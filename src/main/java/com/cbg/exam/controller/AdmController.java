@@ -41,13 +41,21 @@ public class AdmController {
                                   @PageableDefault(size = 8, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
 
         List<Board> boardList = boardService.findAll();
-//        Page<Article> articleList = articleService.getArticlePage(pageable);
-
         Page<Article> articleList = articleService.getArticlePage(articleSearchDto, pageable);
+
+        System.out.println("boardName : " + articleSearchDto.getBoardName());
+        System.out.println("searchType : " + articleSearchDto.getSearchType());
+        System.out.println("searchKey : " + articleSearchDto.getSearchKey());
+
+        int currentPage = pageable.getPageNumber() + 1;
+        int totalPage = articleList.getTotalPages();
+
 
         model.addAttribute("boardList", boardList);
         model.addAttribute("articleList", articleList);
         model.addAttribute("articleSearchDto", articleSearchDto);
+        model.addAttribute("currentPage", currentPage);
+
 
         return "adm/articleManage";
     }

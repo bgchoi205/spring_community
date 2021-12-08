@@ -18,7 +18,7 @@ public class ArticleSearchDto {
         this.searchKey = "";
     }
 
-    // 게시판만 선택했을 경우
+    //게시판만 선택했을 경우
 //    public ArticleSearchDto(String boardName){
 //        this.boardName = boardName;
 //        this.searchType = "";

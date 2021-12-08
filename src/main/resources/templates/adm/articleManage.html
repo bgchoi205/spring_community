@@ -29,7 +29,7 @@
             <div class="searchForm">
                 <form action="/adm/articles">
                     <select name="boardName" class="shadow-md rounded py-1 px-2">
-                        <option value="">전체</option>
+                        <option value="all">전체</option>
                         <th:block th:each="board : ${boardList}">
                             <option th:value="${board.name}" th:selected="${board.name.equals(articleSearchDto.boardName)}"
                                     th:text="${board.name}"></option>
@@ -83,6 +83,22 @@
                 </tr>
             </tbody>
         </table>
+        <div th:with="totalPage = ${articleList.totalPages == 0} ? 1 : ${articleList.totalPages}" class="flex justify-center p-2">
+            <span th:each="i : ${#numbers.sequence(1, totalPage)}">
+                <a th:href="@{/adm/articles(page=${i})}" class="p-1"
+                   th:if="${ #strings.isEmpty(articleSearchDto.boardName) && #strings.isEmpty(articleSearchDto.searchKey)}" th:text="${i}"></a>
+
+                <a th:href="@{/adm/articles(boardName=${articleSearchDto.boardName}, page=${i})}" class="p-1"
+                   th:if="${not #strings.isEmpty(articleSearchDto.boardName) && #strings.isEmpty(articleSearchDto.searchKey)}"  th:text="${i}"></a>
+
+                <a th:href="@{/adm/articles(searchType=${articleSearchDto.searchType}, searchKey=${articleSearchDto.searchKey}, page=${i})}" class="p-1"
+                   th:if="${ #strings.isEmpty(articleSearchDto.boardName) && not #strings.isEmpty(articleSearchDto.searchKey)}"  th:text="${i}"></a>
+
+                <a th:href="@{/adm/articles(boardName=${articleSearchDto.boardName}, searchType=${articleSearchDto.searchType},searchKey=${articleSearchDto.searchKey}, page=${i})}" class="p-1"
+                   th:if="${ not #strings.isEmpty(articleSearchDto.boardName) && not #strings.isEmpty(articleSearchDto.searchKey)}"  th:text="${i}"></a>
+<!--                <a th:href="@{/adm/articles(page=${i}, |${not #strings.isEmpty(articleSearchDto.boardName)}?|'boardName='articleSearchDto.boardName| : ''|)}" th:text="${i}"></a>-->
+            </span>
+        </div>
     </div>
 </div>
 </body>

@@ -27,7 +27,7 @@
   border-bottom-right-radius:0.25rem;
   visibility:hidden;
   opacity:0;
-  transition:0.5s;
+  transition:0.3s;
 }
 
 .select-board-wrap:hover > ul{

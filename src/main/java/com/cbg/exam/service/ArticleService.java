@@ -73,7 +73,7 @@ public class ArticleService {
     // 게시물 관리 페이징, 검색
     public Page<Article> getArticlePage(ArticleSearchDto articleSearchDto, Pageable pageable) {
 
-        if( articleSearchDto.getBoardName().isBlank() ){
+        if( articleSearchDto.getBoardName().isBlank() || articleSearchDto.getBoardName().equals("all")){
             if( articleSearchDto.getSearchKey().isBlank() ){
                 return articleRepository.findAll(pageable);
             }else{
