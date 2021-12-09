@@ -15,9 +15,25 @@
 <div layout:fragment="content">
     <div class="container mx-auto w-11/12">
         <div class="mt-4 flex justify-end">
-            <div class="py-1 px-2 bg-gray-600 text-white font-bold rounded cursor-pointer">
+            <div id="addBoardBtn" class="py-1 px-2 bg-gray-600 text-white font-bold rounded cursor-pointer">
                 <span><i class="fas fa-plus"></i></span>
                 <span>게시판 생성</span>
+            </div>
+            <div id="addBoardInput" class="addBoardInput w-52 h-32 p-2 bg-white border border-gray-300 shadow rounded">
+                <div class="flex justify-center p-2 font-bold text-gray-600">
+                    <span>게시판 이름 입력</span>
+                </div>
+                <div class="flex justify-center">
+                    <input type="text" name="boardName" placeholder="새 게시판 이름" class="shadow p-1">
+                </div>
+                <div class="flex justify-evenly p-2">
+                    <button class="text-gray-600 font-bold py-1 px-2 shadow rounded">
+                        <span>생성</span>
+                    </button>
+                    <button id="addBoardClose" class="text-gray-600 font-bold py-1 px-2 shadow rounded">
+                        <span>취소</span>
+                    </button>
+                </div>
             </div>
         </div>
         <table class="admBoardList w-full mt-1">
@@ -47,6 +63,7 @@
             </tbody>
         </table>
     </div>
+    <script src="/js/admManage.js"></script>
 </div>
 </body>
 </html>

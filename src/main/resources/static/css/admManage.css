@@ -65,4 +65,17 @@
   border-top:0px;
 }
 
+.addBoardBtn{
+  position:relative;
+}
+
+.addBoardInput{
+  position:absolute;
+  display:none;
+}
+
+.addBoardInput > div > button:hover{
+  background-color:black;
+  color:white;
+}
 /* 게시판 관리페이지 끝 */
