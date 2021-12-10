@@ -20,7 +20,6 @@ public class BoardService {
         boardRepository.save(board);
     }
 
-    @Transactional
     public List<Board> findAll(){
         return boardRepository.findAll();
     }
@@ -38,6 +37,23 @@ public class BoardService {
     @Transactional
     public Long count(){
         return boardRepository.count();
+    }
+
+    @Transactional
+    public boolean checkBoardAndSave(String boardName) {
+
+        if(isBoardEmpty(boardName)){
+            Board board = Board.builder()
+                    .name(boardName)
+                    .build();
+            boardRepository.save(board);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isBoardEmpty(String boardName) {
+        return boardRepository.findByName(boardName).isEmpty();
     }
 
 }

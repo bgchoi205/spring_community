@@ -7,6 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <title>boardManage</title>
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+    <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
 
     <!-- 관리자 페이지 css -->
     <link rel="stylesheet" href="/css/admManage.css">
@@ -24,10 +26,10 @@
                     <span>게시판 이름 입력</span>
                 </div>
                 <div class="flex justify-center">
-                    <input type="text" name="boardName" placeholder="새 게시판 이름" class="shadow p-1">
+                    <input id="boardName" type="text" name="boardName" placeholder="새 게시판 이름" class="shadow p-1">
                 </div>
                 <div class="flex justify-evenly p-2">
-                    <button class="text-gray-600 font-bold py-1 px-2 shadow rounded">
+                    <button th:attr="onclick=|checkBoardAndAdd()|" class="text-gray-600 font-bold py-1 px-2 shadow rounded">
                         <span>생성</span>
                     </button>
                     <button id="addBoardClose" class="text-gray-600 font-bold py-1 px-2 shadow rounded">
