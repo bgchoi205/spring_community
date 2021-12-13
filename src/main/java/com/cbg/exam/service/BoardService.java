@@ -39,21 +39,45 @@ public class BoardService {
         return boardRepository.count();
     }
 
-    @Transactional
-    public boolean checkBoardAndSave(String boardName) {
-
-        if(isBoardEmpty(boardName)){
-            Board board = Board.builder()
-                    .name(boardName)
-                    .build();
-            boardRepository.save(board);
-            return true;
-        }
-        return false;
-    }
-
+    // 게시판 유무 체크
     private boolean isBoardEmpty(String boardName) {
         return boardRepository.findByName(boardName).isEmpty();
     }
 
+    // 게사판 생성 - 생성하려는 게시판 이름 체크 후 없으면 생성
+    @Transactional
+    public boolean checkBoardAndSave(String boardName) {
+        if( !isBoardEmpty(boardName) ){
+            return false;
+        }
+
+        Board board = Board.builder()
+                .name(boardName)
+                .build();
+        boardRepository.save(board);
+
+        return true;
+    }
+
+    @Transactional
+    public boolean modifyBoardName(String boardName) {
+        if( isBoardEmpty(boardName) ){
+            return false;
+        }
+
+        Board board = findByName(boardName);
+        board.changeName(boardName);
+        return true;
+    }
+
+    @Transactional
+    public boolean deleteBoard(String boardName) {
+        if( isBoardEmpty(boardName) ){
+            return false;
+        }
+
+        Board board = findByName(boardName);
+        boardRepository.delete(board);
+        return true;
+    }
 }

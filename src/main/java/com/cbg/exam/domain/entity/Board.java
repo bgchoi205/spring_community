@@ -24,4 +24,8 @@ public class Board {
     public Board(String name){
         this.name = name;
     }
+
+    public void changeName(String newBoardName){
+        this.name = newBoardName;
+    }
 }

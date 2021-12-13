@@ -78,4 +78,14 @@
   background-color:black;
   color:white;
 }
+
+.modifyBoardInput{
+  position:absolute;
+  display:none;
+}
+
+.modifyBoardInput > div > button:hover{
+  background-color:black;
+  color:white;
+}
 /* 게시판 관리페이지 끝 */

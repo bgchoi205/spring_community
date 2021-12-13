@@ -53,13 +53,29 @@
                 <td>
                     <a th:text="${board.name}" th:href="@{/adm/articles(boardName=${board.name})}"></a>
                 </td>
-                <td>
-                    <a href="#" class="px-1">
+                <td class="modifyAndDelTd">
+                    <a id="modifyBoardBtn" class="px-1">
                         <i class="fas fa-edit"></i>
                     </a>
-                    <a href="#" class="px-1">
+                    <a th:attr="onclick=|delBoard('${board.name}')|" class="px-1 cursor-pointer">
                         <i class="fas fa-trash-alt"></i>
                     </a>
+                    <div id="modifyBoardInput" class="modifyBoardInput w-52 h-32 p-2 bg-white border border-gray-300 shadow rounded">
+                        <div class="flex justify-center p-2 font-bold text-gray-600">
+                            <span>게시판 이름 수정</span>
+                        </div>
+                        <div class="flex justify-center">
+                            <input type="text" name="newBoardName" placeholder="게시판 이름 입력" class="shadow p-1">
+                        </div>
+                        <div class="flex justify-evenly p-2">
+                            <button class="text-gray-600 font-bold py-1 px-2 shadow rounded">
+                                <span>수정</span>
+                            </button>
+                            <button id="modifyBoardClose" class="text-gray-600 font-bold py-1 px-2 shadow rounded">
+                                <span>취소</span>
+                            </button>
+                        </div>
+                    </div>
                 </td>
             </tr>
             </tbody>
