@@ -1,5 +1,35 @@
+/* csrf 토큰 전달을 위한 변수 */
 var token = $("meta[name='_csrf']").attr("content");
 var header = $("meta[name='_csrf_header']").attr("content");
+
+
+/* 게시물 관리 - 게시물 삭제 */
+function delArticle(articleId){
+
+    if( !confirm("정말 삭제하시겠습니까?") ) {
+        return false;
+    }
+
+    $.ajax({
+        data:JSON.stringify(articleId)
+        ,url : "/api/article/" + articleId
+        ,type : "DELETE"
+        ,contentType: 'application/json'
+        ,beforeSend : function(xhr){
+            xhr.setRequestHeader(header, token);
+        }
+        ,success : function() {
+            alert("게시물 삭제 완료");
+            location.reload();
+        }
+        ,error: function () {
+            alert('게시물 삭제 실패');
+            location.reload();
+        }
+    })
+
+}
+
 
 /* 게시판 관리 - 게시판 추가버튼 */
 function addBoard__init(){
@@ -80,6 +110,10 @@ function changeBoardName(){
 
 /* 게시판 관리 - 게시판 삭제 */
 function delBoard(boardName){
+
+    if( !confirm("정말 삭제하시겠습니까?") ) {
+        return false;
+    }
 
     $.ajax({
         data:JSON.stringify(boardName)

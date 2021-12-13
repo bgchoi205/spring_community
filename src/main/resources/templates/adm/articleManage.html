@@ -7,6 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <title>articleManage</title>
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+    <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
 
     <!-- 관리자 페이지 css -->
     <link rel="stylesheet" href="/css/admManage.css">
@@ -76,7 +78,7 @@
                         <a href="#">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a href="#">
+                        <a th:attr="onclick=|delArticle('${article.id}')|" class="cursor-pointer">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>
@@ -100,6 +102,7 @@
             </span>
         </div>
     </div>
+    <script src="/js/admManage.js"></script>
 </div>
 </body>
 </html>

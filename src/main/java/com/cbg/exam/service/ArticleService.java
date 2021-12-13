@@ -90,4 +90,22 @@ public class ArticleService {
         }
 
     }
+
+    // 게시물 유무 확인
+    private boolean isArticleEmpty(Long articleId) {
+        return articleRepository.findById(articleId).isEmpty();
+    }
+
+    // api요청으로 들어온 게시물 삭제 처리
+    @Transactional
+    public boolean apiDelArticle(Long articleId) {
+        if( isArticleEmpty(articleId) ){
+            return false;
+        }
+
+        articleRepository.deleteById(articleId);
+        return true;
+    }
+
+
 }
