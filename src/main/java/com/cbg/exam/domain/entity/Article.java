@@ -1,6 +1,7 @@
 package com.cbg.exam.domain.entity;
 
 import com.cbg.exam.domain.BaseTime;
+import com.cbg.exam.domain.dto.articleDto.ArticleModifyDto;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
@@ -42,5 +43,11 @@ public class Article extends BaseTime {
         this.board = board;
         this.title = title;
         this.articleMD = articleMD;
+    }
+
+    public void modifyArticle(String title, String articleMD, Board board){
+        this.title = title;
+        this.articleMD = articleMD;
+        this.board = board;
     }
 }

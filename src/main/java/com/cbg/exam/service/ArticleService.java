@@ -1,6 +1,7 @@
 package com.cbg.exam.service;
 
 import com.cbg.exam.domain.dto.admDto.ArticleSearchDto;
+import com.cbg.exam.domain.dto.articleDto.ArticleModifyDto;
 import com.cbg.exam.domain.dto.articleDto.ArticleWriteDto;
 import com.cbg.exam.domain.entity.Article;
 import com.cbg.exam.domain.entity.Board;
@@ -108,4 +109,8 @@ public class ArticleService {
     }
 
 
+    public void modifyArticle(Article article, ArticleModifyDto articleModifyDto) {
+        article.modifyArticle(articleModifyDto.getTitle(), articleModifyDto.getArticleMD(),
+                boardService.findByName(articleModifyDto.getBoardName()));
+    }
 }

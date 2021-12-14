@@ -1,5 +1,6 @@
 package com.cbg.exam.controller;
 
+import com.cbg.exam.domain.dto.articleDto.ArticleModifyDto;
 import com.cbg.exam.domain.dto.articleDto.ArticleWriteDto;
 import com.cbg.exam.domain.entity.Article;
 import com.cbg.exam.domain.entity.Board;
@@ -55,6 +56,15 @@ public class ArticleController {
         model.addAttribute("boardList", boardList);
 
         return "usr/article/view";
+    }
+
+    @PutMapping("/{id}")
+    public String ModifyArticle(@PathVariable("id") Long articleId, ArticleModifyDto articleModifyDto){
+        Article article = articleService.findById(articleId);
+
+        articleService.modifyArticle(article, articleModifyDto);
+
+        return "redirect:/";
     }
 
 }
