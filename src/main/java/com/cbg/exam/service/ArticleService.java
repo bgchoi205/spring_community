@@ -108,7 +108,7 @@ public class ArticleService {
         return true;
     }
 
-
+    @Transactional
     public void modifyArticle(Article article, ArticleModifyDto articleModifyDto) {
         article.modifyArticle(articleModifyDto.getTitle(), articleModifyDto.getArticleMD(),
                 boardService.findByName(articleModifyDto.getBoardName()));

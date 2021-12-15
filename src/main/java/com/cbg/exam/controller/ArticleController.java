@@ -23,6 +23,7 @@ public class ArticleController {
     private final ArticleService articleService;
     private final BoardService boardService;
 
+    // 게시물 작성 화면
     @GetMapping("/write")
     public String articleWrite(Model model){
         List<Board> boardList = boardService.findAll();
@@ -31,7 +32,7 @@ public class ArticleController {
         return "/usr/article/write";
     }
 
-
+    // 게시물 작성 처리
     @PostMapping("/write")
     public String articleDoWrite(ArticleWriteDto articleWriteDto, @AuthenticationPrincipal CustomUserDetails user){
 
@@ -40,6 +41,7 @@ public class ArticleController {
         return "redirect:/";
     }
 
+    // 게시물 리스트
     @GetMapping("")
     public String showArticleList(Model model){
         List articles = articleService.findAll();
@@ -47,6 +49,7 @@ public class ArticleController {
         return "/usr/article/list";
     }
 
+    // 게시물 상세보기 뷰
     @GetMapping("/{id}")
     public String showView(@PathVariable("id") Long articleId, Model model){
         Article article = articleService.findById(articleId);
@@ -58,7 +61,21 @@ public class ArticleController {
         return "usr/article/view";
     }
 
-    @PutMapping("/{id}")
+    // 게시물 수정 화면
+    @GetMapping("/modify/{id}")
+    public String showModifyArticle(@PathVariable("id") Long articleId, Model model){
+
+        Article article = articleService.findById(articleId);
+        List<Board> boardList = boardService.findAll();
+
+        model.addAttribute("article", article);
+        model.addAttribute("boardList", boardList);
+
+        return "usr/article/modify";
+    }
+
+    // 게시물 수정 처리
+    @PostMapping("/modify/{id}")
     public String ModifyArticle(@PathVariable("id") Long articleId, ArticleModifyDto articleModifyDto){
         Article article = articleService.findById(articleId);
 

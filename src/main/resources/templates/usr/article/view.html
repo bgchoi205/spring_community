@@ -5,6 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>View</title>
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+    <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
 
     <!-- Toast UI Editor -->
     <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
@@ -44,6 +46,19 @@
             </script>
             <div th:text="${article.title}" class="text-3xl font-bold px-2 py-1"></div>
             <hr>
+            <div class="flex justify-end text-gray-300 text-sm">
+                <span class="px-1">
+                    <a th:href="@{/articles/modify/{id}(id=${article.id})}">
+                        수정
+                    </a>
+                </span>
+                |
+                <span class="px-1">
+                    <a th:attr="onclick=|delArticle('${article.id}')|" class="cursor-pointer">
+                        삭제
+                    </a>
+                </span>
+            </div>
             <div id="viewer" class="p-2"></div>
 
             <!-- toast ui 편집기 CDN URL -->

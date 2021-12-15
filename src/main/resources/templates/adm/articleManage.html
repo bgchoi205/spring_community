@@ -75,7 +75,7 @@
 
                     <td th:text="${article.modifiedDate}"></td>
                     <td>
-                        <a href="#">
+                        <a th:href="@{/articles/modify/{id}(id=${article.id})}">
                             <i class="fas fa-edit"></i>
                         </a>
                         <a th:attr="onclick=|delArticle('${article.id}')|" class="cursor-pointer">
