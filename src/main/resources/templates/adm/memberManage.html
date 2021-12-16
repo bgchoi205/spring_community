@@ -55,7 +55,7 @@
                     <td th:case="3">매니저</td>
                 </th:block>
                 <td>
-                    <a href="#">
+                    <a th:attr="onclick=|delMember('${member.id}')|" class="cursor-pointer">
                         <i class="fas fa-user-times"></i>
                     </a>
                 </td>

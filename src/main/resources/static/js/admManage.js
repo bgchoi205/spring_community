@@ -134,3 +134,30 @@ function delBoard(boardName){
     })
 
 }
+
+/* 회원 관리 - 회원 삭제 */
+function delMember(memberId){
+
+    if( !confirm("정말 삭제하시겠습니까?") ) {
+        return false;
+    }
+
+    $.ajax({
+        data:JSON.stringify(memberId)
+        ,url : "/api/member/" + memberId
+        ,type : "DELETE"
+        ,contentType: 'application/json'
+        ,beforeSend : function(xhr){
+            xhr.setRequestHeader(header, token);
+        }
+        ,success : function() {
+            alert("회원계정 삭제 완료");
+            location.reload();
+        }
+        ,error: function () {
+            alert('회원계정 삭제 실패');
+            location.reload();
+        }
+    })
+
+}

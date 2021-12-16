@@ -12,8 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -70,4 +70,22 @@ public class MemberService implements UserDetailsService {
         return new CustomUserDetails(logonMember.getId(), logonMember.getLoginId(), logonMember.getLoginPw(), logonMember.getName(), logonMember.getNickname()
         , logonMember.getEmail(), authorities);
     }
+
+    // 회원 유무 확인
+    private boolean isMemberEmpty(Long memberId) {
+        return memberRepository.findById(memberId).isEmpty();
+    }
+
+    // 회원계정 삭제
+    @Transactional
+    public boolean apiDeleteMember(Long memberId) {
+        if( isMemberEmpty(memberId) ){
+            return false;
+        }
+
+        memberRepository.deleteById(memberId);
+        return true;
+    }
+
+
 }
