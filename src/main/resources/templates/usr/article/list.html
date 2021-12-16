@@ -8,25 +8,25 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <div class="container mx-auto mt-4">
-        <table class="article-list-table w-full text-gray-600 text-center">
-            <thead class="p-4 border-t-2 border-b-2 h-10">
-            <tr>
-                <th>번호</th>
-                <th>제목</th>
-                <th>날짜</th>
-            </tr>
-            </thead>
-            <tbody>
-            <th:block th:each="article : ${articles}">
-                <tr>
-                    <td th:text="${article.id}"></td>
-                    <td><a th:text="${article.title}" th:href="@{articles/{id}(id=${article.id})}" class="hover:underline"></a></td>
-                    <td th:text="${article.modifiedDate}"></td>
-                </tr>
-            </th:block>
-            </tbody>
-        </table>
+    <div class="container mx-auto">
+        <div class="article-list w-11/12 mt-4 p-2 mx-auto text-gray-600 text-center rounded-xl border border-gray-400 shadow">
+            <div class="py-2 border-b border-gray-400 font-bold">
+                <div class="article-list-grid">
+                    <span>No</span>
+                    <span>제목</span>
+                    <span>분류</span>
+                    <span>날짜</span>
+                </div>
+            </div>
+            <div>
+                <div th:each="article : ${articleList}" class="article-list-grid py-1">
+                    <span th:text="${article.id}"></span>
+                    <span><a th:text="${article.title}" href="#" class="hover:underline"></a></span>
+                    <span th:text="${article.board.name}"></span>
+                    <span th:text="${article.modifiedDate}"></span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>

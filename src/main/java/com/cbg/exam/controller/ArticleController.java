@@ -44,8 +44,13 @@ public class ArticleController {
     // 게시물 리스트
     @GetMapping("")
     public String showArticleList(Model model){
-        List articles = articleService.findAll();
-        model.addAttribute("articles", articles);
+
+        List<Board> boardList = boardService.findAll();
+        List<Article> articleList = articleService.findAll();
+
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("articleList", articleList);
+
         return "/usr/article/list";
     }
 

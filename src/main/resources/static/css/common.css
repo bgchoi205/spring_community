@@ -2,8 +2,10 @@
     color:red;
 }
 
-.article-list-table > tbody > tr:nth-child(2n){
-  background-color:ghostwhite;
+/* 유저 페이지 - 게시물 리스트 */
+.article-list-grid{
+  display:grid;
+  grid-template-columns:15% 30% 20% 35%;
 }
 
 /* 사이드바 시작 */
