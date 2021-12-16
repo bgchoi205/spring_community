@@ -34,11 +34,6 @@ public class MemberService implements UserDetailsService {
         memberRepository.delete(member);
     }
 
-//    @Transactional
-//    public void modify(Member member){
-//        memberRepository.modify(member);
-//    }
-
     @Transactional
     public List findAll() {
         return memberRepository.findAll();

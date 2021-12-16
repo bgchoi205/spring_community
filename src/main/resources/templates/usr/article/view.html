@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="~{layouts/layout}">
 <head>
     <meta charset="UTF-8">
@@ -46,7 +47,7 @@
             </script>
             <div th:text="${article.title}" class="text-3xl font-bold px-2 py-1"></div>
             <hr>
-            <div class="flex justify-end text-gray-300 text-sm">
+            <div sec:authorize="hasRole('ROLE_ADMIN')" class="flex justify-end text-gray-300 text-sm">
                 <span class="px-1">
                     <a th:href="@{/articles/modify/{id}(id=${article.id})}">
                         수정

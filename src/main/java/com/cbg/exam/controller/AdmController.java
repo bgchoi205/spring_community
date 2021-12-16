@@ -3,8 +3,11 @@ package com.cbg.exam.controller;
 import com.cbg.exam.domain.dto.admDto.ArticleSearchDto;
 import com.cbg.exam.domain.entity.Article;
 import com.cbg.exam.domain.entity.Board;
+import com.cbg.exam.domain.entity.Member;
 import com.cbg.exam.service.ArticleService;
 import com.cbg.exam.service.BoardService;
+import com.cbg.exam.service.MemberService;
+import com.mysql.cj.xdevapi.Collection;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -24,7 +29,9 @@ import java.util.List;
 public class AdmController {
     private final ArticleService articleService;
     private final BoardService boardService;
+    private final MemberService memberService;
 
+    // 관리자 페이지 - 홈
     @GetMapping("")
     public String showAdmPage(Model model){
         Long articleCounts = articleService.count();
@@ -36,6 +43,7 @@ public class AdmController {
         return "adm/home";
     }
 
+    // 관리자 페이지 - 게시물 관리
     @GetMapping("/articles")
     public String showAdmArticles(Model model, ArticleSearchDto articleSearchDto,
                                   @PageableDefault(size = 8, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
@@ -55,6 +63,7 @@ public class AdmController {
         return "adm/articleManage";
     }
 
+    // 관리자 페이지 - 게시판 관리
     @GetMapping("/boards")
     public String showAmdBoards(Model model){
 
@@ -63,6 +72,17 @@ public class AdmController {
         model.addAttribute("boardList", boardList);
 
         return "adm/boardManage";
+    }
+
+    // 관리자 페이지 - 회원관리(매니저 관리)
+    @GetMapping("/members")
+    public String showAmdMembers(Model model){
+
+        List<Member> memberList = memberService.findAll();
+
+        model.addAttribute("memberList", memberList);
+
+        return "adm/memberManage";
     }
 
 }
