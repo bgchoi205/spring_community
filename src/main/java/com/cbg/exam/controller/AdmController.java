@@ -1,6 +1,7 @@
 package com.cbg.exam.controller;
 
 import com.cbg.exam.domain.dto.admDto.ArticleSearchDto;
+import com.cbg.exam.domain.dto.memberDto.MemberJoinDto;
 import com.cbg.exam.domain.entity.Article;
 import com.cbg.exam.domain.entity.Board;
 import com.cbg.exam.domain.entity.Member;
@@ -16,6 +17,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -30,6 +32,19 @@ public class AdmController {
     private final ArticleService articleService;
     private final BoardService boardService;
     private final MemberService memberService;
+
+    @GetMapping("/join")
+    public String memberJoin(){
+        return "/adm/member/join";
+    }
+
+
+    @PostMapping("/join")
+    public String memberDoJoin(MemberJoinDto memberJoinDto){
+
+        memberService.save(memberJoinDto.toEntity());
+        return "redirect:/";
+    }
 
     // 관리자 페이지 - 홈
     @GetMapping("")
@@ -60,7 +75,7 @@ public class AdmController {
         model.addAttribute("currentPage", currentPage);
 
 
-        return "adm/articleManage";
+        return "adm/article/articleManage";
     }
 
     // 관리자 페이지 - 게시판 관리
@@ -71,7 +86,7 @@ public class AdmController {
 
         model.addAttribute("boardList", boardList);
 
-        return "adm/boardManage";
+        return "adm/board/boardManage";
     }
 
     // 관리자 페이지 - 회원관리(매니저 관리)
@@ -82,7 +97,7 @@ public class AdmController {
 
         model.addAttribute("memberList", memberList);
 
-        return "adm/memberManage";
+        return "adm/member/memberManage";
     }
 
 }

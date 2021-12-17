@@ -42,9 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             "/adm/**"
                             ,"/api/**"
                             ,"/articles/write"
-                            ,"/members/join").hasRole("ADMIN")  // ADMIN 권한을 가진 계정만 접근 가능
-                    .mvcMatchers(
-                            "/members/mypage").hasRole("MEMBER")  // MEMBER 권한을 가진 계정만 접근 가능
+                            ,"/articles/modify").hasRole("ADMIN")  // ADMIN 권한을 가진 계정만 접근 가능
 //                    .anyRequest()  //  antMatchers로 지정한 페이지 이외의 다른모든 페이지
 //                    .authenticated() // 인증이 된 사용자만 접근할 수 있도록 제한
                 .and()// 로그인 설정 시작

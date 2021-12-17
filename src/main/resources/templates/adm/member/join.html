@@ -13,13 +13,13 @@
             <div class="title-wrap-pattern absolute">
                 <div class="triangle-left"></div>
                 <div class="title-center">
-                    <span>회원가입</span>
+                    <span>계정생성</span>
                 </div>
                 <div class="title-right"></div>
                 <div class="triangle-right"></div>
             </div>
             <!-- th:action 으로 csrf 토큰값을 자동으로 넘겨줌 -->
-            <form th:action="@{/members/join}" method="post" class="px-4 py-10">
+            <form th:action="@{/adm/join}" method="post" class="px-4 py-10">
                 <div class="grid-input my-2">
                     <div></div>
                     <span class="text-center">아이디</span>
