@@ -8,22 +8,43 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <div class="container mx-auto">
-        <div class="article-list w-11/12 mt-4 p-2 mx-auto text-gray-600 text-center rounded-xl border border-gray-400 shadow">
-            <div class="py-2 border-b border-gray-400 font-bold">
-                <div class="article-list-grid">
-                    <span>No</span>
-                    <span>제목</span>
-                    <span>분류</span>
-                    <span>날짜</span>
-                </div>
+    <div class="flex">
+        <div class="side-bar w-40 p-2 flex flex-col items-center">
+            <div class="side-menu-btn my-4 mx-2 w-12 h-12 bg-gray-600 flex flex-col items-center justify-center cursor-pointer">
+                      <span class="plus-icon text-4xl text-white flex flex-col justify-center items-center">
+                        <i class="fas fa-plus"></i>
+                      </span>
             </div>
-            <div>
-                <div th:each="article : ${articleList}" class="article-list-grid py-1">
-                    <span th:text="${article.id}"></span>
-                    <span><a th:text="${article.title}" href="#" class="hover:underline"></a></span>
-                    <span th:text="${article.board.name}"></span>
-                    <span th:text="${article.modifiedDate}"></span>
+            <aside class="side-menu-wrap w-full">
+                <nav class="p-2 flex justify-center w-full text-white font-bold">
+                    <ul class="grid grid-cols-1 gap-2">
+                        <li>
+                            <a href="#">전체</a>
+                        </li>
+                        <li th:each="board : ${boardList}">
+                            <a href="#" th:text="${board.name}"></a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+        </div>
+        <div class="container mx-auto">
+            <div class="article-list w-11/12 mt-4 p-2 mx-auto text-gray-600 text-center rounded-xl border border-gray-400 shadow">
+                <div class="py-2 border-b border-gray-400 font-bold">
+                    <div class="article-list-grid">
+                        <span>No</span>
+                        <span>제목</span>
+                        <span>분류</span>
+                        <span>날짜</span>
+                    </div>
+                </div>
+                <div>
+                    <div th:each="article : ${articleList}" class="article-list-grid py-1">
+                        <span th:text="${article.id}"></span>
+                        <span><a th:text="${article.title}" href="#" class="hover:underline"></a></span>
+                        <span th:text="${article.board.name}"></span>
+                        <span th:text="${article.modifiedDate}"></span>
+                    </div>
                 </div>
             </div>
         </div>

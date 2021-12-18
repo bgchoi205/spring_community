@@ -1,28 +1,25 @@
 package com.cbg.exam.controller;
 
 import com.cbg.exam.domain.dto.admDto.ArticleSearchDto;
+import com.cbg.exam.domain.dto.articleDto.ArticleModifyDto;
+import com.cbg.exam.domain.dto.articleDto.ArticleWriteDto;
 import com.cbg.exam.domain.dto.memberDto.MemberJoinDto;
 import com.cbg.exam.domain.entity.Article;
 import com.cbg.exam.domain.entity.Board;
 import com.cbg.exam.domain.entity.Member;
+import com.cbg.exam.security.CustomUserDetails;
 import com.cbg.exam.service.ArticleService;
 import com.cbg.exam.service.BoardService;
 import com.cbg.exam.service.MemberService;
-import com.mysql.cj.xdevapi.Collection;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Collections;
-import java.util.Comparator;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
@@ -43,6 +40,47 @@ public class AdmController {
     public String memberDoJoin(MemberJoinDto memberJoinDto){
 
         memberService.save(memberJoinDto.toEntity());
+        return "redirect:/";
+    }
+
+    // 게시물 작성 화면
+    @GetMapping("/write")
+    public String articleWrite(Model model){
+        List<Board> boardList = boardService.findAll();
+
+        model.addAttribute("boardList", boardList);
+        return "/adm/article/write";
+    }
+
+    // 게시물 작성 처리
+    @PostMapping("/write")
+    public String articleDoWrite(ArticleWriteDto articleWriteDto, @AuthenticationPrincipal CustomUserDetails user){
+
+        articleService.save(articleWriteDto, user);
+
+        return "redirect:/";
+    }
+
+    // 게시물 수정 화면
+    @GetMapping("/modify/{id}")
+    public String showModifyArticle(@PathVariable("id") Long articleId, Model model){
+
+        Article article = articleService.findById(articleId);
+        List<Board> boardList = boardService.findAll();
+
+        model.addAttribute("article", article);
+        model.addAttribute("boardList", boardList);
+
+        return "adm/article/modify";
+    }
+
+    // 게시물 수정 처리
+    @PostMapping("/modify/{id}")
+    public String ModifyArticle(@PathVariable("id") Long articleId, ArticleModifyDto articleModifyDto){
+        Article article = articleService.findById(articleId);
+
+        articleService.modifyArticle(article, articleModifyDto);
+
         return "redirect:/";
     }
 
