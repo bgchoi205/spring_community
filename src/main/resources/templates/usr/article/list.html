@@ -19,32 +19,65 @@
                 <nav class="p-2 flex justify-center w-full text-white font-bold">
                     <ul class="grid grid-cols-1 gap-2">
                         <li>
-                            <a href="#">전체</a>
+                            <a href="/articles">전체</a>
                         </li>
                         <li th:each="board : ${boardList}">
-                            <a href="#" th:text="${board.name}"></a>
+                            <a th:href="@{/articles(boardName=${board.name})}" th:text="${board.name}"></a>
                         </li>
                     </ul>
                 </nav>
             </aside>
         </div>
         <div class="container mx-auto">
-            <div class="article-list w-11/12 mt-4 p-2 mx-auto text-gray-600 text-center rounded-xl border border-gray-400 shadow">
-                <div class="py-2 border-b border-gray-400 font-bold">
-                    <div class="article-list-grid">
-                        <span>No</span>
-                        <span>제목</span>
-                        <span>분류</span>
-                        <span>날짜</span>
+            <div class="w-11/12">
+                <div class="flex justify-end">
+                    <form action="/articles">
+                        <select name="boardName" id="boardName" class="shadow p-2">
+                            <option value="all">전체</option>
+                            <th:block th:each="board : ${boardList}">
+                                <option th:text="${board.name}" th:value="${board.name}" th:selected="${board.name.equals(articleSearchDto.boardName)}"></option>
+                            </th:block>
+                        </select>
+                        <input type="hidden" name="searchType" value="title">
+                        <input type="text" name="searchKey" th:value="${articleSearchDto.searchKey}" class="shadow rounded p-2" placeholder="제목 검색">
+                        <button type="submit" class="text-xl p-2">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="article-list w-full mt-2 p-2 text-gray-600 text-center rounded-xl border border-gray-400 shadow">
+                    <div class="py-2 border-b border-gray-400 font-bold">
+                        <div class="article-list-grid">
+                            <span>No</span>
+                            <span>제목</span>
+                            <span>분류</span>
+                            <span>날짜</span>
+                        </div>
+                    </div>
+                    <div>
+                        <div th:each="article : ${articleList}" class="article-list-grid py-1">
+                            <span th:text="${article.id}"></span>
+                            <span><a th:text="${article.title}" th:href="@{/articles/{id}(id=${article.id})}" class="hover:underline"></a></span>
+                            <span th:text="${article.board.name}"></span>
+                            <span th:text="${article.modifiedDate}"></span>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <div th:each="article : ${articleList}" class="article-list-grid py-1">
-                        <span th:text="${article.id}"></span>
-                        <span><a th:text="${article.title}" href="#" class="hover:underline"></a></span>
-                        <span th:text="${article.board.name}"></span>
-                        <span th:text="${article.modifiedDate}"></span>
-                    </div>
+                <div th:with="totalPage = ${articleList.totalPages == 0} ? 1 : ${articleList.totalPages}" class="flex justify-center p-2">
+                    <span th:each="i : ${#numbers.sequence(1, totalPage)}">
+                        <a th:href="@{/articles(page=${i})}" th:attr="class=${currentPage==i} ? 'underline p-1' : 'p-1'"
+                           th:if="${ #strings.isEmpty(articleSearchDto.boardName) && #strings.isEmpty(articleSearchDto.searchKey)}" th:text="${i}"></a>
+
+                        <a th:href="@{/articles(boardName=${articleSearchDto.boardName}, page=${i})}" th:attr="class=${currentPage==i} ? 'underline p-1' : 'p-1'"
+                           th:if="${not #strings.isEmpty(articleSearchDto.boardName) && #strings.isEmpty(articleSearchDto.searchKey)}"  th:text="${i}"></a>
+
+                        <a th:href="@{/articles(searchType=${articleSearchDto.searchType}, searchKey=${articleSearchDto.searchKey}, page=${i})}" th:attr="class=${currentPage==i} ? 'underline p-1' : 'p-1'"
+                           th:if="${ #strings.isEmpty(articleSearchDto.boardName) && not #strings.isEmpty(articleSearchDto.searchKey)}"  th:text="${i}"></a>
+
+                        <a th:href="@{/articles(boardName=${articleSearchDto.boardName}, searchType=${articleSearchDto.searchType},searchKey=${articleSearchDto.searchKey}, page=${i})}" th:attr="class=${currentPage==i} ? 'underline p-1' : 'p-1'"
+                           th:if="${ not #strings.isEmpty(articleSearchDto.boardName) && not #strings.isEmpty(articleSearchDto.searchKey)}"  th:text="${i}"></a>
+                        <!--                <a th:href="@{/adm/articles(page=${i}, |${not #strings.isEmpty(articleSearchDto.boardName)}?|'boardName='articleSearchDto.boardName| : ''|)}" th:text="${i}"></a>-->
+                    </span>
                 </div>
             </div>
         </div>

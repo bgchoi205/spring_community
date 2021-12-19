@@ -1,6 +1,7 @@
 package com.cbg.exam.controller;
 
 import com.cbg.exam.domain.dto.articleDto.ArticleModifyDto;
+import com.cbg.exam.domain.dto.articleDto.ArticleSearchDto;
 import com.cbg.exam.domain.dto.articleDto.ArticleWriteDto;
 import com.cbg.exam.domain.entity.Article;
 import com.cbg.exam.domain.entity.Board;
@@ -8,6 +9,10 @@ import com.cbg.exam.security.CustomUserDetails;
 import com.cbg.exam.service.ArticleService;
 import com.cbg.exam.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,13 +30,20 @@ public class ArticleController {
 
     // 게시물 리스트
     @GetMapping("")
-    public String showArticleList(Model model){
+    public String showArticleList(Model model, ArticleSearchDto articleSearchDto,
+                                  @PageableDefault(size = 12, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
 
         List<Board> boardList = boardService.findAll();
-        List<Article> articleList = articleService.findAll();
+//        List<Article> articleList = articleService.findAll();
+
+        Page<Article> articleList = articleService.getArticlePage(articleSearchDto, pageable);
+
+        int currentPage = pageable.getPageNumber() + 1;
 
         model.addAttribute("boardList", boardList);
         model.addAttribute("articleList", articleList);
+        model.addAttribute("articleSearchDto", articleSearchDto);
+        model.addAttribute("currentPage", currentPage);
 
         return "/usr/article/list";
     }

@@ -1,13 +1,12 @@
 package com.cbg.exam.service;
 
-import com.cbg.exam.domain.dto.admDto.ArticleSearchDto;
+import com.cbg.exam.domain.dto.articleDto.ArticleSearchDto;
 import com.cbg.exam.domain.dto.articleDto.ArticleModifyDto;
 import com.cbg.exam.domain.dto.articleDto.ArticleWriteDto;
 import com.cbg.exam.domain.entity.Article;
 import com.cbg.exam.domain.entity.Board;
 import com.cbg.exam.domain.entity.Member;
 import com.cbg.exam.repository.ArticleRepository;
-import com.cbg.exam.repository.MemberRepository;
 import com.cbg.exam.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -42,11 +41,6 @@ public class ArticleService {
     public void delete(Article article){
         articleRepository.delete(article);
     }
-
-//    @Transactional
-//    public Long modify(Article article){
-//        return articleRepository.modify(article);
-//    }
 
     // 게시물 id로 찾기
     @Transactional
