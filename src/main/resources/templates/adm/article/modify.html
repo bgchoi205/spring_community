@@ -20,7 +20,7 @@
 
 <div layout:fragment="content">
 
-    <form action="/articles/modify/${article.id}" th:action method="POST" onsubmit="modify_submit(this); return false;">
+    <form action="/adm/modify/${article.id}" th:action method="POST" onsubmit="modify_submit(this); return false;">
 
         <input type="hidden" id="articleMD" name="articleMD">
         <div class="w-full my-4 mx-2 flex justify-center">
@@ -41,7 +41,7 @@
             </button>
             <button
                     class="p-2 m-2 font-bold text-gray-600 bg-gray-300 hover:bg-black hover:text-white">
-                <a href="/">취소</a>
+                <a href="javascript:history.back()">취소</a>
             </button>
         </div>
     </form>

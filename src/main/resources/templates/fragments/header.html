@@ -6,39 +6,44 @@
     <meta charset="UTF-8">
     <title>header</title>
 </head>
-  <header th:fragment="headerFragment" class="top-bar h-14 text-gray-600 shadow">
+<header th:fragment="headerFragment" class="top-bar h-14 text-gray-600 shadow">
     <div class="container mx-auto h-full flex items-center">
-      <a href="/" class="font-bold">
-        <span><i class="fas fa-laptop-code"></i></span>
-        <span>최고집's Blog</span>
-      </a>
-      <span class="flex-grow"></span>
-      <nav class="menu-wrap">
-        <ul class="flex">
-          <li class="px-2" sec:authorize="hasRole('ROLE_ADMIN')">
-            <a href="/adm">
-              <span><i class="fas fa-user-cog"></i></span>
-              <span>관리자</span>
-            </a>
-          </li>
-          <li class="px-2">
-            <span><i class="fas fa-book-open"></i></span>
-            <span>기록창고</span>
-          </li>
-          <li class="px-2" sec:authorize="isAuthenticated()">
-            <a href="/members/mypage">
-              <span><i class="fas fa-user"></i></span>
-              <span sec:authentication="principal.username"></span>
-            </a>
-          </li>
-          <li class="px-2" sec:authorize="isAuthenticated()">
-            <a href="/members/logout">
-              <span><i class="fas fa-sign-out-alt"></i></span>
-              <span>로그아웃</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
+        <a href="/" class="font-bold">
+            <span><i class="fas fa-laptop-code"></i></span>
+            <span>최고집's Blog</span>
+        </a>
+        <span class="flex-grow"></span>
+        <nav class="menu-wrap">
+            <ul class="flex">
+                <li class="px-2" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a href="/adm">
+                        <span><i class="fas fa-user-cog"></i></span>
+                        <span>관리자</span>
+                    </a>
+                </li>
+                <li class="px-2" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a href="/adm/write">
+                        <span><i class="far fa-keyboard"></i></span>
+                        <span>글 작성</span>
+                    </a>
+                </li>
+                <li class="px-2">
+                    <a href="/articles">
+                        <span><i class="fas fa-book-open"></i></span>
+                        <span>기록창고</span>
+                    </a>
+                </li>
+                <li class="px-2" sec:authorize="isAuthenticated()">
+                    <span th:text="${#authentication.name} + '님'"></span>
+                </li>
+                <li class="px-2" sec:authorize="isAuthenticated()">
+                    <a href="/members/logout">
+                        <span><i class="fas fa-sign-out-alt"></i></span>
+                        <span>로그아웃</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
-  </header>
+</header>
 </html>

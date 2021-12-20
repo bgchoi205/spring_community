@@ -38,7 +38,7 @@
                 <span class="text-xl font-bold text-gray-100 rounded-2xl bg-title-gray px-4 py-1">최근 게시글</span>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mt-2">
                     <th:block th:each="article : ${recentArticleList}">
-                        <a th:href="@{/articles(id=${article.id})}">
+                        <a th:href="@{/articles/{id}(id=${article.id})}">
                             <div class="w-72 h-24 rounded-lg p-2 border border-gray-600">
                                 <div class="text-gray-100 font-bold text-lg">
                                     <span class="bg-box-gray px-2 py-1 rounded-xl" th:text="${article.board.name}"></span>
