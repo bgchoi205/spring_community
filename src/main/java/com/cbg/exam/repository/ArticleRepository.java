@@ -21,6 +21,8 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     Page<Article> findByBoard(Board board, Pageable pageable);
 
     Page<Article> findByTitleContaining(String searchKey, Pageable pageable);
+
+    List<Article> findFirst3ByOrderByIdDesc();
 }
 
 //@Repository

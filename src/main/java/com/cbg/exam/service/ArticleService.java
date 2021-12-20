@@ -25,6 +25,12 @@ public class ArticleService {
     private final MemberService memberService;
     private final BoardService boardService;
 
+    // 테스트게시물 저장
+    @Transactional
+    public void saveTestArticle(Article article){
+        articleRepository.save(article);
+    }
+
     // 게시물 저장
     @Transactional
     public void save(ArticleWriteDto articleWriteDto, CustomUserDetails user){
@@ -106,5 +112,9 @@ public class ArticleService {
     public void modifyArticle(Article article, ArticleModifyDto articleModifyDto) {
         article.modifyArticle(articleModifyDto.getTitle(), articleModifyDto.getArticleMD(),
                 boardService.findByName(articleModifyDto.getBoardName()));
+    }
+
+    public List<Article> getRecentArticles() {
+        return articleRepository.findFirst3ByOrderByIdDesc();
     }
 }

@@ -22,13 +22,16 @@ import java.util.List;
 public class HomeController {
 
     private final MemberService memberService;
-    private final ArticleRepository articleRepository;
+    private final ArticleService articleService;
     private final BoardService boardService;
 
     @GetMapping("/")
     public String home(Model model){
         List<Board> boardList = boardService.findAll();
+        List<Article> recentArticleList = articleService.getRecentArticles();
+
         model.addAttribute("boardList", boardList);
+        model.addAttribute("recentArticleList", recentArticleList);
         return "home";
     }
 
@@ -68,7 +71,7 @@ public class HomeController {
                     .title("제목" + i)
                     .articleMD("# hi" + i)
                     .build();
-            articleRepository.save(article);
+            articleService.saveTestArticle(article);
         }
 
         return "redirect:/";

@@ -1,5 +1,22 @@
-.plus{
-    color:red;
+/* 홈(인덱스) */
+.bannerSection > img{
+  width:100%;
+}
+
+.bg-title-gray{
+  background-color:#56626a;
+}
+
+
+.bg-box-gray{
+  background-color:#758499;
+}
+
+/* 텍스트가 너비를 넘어갈 때 ...으로 처리(너비는 따로 정해주기) */
+.text-over-hidden{
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  overflow:hidden;
 }
 
 /* 유저 페이지 - 게시물 리스트 */

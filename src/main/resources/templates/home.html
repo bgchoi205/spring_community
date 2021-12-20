@@ -9,6 +9,9 @@
 </head>
 <body>
 <div layout:fragment="content">
+    <div class="bannerSection w-full ">
+        <img src="/img/home_banner-ge352ba354_1920.jpg" alt="">
+    </div>
     <div class="flex">
         <div class="side-bar w-40 p-2 flex flex-col items-center">
             <div class="side-menu-btn my-4 mx-2 w-12 h-12 bg-gray-600 flex flex-col items-center justify-center cursor-pointer">
@@ -31,25 +34,29 @@
         </div>
 
         <div class="container mx-auto">
-            <div class="mt-4 px-4">
-                <p class="text-lg font-bold underline my-2">테스트</p>
-                <p>
-                    <a href="/home/maketest">테스트데이터 생성</a>
-                </p>
-                <p>
-                    <a href="/test/toastUiTest">ToastUi Test</a>
-                </p>
-                <hr>
-                <p class="text-lg font-bold underline my-2">회원</p>
-                <p>
-                    <a href="/members/login">로그인</a>
-                </p>
-                <p><a href="/members/logout">로그아웃</a></p>
-                <p><a href="/adm/join">회원가입</a></p>
-                <hr>
-                <p class="text-lg font-bold underline my-2">게시글</p>
-                <p><a href="/adm/write">글쓰기</a></p>
-                <p><a href="/articles">리스트</a></p>
+            <div class="recentArticles mt-4">
+                <span class="text-xl font-bold text-gray-100 rounded-2xl bg-title-gray px-4 py-1">최근 게시글</span>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mt-2">
+                    <th:block th:each="article : ${recentArticleList}">
+                        <a th:href="@{/articles(id=${article.id})}">
+                            <div class="w-72 h-24 rounded-lg p-2 border border-gray-600">
+                                <div class="text-gray-100 font-bold text-lg">
+                                    <span class="bg-box-gray px-2 py-1 rounded-xl" th:text="${article.board.name}"></span>
+                                </div>
+                                <div class="font-bold py-2 text-gray-600 text-over-hidden">
+                                    <span th:text="${article.title}"></span>
+                                </div>
+                            </div>
+                        </a>
+                    </th:block>
+                    <a href="/articles">
+                        <div class="w-72 h-24 rounded-lg p-2 flex justify-center items-center">
+                            <div class="text-gray-100 font-bold text-lg">
+                                <span class="bg-box-gray px-8 py-3 rounded-xl">+더보기</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
