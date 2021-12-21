@@ -2,10 +2,7 @@ package com.cbg.exam.api;
 
 import com.cbg.exam.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -16,5 +13,15 @@ public class MemberApiController {
     @DeleteMapping("/member/{memberId}")
     public boolean delMember(@PathVariable(name="memberId") Long memberId){
         return memberService.apiDeleteMember(memberId);
+    }
+
+    @GetMapping("/member/checkId/{loginId}")
+    public boolean checkLoginId(@PathVariable(name="loginId") String loginId){
+        return memberService.apiCheckLoginId(loginId);
+    }
+
+    @GetMapping("/member/checkNick/{nickname}")
+    public boolean checkNickname(@PathVariable(name="nickname") String nickname){
+        return memberService.apiCheckNickname(nickname);
     }
 }

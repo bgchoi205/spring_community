@@ -87,5 +87,12 @@ public class MemberService implements UserDetailsService {
         return true;
     }
 
+    @Transactional
+    public boolean apiCheckLoginId(String loginId) {
+        return memberRepository.findByLoginId(loginId).isEmpty();
+    }
 
+    public boolean apiCheckNickname(String nickname) {
+        return memberRepository.findByNickname(nickname).isEmpty();
+    }
 }

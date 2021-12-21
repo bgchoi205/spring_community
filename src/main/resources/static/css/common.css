@@ -63,7 +63,7 @@
 
 .grid-input-join{
   display:grid;
-  grid-template-columns:15% 25% 40% 5% 15%;
+  grid-template-columns:15% 25% 40% 15% 5%;
   padding:10px;
   font-size:1.2rem;
 }
@@ -131,6 +131,45 @@
 }
 
 .checkPwFalse.active{
+  display:block;
+}
+
+/* 계정 생성 시 아이디 중복확인용 아이콘 */
+.checkLoginIdTrue{
+  display:none;
+}
+
+.checkLoginIdTrue.active{
+  display:block;
+}
+
+.doubleCheckLoginId{
+  display:none;
+}
+
+.doubleCheckLoginId.active{
+  display:block;
+}
+
+/* 중복 시 input에 border-red 주기 위함 */
+.input-needCheck{
+  border:solid red;
+}
+
+/* 계정 생성 시 닉네임 중복확인용 아이콘 */
+.checkNickTrue{
+  display:none;
+}
+
+.checkNickTrue.active{
+  display:block;
+}
+
+.doubleCheckNick{
+  display:none;
+}
+
+.doubleCheckNick.active{
   display:block;
 }
 

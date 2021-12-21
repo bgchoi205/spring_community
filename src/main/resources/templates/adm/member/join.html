@@ -24,8 +24,13 @@
                     <div></div>
                     <span class="text-center">아이디</span>
                     <input type="text" name="loginId" id="loginId" class="border shadow rounded py-1"
-                           placeholder="사용할 아이디 입력">
-                    <div></div>
+                           oninput="checkLoginIdOnInput()" placeholder="사용할 아이디 입력">
+                    <div>
+                        <span onclick="checkLoginId()" class="doubleCheckLoginId active cursor-pointer p-2 text-sm p-1">중복확인</span>
+                        <span class="checkLoginIdTrue text-green-500 p-1">
+                            <i class="fas fa-check"></i>
+                        </span>
+                    </div>
                 </div>
                 <div class="grid-input-join my-2">
                     <div></div>
@@ -33,9 +38,9 @@
                     <input type="password" name="loginPw" id="loginPw" autocomplete="off"
                            class="border shadow rounded py-1" placeholder="사용할 비밀번호 입력">
                     <div>
-          <span class="pwTrue text-green-500 p-1">
-            <i class="fas fa-check"></i>
-          </span>
+                        <span class="pwTrue text-green-500 p-1">
+                            <i class="fas fa-check"></i>
+                        </span>
                     </div>
                     <div></div>
                 </div>
@@ -45,12 +50,12 @@
                     <input type="password" id="checkPw" autocomplete="off" oninput="checkPwOnInput()"
                            class="border shadow rounded py-1" placeholder="비밀번호 확인">
                     <div>
-          <span class="checkPwTrue text-green-500 p-1">
-            <i class="fas fa-check"></i>
-          </span>
+                        <span class="checkPwTrue text-green-500 p-1">
+                            <i class="fas fa-check"></i>
+                        </span>
                         <span class="checkPwFalse text-red-500 pl-2">
-            <i class="fas fa-exclamation"></i>
-          </span>
+                            <i class="fas fa-exclamation"></i>
+                        </span>
                     </div>
                     <div></div>
                 </div>
@@ -63,8 +68,14 @@
                 <div class="grid-input-join my-2">
                     <div></div>
                     <span class="text-center">닉네임</span>
-                    <input type="text" name="nickname" class="border shadow rounded py-1" placeholder="닉네임 입력">
-                    <div></div>
+                    <input type="text" name="nickname" id="nickname" class="border shadow rounded py-1"
+                           oninput="checkNickOnInput()" placeholder="닉네임 입력">
+                    <div>
+                        <span onclick="checkNick()" class="doubleCheckNick active cursor-pointer p-2 text-sm p-1">중복확인</span>
+                        <span class="checkNickTrue text-green-500 p-1">
+                            <i class="fas fa-check"></i>
+                        </span>
+                    </div>
                 </div>
                 <div class="grid-input-join my-2">
                     <div></div>
