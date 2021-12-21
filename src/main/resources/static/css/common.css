@@ -61,6 +61,13 @@
   font-size:1.2rem;
 }
 
+.grid-input-join{
+  display:grid;
+  grid-template-columns:15% 25% 40% 5% 15%;
+  padding:10px;
+  font-size:1.2rem;
+}
+
 /* title css */
 .title-wrap-pattern{
   display:flex;
@@ -101,5 +108,31 @@
   border-bottom:48px solid white;
   border-left:24px solid #4b5563;
 }
+
+/* 계정 생성 시 비밀번호 확인 아이콘 */
+.pwTrue{
+  display:none;
+}
+
+.pwTrue.active{
+  display:block;
+}
+
+.checkPwTrue{
+  display:none;
+}
+
+.checkPwTrue.active{
+  display:block;
+}
+
+.checkPwFalse{
+  display:none;
+}
+
+.checkPwFalse.active{
+  display:block;
+}
+
 
 /* 로그인, 회원가입 끝 */
