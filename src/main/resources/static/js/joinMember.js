@@ -17,11 +17,29 @@ const doubleCheckNick = $('.doubleCheckNick');
 const checkNickTrue = $('.checkNickTrue');
 
 
+/* 생성 버튼 활성화 or 비활성화 */
+function changeBtnActivation(){
+    if(isCorrespondPw && isLoginIdUnique && isNicknameUnique){
+        $("#addMemberBtn").attr("disabled", false);
+    }else{
+        if( !$("#addMemberBtn").is(":disabled") ){
+            $("#addMemberBtn").attr("disabled", true);
+        }
+    }
+}
+
 /* loginId 입력내용 바뀌면 확인체크 none */
 function checkLoginIdOnInput(){
     loginIdCheckOff();
-
     isLoginIdUnique = false;
+    changeBtnActivation();
+}
+
+/* nickName 입력내용 바뀌면 확인체크 none */
+function checkNickOnInput(){
+    nickCheckOff();
+    isNicknameUnique = false;
+    changeBtnActivation();
 }
 
 /* loginId 중복확인 눌렀을 때 */
@@ -36,10 +54,36 @@ function checkLoginId(){
         ,success : function(data) {
             if(data){
                 loginIdCheckOn();
-
                 isLoginIdUnique = true;
+                changeBtnActivation();
             }else{
                 $('#loginId').addClass('input-needCheck');
+            }
+
+        }
+        ,error: function () {
+            alert('통신오류');
+        }
+    })
+
+}
+
+/* nickName 중복확인 눌렀을 때 */
+function checkNick(){
+    let currentNick = document.getElementById('nickname').value;
+
+    $.ajax({
+        data:JSON.stringify(currentNick)
+        ,url : "/api/member/checkNick/" + currentNick
+        ,type : "GET"
+        ,contentType: 'application/json'
+        ,success : function(data) {
+            if(data){
+                nickCheckOn();
+                isNicknameUnique = true;
+                changeBtnActivation();
+            }else{
+                $('#nickname').addClass('input-needCheck');
             }
 
         }
@@ -72,40 +116,6 @@ function loginIdCheckOff(){
     if(checkLoginIdTrue.hasClass('active')){
         checkLoginIdTrue.removeClass('active');
     }
-}
-
-
-/* nickName 입력내용 바뀌면 확인체크 none */
-function checkNickOnInput(){
-    nickCheckOff();
-
-    isNicknameUnique = false;
-}
-
-/* nickName 중복확인 눌렀을 때 */
-function checkNick(){
-    let currentNick = document.getElementById('nickname').value;
-
-    $.ajax({
-        data:JSON.stringify(currentNick)
-        ,url : "/api/member/checkNick/" + currentNick
-        ,type : "GET"
-        ,contentType: 'application/json'
-        ,success : function(data) {
-            if(data){
-                nickCheckOn();
-
-                isNicknameUnique = true;
-            }else{
-                $('#nickname').addClass('input-needCheck');
-            }
-
-        }
-        ,error: function () {
-            alert('통신오류');
-        }
-    })
-
 }
 
 /* nickName 중복확인 버튼 none, 확인체크 block */
@@ -147,6 +157,7 @@ function checkPwOnInput(){
     }
 
     isCorrespondPw = true;
+    changeBtnActivation();
 
   }else{
     $('.pwTrue').removeClass('active');
@@ -154,6 +165,7 @@ function checkPwOnInput(){
     $('.checkPwFalse').addClass('active');
 
     isCorrespondPw = false;
+    changeBtnActivation();
 
   }
 }

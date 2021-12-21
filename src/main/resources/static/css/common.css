@@ -156,6 +156,10 @@
   border:solid red;
 }
 
+button:disabled{
+    background-color:#ccc;
+}
+
 /* 계정 생성 시 닉네임 중복확인용 아이콘 */
 .checkNickTrue{
   display:none;
