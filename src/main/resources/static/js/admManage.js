@@ -201,3 +201,46 @@ function admArticleList__init(){
 }
 
 admArticleList__init();
+
+
+// 게시물 선택삭제
+function delCheckedArticles(){
+
+    if( !confirm("정말 삭제하시겠습니까?") ) {
+        return false;
+    }
+
+    let checkedArticleIds = [];
+
+    $('.admArticleList > tbody > tr > td:first-child > input[type="checkbox"]:checked').each(function(){
+        let checkedArticleId = $(this).val();
+        checkedArticleIds.push(checkedArticleId);
+    });
+
+    $.ajax({
+        data: {
+            checkedArticleIds : checkedArticleIds
+        }
+        ,url : "/api/articles/" + checkedArticleIds
+        ,type : "DELETE"
+        ,contentType: 'application/json'
+        ,beforeSend : function(xhr){
+            xhr.setRequestHeader(header, token);
+        }
+        ,success : function(data) {
+
+            if(data){
+                alert("삭제되었습니다");
+                location.reload();
+            }else{
+                alert('삭제 실패');
+            }
+
+        }
+        ,error: function () {
+
+            alert('통신오류');
+        }
+    })
+
+}

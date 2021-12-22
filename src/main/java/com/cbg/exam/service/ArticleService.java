@@ -108,13 +108,30 @@ public class ArticleService {
         return true;
     }
 
+    // 게시물 수정(변경감지)
     @Transactional
     public void modifyArticle(Article article, ArticleModifyDto articleModifyDto) {
         article.modifyArticle(articleModifyDto.getTitle(), articleModifyDto.getArticleMD(),
                 boardService.findByName(articleModifyDto.getBoardName()));
     }
 
+    // 최근 게시물 불러오기(3개)
     public List<Article> getRecentArticles() {
         return articleRepository.findFirst3ByOrderByIdDesc();
+    }
+
+    // api요청으로 들어온 선택된 게시물들 삭제처리
+    @Transactional
+    public boolean apiDelCheckedArticles(List<Long> articleIds) {
+        for(Long id : articleIds){
+            if(isArticleEmpty(id)){
+                return false;
+            }
+        }
+
+        for(Long id : articleIds){
+            articleRepository.deleteById(id);
+        }
+        return true;
     }
 }
