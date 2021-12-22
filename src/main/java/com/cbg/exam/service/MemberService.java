@@ -58,11 +58,11 @@ public class MemberService implements UserDetailsService {
 
             // authLevel이 7일 때 관리자 권한을 부여.
             authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue()));
-            authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
+            authorities.add(new SimpleGrantedAuthority(Role.MANAGER.getValue()));
         } else {
 
             // authLevel이 7 이외일때 일반 회원으로 권한 부여
-            authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
+            authorities.add(new SimpleGrantedAuthority(Role.MANAGER.getValue()));
         }
 
         // spring security에서 제공하는 UserDetails를 구현한 User를 반환(org.springframework.security.core.userdetails.User )

@@ -161,3 +161,43 @@ function delMember(memberId){
     })
 
 }
+
+// 모든 체크박스가 선택되었다면 thead의 체크박스도 체크, 하나라도 해제되면 thead도 해제
+function countChecked(){
+
+    const $allCheck = $('.admArticleList > thead > tr > td:first-child > input[type="checkbox"]');
+
+    const $CountCheckBoxes = $('.admArticleList > tbody > tr > td:first-child > input[type="checkbox"]').length;
+
+    const $CountCheckedBoxes = $('.admArticleList > tbody > tr > td:first-child > input[type="checkbox"]:checked').length;
+
+    if($CountCheckBoxes == $CountCheckedBoxes){
+        $allCheck.prop('checked', true);
+    } else{
+        $allCheck.prop('checked', false);
+    }
+
+}
+
+// thead의 체크박스가 체크되었는지 변화를 캐치해서 전체선택, 전체해제
+function admArticleList__init(){
+
+    const $allCheck = $('.admArticleList > thead > tr > td:first-child > input[type="checkbox"]');
+
+    const $checkBoxes = $('.admArticleList > tbody > tr > td:first-child > input[type="checkbox"]');
+
+    $allCheck.change(function(){
+        if(this.checked){
+            $checkBoxes.prop('checked', true);
+        }else{
+            $checkBoxes.prop('checked', false);
+        }
+    });
+
+    $checkBoxes.change(function(){
+        countChecked();
+    });
+
+}
+
+admArticleList__init();
