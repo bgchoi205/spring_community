@@ -169,3 +169,37 @@ function checkPwOnInput(){
 
   }
 }
+
+function isInputFilled(form){
+    if($('input[name=loginId]').val().trim().length == 0){
+        alert('아이디를 입력해주세요');
+        form.name.focus();
+        return false;
+    }
+
+    if($('input[name=loginPw]').val().trim().length == 0){
+        alert('비밀번호를 입력해주세요');
+        form.name.focus();
+        return false;
+    }
+
+    if($('input[name=name]').val().trim().length == 0){
+        alert('이름을 입력해주세요');
+        form.name.focus();
+        return false;
+    }
+
+    if($('input[name=nickname]').val().trim().length == 0){
+        alert('닉네임을 입력해주세요');
+        form.name.focus();
+        return false;
+    }
+
+    if($('input[name=email]').val().trim().length == 0){
+        alert('이메일을 입력해주세요');
+        form.name.focus();
+        return false;
+    }
+
+    return true;
+}
