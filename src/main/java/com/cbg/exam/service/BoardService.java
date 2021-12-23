@@ -1,5 +1,6 @@
 package com.cbg.exam.service;
 
+import com.cbg.exam.domain.dto.boardDto.BoardModifyDto;
 import com.cbg.exam.domain.entity.Board;
 import com.cbg.exam.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -61,13 +62,13 @@ public class BoardService {
 
     // 게시판 이름 수정
     @Transactional
-    public boolean modifyBoardName(String boardName) {
-        if( isBoardEmpty(boardName) ){
+    public boolean modifyBoardName(BoardModifyDto boardModifyDto) {
+        if( isBoardEmpty(boardModifyDto.getPrevBoardName()) ){
             return false;
         }
 
-        Board board = findByName(boardName);
-        board.changeName(boardName);
+        Board board = findByName(boardModifyDto.getPrevBoardName());
+        board.changeName(boardModifyDto.getNewBoardName());
         return true;
     }
 

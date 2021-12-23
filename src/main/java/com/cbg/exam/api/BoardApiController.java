@@ -1,6 +1,7 @@
 package com.cbg.exam.api;
 
 
+import com.cbg.exam.domain.dto.boardDto.BoardModifyDto;
 import com.cbg.exam.security.CustomUserDetails;
 import com.cbg.exam.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -21,9 +22,10 @@ public class BoardApiController {
     }
 
     // 게시판 이름 수정
-    @PutMapping("/board/{boardName}")
-    public boolean modifyBoardName(@PathVariable(name="boardName") String boardName){
-        return boardService.modifyBoardName(boardName);
+    @PutMapping("/board")
+    public boolean modifyBoardName(@RequestBody BoardModifyDto boardModifyDto){
+
+        return boardService.modifyBoardName(boardModifyDto);
     }
 
     // 게시판 삭제

@@ -70,6 +70,7 @@
 }
 
 .addBoardInput{
+  z-index:50;
   position:absolute;
   display:none;
 }
@@ -79,9 +80,21 @@
   color:white;
 }
 
+.admBoardList{
+  position:relative;
+}
+
 .modifyBoardInput{
   position:absolute;
+  z-index:50;
+  top:20%;
+  left:50%;
+  transform:translateY(-50%, -50%);
   display:none;
+}
+
+.modifyBoardInput.active{
+  display:block;
 }
 
 .modifyBoardInput > div > button:hover{

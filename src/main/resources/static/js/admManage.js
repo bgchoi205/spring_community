@@ -45,26 +45,44 @@ function addBoard__init(){
   });
 }
 
-/* 게시판 관리 - 게시판 이름 수정 버튼 */
-function modifyBoard__init(){
-  $('.modifyAndDelTd > #modifyBoardBtn').click(function(){
-    $('.modifyAndDelTd > #modifyBoardBtn ~ #modifyBoardInput').css('display', 'block');
-  });
+/* 게시판 관리 - 게시판 수정 열기 */
+function openModifyBoard(boardName){
 
-  $('#modifyBoardClose').click(function(){
-    $('#modifyBoardInput').css('display', 'none');
-  });
+  const modifyInput = $('#modifyBoardInput');
+  const prevBoardNameInput = $('#modifyBoardInput > .boardNameDiv > input[name=prevBoardName]');
+  const newBoardNameInput = $('#modifyBoardInput > .boardNameDiv > input[name=newBoardName]');
+
+  prevBoardNameInput.val(boardName);
+  newBoardNameInput.val(boardName);
+
+  if(!modifyInput.hasClass('active')){
+    modifyInput.addClass('active');
+  }else{
+    modifyInput.removeClass('active');
+  }
 }
 
-/* 게시판 추가, 이름수정 버튼 활성화 */
+/* 게시판 관리 - 게시판 수정 닫기 */
+function closeModifyBoard(){
+    const modifyInput = $('#modifyBoardInput');
+    if(modifyInput.hasClass('active')){
+      modifyInput.removeClass('active');
+    }
+}
+
+/* 게시판 추가 버튼 활성화 */
 addBoard__init();
-modifyBoard__init();
 
 
 /* 게시판 관리 - 게시판 추가 */
 function checkBoardAndAdd(){
 
     const boardName = $('#boardName').val();
+
+    if(boardName.trim().length == 0){
+        alert('게시판명을 입력해주세요.');
+        return false;
+    }
 
     $.ajax({
         data:JSON.stringify(boardName)
@@ -92,11 +110,19 @@ function checkBoardAndAdd(){
 /* 게시판 관리 - 게시판 이름 수정 */
 function changeBoardName(){
 
-    const boardName = $('#newBoardName').val();
+    const prevBoardName = $('#prevBoardName').val();
+    const newBoardName = $('#newBoardName').val();
+
+    if($('#newBoardName').val().trim().length == 0){
+        alert('수정할 게시판명을 입력해주세요.');
+        return false;
+    }
+
+    let boardModifyDto = {"prevBoardName":prevBoardName, "newBoardName":newBoardName}
 
     $.ajax({
-        data:JSON.stringify(boardName)
-        ,url : "/api/board/" + boardName
+        data:JSON.stringify(boardModifyDto)
+        ,url : "/api/board"
         ,type : "PUT"
         ,contentType: 'application/json'
         ,beforeSend : function(xhr){
