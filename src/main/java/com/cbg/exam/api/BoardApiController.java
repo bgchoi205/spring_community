@@ -14,16 +14,19 @@ public class BoardApiController {
 
     private final BoardService boardService;
 
+    // 게시판 생성
     @PostMapping("/board/{boardName}")
     public boolean addBoard(@PathVariable(name="boardName") String boardName, @AuthenticationPrincipal CustomUserDetails user){
         return boardService.checkBoardAndSave(boardName);
     }
 
+    // 게시판 이름 수정
     @PutMapping("/board/{boardName}")
     public boolean modifyBoardName(@PathVariable(name="boardName") String boardName){
         return boardService.modifyBoardName(boardName);
     }
 
+    // 게시판 삭제
     @DeleteMapping("/board/{boardName}")
     public boolean deleteBoard(@PathVariable(name="boardName") String boardName){
         return boardService.deleteBoard(boardName);

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/members")
 public class MemberController {
 
+    // 로그인 화면
     @GetMapping("/login")
     public String memberLogin(){
         return "/adm/member/login";

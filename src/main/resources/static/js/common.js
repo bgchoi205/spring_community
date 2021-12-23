@@ -16,6 +16,7 @@ function sideMenu__init(){
   });
 }
 
+/* sideBar 실행 */
 sideMenu__init();
 
 
@@ -34,13 +35,16 @@ function delArticle(articleId){
         ,beforeSend : function(xhr){
             xhr.setRequestHeader(header, token);
         }
-        ,success : function() {
-            alert("게시물 삭제 완료");
-            history.back();
+        ,success : function(data) {
+            if(data){
+                alert("게시물 삭제 완료");
+                location.reload();
+            }else{
+                alert('게시물 삭제 실패!');
+            }
         }
         ,error: function () {
-            alert('게시물 삭제 실패');
-            location.reload();
+            alert('통신오류');
         }
     })
 

@@ -1,7 +1,9 @@
+/* toast ui 입력칸 글자크기 변경 */
 .ProseMirror{
     font-size:16px;
 }
 
+/* toast ui 미리보기칸 글자크기 변경 */
 .toastui-editor-contents{
     font-size:16px;
 }

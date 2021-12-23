@@ -25,6 +25,7 @@ public class HomeController {
     private final ArticleService articleService;
     private final BoardService boardService;
 
+    // 홈화면
     @GetMapping("/")
     public String home(Model model){
         List<Board> boardList = boardService.findAll();

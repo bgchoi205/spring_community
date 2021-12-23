@@ -1,11 +1,9 @@
 package com.cbg.exam.domain.entity;
 
 import com.cbg.exam.domain.BaseTime;
-import com.cbg.exam.domain.dto.articleDto.ArticleModifyDto;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
-import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Table(name="article")
@@ -28,9 +26,6 @@ public class Article extends BaseTime {
 
     @Column(name="title")
     private String title;
-
-//    @Column(name="article_html", columnDefinition = "LONGTEXT")
-//    private String articleHtml;
 
     @Column(name="article_md", columnDefinition = "LONGTEXT")
     private String articleMD;

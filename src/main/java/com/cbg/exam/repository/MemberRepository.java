@@ -13,18 +13,3 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member> findByNickname(String nickname);
 }
 
-//@Repository
-//public interface MemberRepository extends JpaRepository<Member, Long> {
-//
-//    Long save(Member member);
-//
-//    void delete(Member member);
-//
-//    static Long modify(Member member){
-//        return member.getId();
-//    }
-//
-//    Optional<Member> findById(Long id);
-//
-//    Optional<Member> findByLoginId(String loginId);
-//}

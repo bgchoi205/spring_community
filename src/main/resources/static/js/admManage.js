@@ -18,13 +18,16 @@ function delArticle(articleId){
         ,beforeSend : function(xhr){
             xhr.setRequestHeader(header, token);
         }
-        ,success : function() {
-            alert("게시물 삭제 완료");
-            location.reload();
+        ,success : function(data) {
+            if(data){
+                alert("게시물 삭제 완료");
+                location.reload();
+            }else{
+                alert('게시물 삭제 실패!');
+            }
         }
         ,error: function () {
-            alert('게시물 삭제 실패');
-            location.reload();
+            alert('통신오류');
         }
     })
 
@@ -71,13 +74,16 @@ function checkBoardAndAdd(){
         ,beforeSend : function(xhr){
             xhr.setRequestHeader(header, token);
         }
-        ,success : function() {
-            alert("게시판 생성 완료");
-            location.reload();
+        ,success : function(data) {
+            if(data){
+                alert("게시판 생성 완료");
+                location.reload();
+            }else{
+                alert('게시판 생성 실패!');
+            }
         }
         ,error: function () {
-            alert('게시판 생성 실패');
-            location.reload();
+            alert('통신오류');
         }
     })
 
@@ -96,13 +102,16 @@ function changeBoardName(){
         ,beforeSend : function(xhr){
             xhr.setRequestHeader(header, token);
         }
-        ,success : function() {
-            alert("게시판 이름 수정 완료");
-            location.reload();
+        ,success : function(data) {
+            if(data){
+                alert("게시판 이름 수정 완료");
+                location.reload();
+            }else{
+                alert('게시판 이름 수정 실패!');
+            }
         }
         ,error: function () {
-            alert('게시판 이름 수정 실패');
-            location.reload();
+            alert('통신오류');
         }
     })
 
@@ -123,13 +132,17 @@ function delBoard(boardName){
         ,beforeSend : function(xhr){
             xhr.setRequestHeader(header, token);
         }
-        ,success : function() {
-            alert("게시판 삭제 완료");
-            location.reload();
+        ,success : function(data) {
+            if(data){
+                alert("게시판 삭제 완료");
+                location.reload();
+            }else{
+                alert('게시판 삭제 실패!');
+            }
+
         }
         ,error: function () {
-            alert('게시판 삭제 실패');
-            location.reload();
+            alert('통신오류');
         }
     })
 
@@ -150,13 +163,17 @@ function delMember(memberId){
         ,beforeSend : function(xhr){
             xhr.setRequestHeader(header, token);
         }
-        ,success : function() {
-            alert("회원계정 삭제 완료");
-            location.reload();
+        ,success : function(data) {
+            if(data){
+                alert("회원계정 삭제 완료");
+                location.reload();
+            }else{
+                alert('계정 삭제 실패!');
+            }
+
         }
         ,error: function () {
-            alert('회원계정 삭제 실패');
-            location.reload();
+            alert('통신오류');
         }
     })
 
@@ -233,7 +250,7 @@ function delCheckedArticles(){
                 alert("삭제되었습니다");
                 location.reload();
             }else{
-                alert('삭제 실패');
+                alert('삭제 실패!');
             }
 
         }

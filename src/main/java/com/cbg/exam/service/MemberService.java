@@ -87,11 +87,13 @@ public class MemberService implements UserDetailsService {
         return true;
     }
 
+    // 로그인아이디 중복 확인
     @Transactional
     public boolean apiCheckLoginId(String loginId) {
         return memberRepository.findByLoginId(loginId).isEmpty();
     }
 
+    // 닉네임 중복 확인
     public boolean apiCheckNickname(String nickname) {
         return memberRepository.findByNickname(nickname).isEmpty();
     }

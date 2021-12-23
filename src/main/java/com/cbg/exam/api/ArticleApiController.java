@@ -17,11 +17,13 @@ public class ArticleApiController {
 
     private final ArticleService articleService;
 
+    // 게시물 삭제(1개)
     @DeleteMapping("/article/{articleId}")
     public boolean deleteArticle(@PathVariable(name="articleId") Long articleId){
         return articleService.apiDelArticle(articleId);
     }
 
+    // 게시물 삭제(여러개 선택삭제)
     @DeleteMapping("/articles/{articleIds}")
     public boolean deleteCheckedArticles(@PathVariable(name="articleIds") List<Long> articleIds){
         return articleService.apiDelCheckedArticles(articleIds);

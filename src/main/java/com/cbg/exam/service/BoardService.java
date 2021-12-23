@@ -59,6 +59,7 @@ public class BoardService {
         return true;
     }
 
+    // 게시판 이름 수정
     @Transactional
     public boolean modifyBoardName(String boardName) {
         if( isBoardEmpty(boardName) ){
@@ -70,6 +71,7 @@ public class BoardService {
         return true;
     }
 
+    // 게시판 삭제
     @Transactional
     public boolean deleteBoard(String boardName) {
         if( isBoardEmpty(boardName) ){

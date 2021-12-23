@@ -30,12 +30,13 @@ public class AdmController {
     private final BoardService boardService;
     private final MemberService memberService;
 
+    // 계정 생성 화면
     @GetMapping("/join")
     public String memberJoin(){
         return "/adm/member/join";
     }
 
-
+    // 계정 생성 처리
     @PostMapping("/join")
     public String memberDoJoin(MemberJoinDto memberJoinDto){
 

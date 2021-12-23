@@ -170,6 +170,7 @@ function checkPwOnInput(){
   }
 }
 
+/* 빈칸 체크 */
 function isInputFilled(form){
     if($('input[name=loginId]').val().trim().length == 0){
         alert('아이디를 입력해주세요');

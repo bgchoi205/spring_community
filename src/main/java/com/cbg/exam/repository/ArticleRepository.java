@@ -25,33 +25,4 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     List<Article> findFirst3ByOrderByIdDesc();
 }
 
-//@Repository
-//@RequiredArgsConstructor
-//public class ArticleRepository {
-//
-//    private final EntityManager em;
-//
-//    public Long save(Article article){
-//        em.persist(article);
-//        return article.getId();
-//    }
-//
-//    public Long delete(Article article){
-//        em.remove(article);
-//        return article.getId();
-//    }
-//
-//    public Long modify(Article article){
-//        return save(article);
-//    }
-//
-//    public Article findById(int id){
-//        return em.find(Article.class, id);
-//    }
-//
-//    public List findAll(){
-//        return em.createQuery("SELECT a FROM Article a")
-//                .getResultList();
-//    }
-//}
 

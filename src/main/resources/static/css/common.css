@@ -156,6 +156,7 @@
   border:solid red;
 }
 
+/* 중복 확인 전에는 생성 버튼을 disabled, bg-color 변경 */
 button:disabled{
     background-color:#ccc;
 }
