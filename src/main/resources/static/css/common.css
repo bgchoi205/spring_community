@@ -1,3 +1,15 @@
+/* 폰트 D2Coding */
+@font-face {
+    font-family: 'D2Coding';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+  font-family: 'D2Coding';
+}
+
 /* 홈(인덱스) */
 .bannerSection > img{
   width:100%;
