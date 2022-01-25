@@ -33,18 +33,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .mvcMatchers(
                             "/"
-                            ,"/home/maketest"
-                            ,"/test/toastUiTest"
-                            ,"/articles").permitAll()  // 누구나 접근 가능
+                            , "/articles/**").permitAll()  // 누구나 접근 가능
                     .mvcMatchers(
                             "/members/login").anonymous() // 인증하기 전에만 접근 가능
                     .mvcMatchers(
                             "/adm/**"
-                            ,"/api/**"
-                            ,"/articles/write"
-                            ,"/articles/modify").hasRole("ADMIN")  // ADMIN 권한을 가진 계정만 접근 가능
-//                    .anyRequest()  //  antMatchers로 지정한 페이지 이외의 다른모든 페이지
-//                    .authenticated() // 인증이 된 사용자만 접근할 수 있도록 제한
+                            ,"/api/**").hasRole("ADMIN")  // ADMIN 권한을 가진 계정만 접근 가능
+                    .anyRequest()  //  antMatchers로 지정한 페이지 이외의 다른모든 페이지
+                    .authenticated() // 인증이 된 사용자만 접근할 수 있도록 제한
                 .and()// 로그인 설정 시작
                     .formLogin()  // form을 통해 로그인 활성
                     .loginPage("/members/login")  // 로그인 페이지 접근할 때 띄워줄 페이지, 지정하지 않으면 Spring Security에서 제공하는 기본 폼이 나온다. loginPage(지정주소)의 지정주소가 controller에서 @GetMapping으로 받는 주소가일치해야 한다.
@@ -71,9 +67,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
     }
-    // spring security의 인증은 AuthenticationManager를 통해 이루어진다.
-    // AuthenticationManager를 생성하기 위해 AuthenticationManagerBuilder 사용.
-    // 인증을 위해서 UserDetailsService를 통해 필요한 정보를 가져온다.
-    // MemberService에서 UserDetailsService 인터페이스를 implements해서 loadUserByUsername() 구현.
 
 }

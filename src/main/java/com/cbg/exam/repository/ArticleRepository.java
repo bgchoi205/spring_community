@@ -12,10 +12,6 @@ import java.util.List;
 
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
-    @Query("select a from Article a join fetch a.board")
-    List<Article> findAllJoinFetch();
-
-
     Page<Article> findByBoardAndTitleContaining(Board board, String searchKey, Pageable pageable);
 
     Page<Article> findByBoard(Board board, Pageable pageable);

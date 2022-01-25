@@ -34,7 +34,6 @@ public class ArticleController {
                                   @PageableDefault(size = 12, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
 
         List<Board> boardList = boardService.findAll();
-//        List<Article> articleList = articleService.findAll();
 
         Page<Article> articleList = articleService.getArticlePage(articleSearchDto, pageable);
 

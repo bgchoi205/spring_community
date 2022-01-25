@@ -76,7 +76,6 @@
 
                         <a th:href="@{/articles(boardName=${articleSearchDto.boardName}, searchType=${articleSearchDto.searchType},searchKey=${articleSearchDto.searchKey}, page=${i})}" th:attr="class=${currentPage==i} ? 'underline p-1' : 'p-1'"
                            th:if="${ not #strings.isEmpty(articleSearchDto.boardName) && not #strings.isEmpty(articleSearchDto.searchKey)}"  th:text="${i}"></a>
-                        <!--                <a th:href="@{/adm/articles(page=${i}, |${not #strings.isEmpty(articleSearchDto.boardName)}?|'boardName='articleSearchDto.boardName| : ''|)}" th:text="${i}"></a>-->
                     </span>
                 </div>
             </div>

@@ -30,10 +30,10 @@
                 <nav class="p-2 flex justify-center w-full text-white font-bold">
                     <ul class="grid grid-cols-1 gap-2">
                         <li>
-                            <a href="#">전체</a>
+                            <a href="/articles">전체</a>
                         </li>
                         <li th:each="board : ${boardList}">
-                            <a href="#" th:text="${board.name}"></a>
+                            <a th:href="@{/articles(boardName=${board.name})}" th:text="${board.name}"></a>
                         </li>
                     </ul>
                 </nav>
@@ -49,7 +49,7 @@
             <hr>
             <div sec:authorize="hasRole('ROLE_ADMIN')" class="flex justify-end text-gray-300 text-sm">
                 <span class="px-1">
-                    <a th:href="@{/articles/modify/{id}(id=${article.id})}">
+                    <a th:href="@{/adm/modify/{id}(id=${article.id})}">
                         수정
                     </a>
                 </span>

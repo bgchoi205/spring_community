@@ -25,12 +25,6 @@ public class ArticleService {
     private final MemberService memberService;
     private final BoardService boardService;
 
-    // 테스트게시물 저장
-    @Transactional
-    public void saveTestArticle(Article article){
-        articleRepository.save(article);
-    }
-
     // 게시물 저장
     @Transactional
     public void save(ArticleWriteDto articleWriteDto, CustomUserDetails user){
@@ -49,16 +43,11 @@ public class ArticleService {
     }
 
     // 게시물 id로 찾기
-    @Transactional
     public Article findById(Long id){
         Article findByIdArticle = articleRepository.findById(id).orElseThrow();
 
         return findByIdArticle;
     }
-
-//    public List<Article> findAll() {
-//        return articleRepository.findAllJoinFetch();
-//    }
 
     // 전체 게시물 List로 불러오기
     public List<Article> findAll(){
@@ -66,7 +55,6 @@ public class ArticleService {
     }
 
     //총 게시물 수
-    @Transactional
     public Long count(){
         return articleRepository.count();
     }

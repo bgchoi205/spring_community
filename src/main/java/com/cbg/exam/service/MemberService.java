@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class MemberService implements UserDetailsService {
 
@@ -34,12 +35,10 @@ public class MemberService implements UserDetailsService {
         memberRepository.delete(member);
     }
 
-    @Transactional
     public List findAll() {
         return memberRepository.findAll();
     }
 
-    @Transactional
     public Member findByLoginId(String loginId) {
         Member findMember = memberRepository.findByLoginId(loginId).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원-findByLoginId"));
 
@@ -65,8 +64,6 @@ public class MemberService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(Role.MANAGER.getValue()));
         }
 
-        // spring security에서 제공하는 UserDetails를 구현한 User를 반환(org.springframework.security.core.userdetails.User )
-        // 반환하는 정보는 로그인아이디, 로그인비밀번호, 권한리스트이다.
         return new CustomUserDetails(logonMember.getId(), logonMember.getLoginId(), logonMember.getLoginPw(), logonMember.getName(), logonMember.getNickname()
         , logonMember.getEmail(), authorities);
     }
@@ -88,7 +85,6 @@ public class MemberService implements UserDetailsService {
     }
 
     // 로그인아이디 중복 확인
-    @Transactional
     public boolean apiCheckLoginId(String loginId) {
         return memberRepository.findByLoginId(loginId).isEmpty();
     }

@@ -71,7 +71,6 @@
         });
 
         function modify_submit(form){
-<!--            const articleHtml = editor.getHTML();-->
             const articleMD = editor.getMarkdown();
 
             if(form.title.value.trim().length == 0){
@@ -85,7 +84,6 @@
                 return;
             }
 
-<!--            form.articleHtml.value = articleHtml;-->
             form.articleMD.value = articleMD;
 
             form.submit();

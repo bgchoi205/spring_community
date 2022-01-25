@@ -25,17 +25,14 @@ public class BoardService {
         return boardRepository.findAll();
     }
 
-    @Transactional
     public Board findById(Long boardId){
         return boardRepository.findById(boardId).orElseThrow();
     }
 
-    @Transactional
     public Board findByName(String name){
         return boardRepository.findByName(name).orElseThrow();
     }
 
-    @Transactional
     public Long count(){
         return boardRepository.count();
     }
