@@ -32,7 +32,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .csrf().disable()  // csrf 토큰검사 비활성화
                 .authorizeRequests()
                     .mvcMatchers(
-                            "/"
+                            "/maketest"
+                            ,"/up/**"
+                            ,"/"
                             , "/articles/**").permitAll()  // 누구나 접근 가능
                     .mvcMatchers(
                             "/members/login").anonymous() // 인증하기 전에만 접근 가능

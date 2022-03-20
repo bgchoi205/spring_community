@@ -19,7 +19,8 @@ dependencies {
 	implementation 'mysql:mysql-connector-java'
     implementation 'org.junit.jupiter:junit-jupiter:5.7.0'
 	implementation 'org.springframework.boot:spring-boot-starter-security' // security 사용
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5' // thymeleaf에서 Spring Security 통합모듈 사용을 위해
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+	implementation 'org.projectlombok:lombok:1.18.20'// thymeleaf에서 Spring Security 통합모듈 사용을 위해
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	compileOnly 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
